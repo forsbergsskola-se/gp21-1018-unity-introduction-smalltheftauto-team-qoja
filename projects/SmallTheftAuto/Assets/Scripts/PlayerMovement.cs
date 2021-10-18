@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovementOK : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     //This allows for Easier customizing inside unity.
     public float moveSpeed = 10;
