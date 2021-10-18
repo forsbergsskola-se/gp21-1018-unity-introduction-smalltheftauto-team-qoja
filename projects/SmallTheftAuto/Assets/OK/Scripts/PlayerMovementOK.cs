@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerMovementOK : MonoBehaviour
 {
     //This allows for Easier customizing inside unity.
-    public float moveSpeed = 10;
-    public float rotationSpeed = 100;
+    [SerializeField] public float moveSpeed = 10;
+    [SerializeField] public float rotationSpeed = 100;
     
     // Start is called before the first frame update
     void Start()
