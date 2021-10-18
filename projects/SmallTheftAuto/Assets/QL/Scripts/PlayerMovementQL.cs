@@ -1,12 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovementQL : MonoBehaviour
 {
-    public float speed = 5.0f;
-    public float rotationSpeed = 200.0f;
+    [SerializeField] float speed = 5.0f;
+    [SerializeField] float rotationSpeed = 200.0f;
     
     // Start is called before the first frame update
     void Start()
@@ -26,5 +23,11 @@ public class PlayerMovementQL : MonoBehaviour
 
         transform.Translate(0f, translation, 0f);
         transform.Rotate(0f,0f,rotation);
+
+        
+        // if (Input.GetKey(KeyCode.W)) transform.Translate(0f, 0.01f, 0f);
+        // if (Input.GetKey(KeyCode.S)) transform.Translate(0f, -0.01f, 0f);
+        // if(Input.GetKey(KeyCode.A)) transform.Rotate(0f, 0f, 1.0f);
+        // if(Input.GetKey(KeyCode.D)) transform.Rotate(0f, 0f, -1.0f);
     }
 }
