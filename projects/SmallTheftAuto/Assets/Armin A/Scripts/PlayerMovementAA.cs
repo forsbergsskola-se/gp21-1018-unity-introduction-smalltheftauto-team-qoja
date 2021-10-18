@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovementAA : MonoBehaviour
 {
+    // In order to change the speed in the Unity.
     public float speed = 10.0f;
     public float rotationSpeed = 100.0f;
     
@@ -16,6 +17,7 @@ public class PlayerMovementAA : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Getting translation amd rotation values trough GetAxis method - and multiply by the speed defined
         float translation = Input.GetAxis("Vertical") * speed;
         float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
         
