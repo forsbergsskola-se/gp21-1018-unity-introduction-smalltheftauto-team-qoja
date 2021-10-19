@@ -15,4 +15,3 @@ public class PlayerMovementJO : MonoBehaviour {
         transform.Rotate(0f, 0f, -rotationSpeed * Time.deltaTime*Input.GetAxis("Horizontal"));
     }
 }
-
