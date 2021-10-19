@@ -215,8 +215,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 894581870}
-  - component: {fileID: 894581871}
   - component: {fileID: 894581872}
+  - component: {fileID: 894581871}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -249,11 +249,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 894581869}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81efc1df49b2bf644be8552cbc356e62, type: 3}
+  m_Script: {fileID: 11500000, guid: a0270a6a5b7801b4d83e9a8355869ce0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
-  rotationSpeed: 140
+  dogPrefab: {fileID: 8464901709878015669, guid: 6e9e500d6fda08a428018489ee97f472, type: 3}
 --- !u!114 &894581872
 MonoBehaviour:
   m_ObjectHideFlags: 0
