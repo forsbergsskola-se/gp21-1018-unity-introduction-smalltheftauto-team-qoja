@@ -3,12 +3,13 @@ using UnityEngine;
 public class PlayerMovementQL : MonoBehaviour
 {
     [SerializeField] float speed = 5.0f;
-    [SerializeField] float rotationSpeed = 200.0f;
+    [SerializeField] float rotationSpeed = 180.0f;
+    public GameObject player;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        //player.SetActive(true);
     }
 
     // Update is called once per frame
