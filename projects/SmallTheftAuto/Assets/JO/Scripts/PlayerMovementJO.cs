@@ -6,21 +6,13 @@ public class PlayerMovementJO : MonoBehaviour {
     [SerializeField] float speed = 10.0f;
     [SerializeField] float rotationSpeed = 100.0f;
 
-    void Start()
-    {
+    void Start() {
         
     }
 
     void Update() {
-        float translation = Input.GetAxis("Vertical") * speed;
-        float rotation = Input.GetAxis("Horizontal") * rotationSpeed;
-        
-        translation *= Time.deltaTime;
-        rotation *= Time.deltaTime;
-        
-        transform.Translate(0, translation, 0f);
-        transform.Rotate(0, 0, -rotation);
-
+        transform.Translate(0f, speed * Time.deltaTime*Input.GetAxis("Vertical"), 0f);
+        transform.Rotate(0f, 0f, -rotationSpeed * Time.deltaTime*Input.GetAxis("Horizontal"));
     }
 }
 
