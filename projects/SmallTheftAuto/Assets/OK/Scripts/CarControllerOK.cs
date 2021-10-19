@@ -39,7 +39,7 @@ public class CarControllerOK : MonoBehaviour
     void Update()
     {
 
-        float Vector3.Distance(player.transform.position, car.transform.position);
+        //float Vector3.Distance(player.transform.position, car.transform.position);
 
         if (Input.GetKeyUp(KeyCode.E) && touchingCar && insideCar == false)
         {
