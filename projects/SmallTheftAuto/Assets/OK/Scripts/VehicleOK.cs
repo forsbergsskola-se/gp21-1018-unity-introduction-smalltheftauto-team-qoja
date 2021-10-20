@@ -10,14 +10,18 @@ public class VehicleOK : MonoBehaviour
 
     public GameObject player;
 
-    public CarMovementOK movement;
+    //public CarMovementOK movement;
     public GameObject car;
 
     private bool touchingCar = false;
 
-    private bool insideCar = false;
+    //private bool insideCar = false;
     private Vector3 playerOffSet = new Vector3(2,0,0);
-    
+
+    bool PlayerIsInCar()
+    {
+        return !this.player.activeInHierarchy;
+    }
     
 
 
@@ -26,7 +30,7 @@ public class VehicleOK : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        movement.enabled = false;
+        GetComponent<CarMovementOK>().enabled = false;
 
     }
 
@@ -39,28 +43,29 @@ public class VehicleOK : MonoBehaviour
     void Update()
     {
 
-        float distance = Vector3.Distance(player.transform.position, car.transform.position);
+        float distance = Vector3.Distance(player.transform.position, this.transform.position);
 
-        if (distance < 3)
+        if(Input.GetKeyDown(KeyCode.E))
         {
-           if (Input.GetKeyUp(KeyCode.E) && insideCar == false)
-           {
-               EnterCar();
-            } 
+            
+               if ( this.player.activeInHierarchy && distance < 3)
+               {
+                   EnterCar();
+               }
+               else
+               {
+                   ExitCar();
+               }
         }
-
         
-        else if (Input.GetKeyUp(KeyCode.E) && insideCar)
-        {
-            ExitCar();
-        }
 
         void EnterCar()
         {
             player.SetActive(false);
-            movement.enabled = true;
-            insideCar = true;
-            
+            GetComponent<CarMovementOK>().enabled = true;
+            //insideCar = true;
+           // PlayerIsInCar();
+
         }
 
         void ExitCar()
@@ -68,8 +73,9 @@ public class VehicleOK : MonoBehaviour
             
             player.SetActive(true);
             player.transform.position = car.transform.position + playerOffSet;
-            movement.enabled = false;
-            insideCar = false;
+            GetComponent<CarMovementOK>().enabled = false;
+           // insideCar = false;
+           
         }
           
     }

@@ -31,11 +31,12 @@ public class CarControllerAA : MonoBehaviour
     {
         float distance =  Vector3.Distance(player.transform.position, car.transform.position);
 
-        if (distance<2)
+        if (distance < 2 && Input.GetKeyDown(KeyCode.F))
         {
-            
+            EnterCar();
         }
-        
+
+
         if (Input.GetKeyDown(KeyCode.E) && contactCar)
         {
             EnterCar();
