@@ -33,6 +33,7 @@ public class CarMovementOK : MonoBehaviour
         transform.Translate(0f, translation, 0f); 
         //this changes the zAngle value of the player depending on your key input
         transform.Rotate(0,0,-rotation);
+        
 
     }
 }
