@@ -4,10 +4,9 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class CarControllerJO : MonoBehaviour {
+public class VehicleJO : MonoBehaviour {
     public GameObject player;
-    public GameObject car;
-    public PlayerMovementJO movement;
+    public CarMovementJO carMovementJO;
 
     private bool insideCar;
 
@@ -16,13 +15,13 @@ public class CarControllerJO : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        movement.enabled = false;
+        carMovementJO.enabled = false;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        float distance = Vector3.Distance( player.transform.position, car.transform.position);
+        float distance = Vector3.Distance( player.transform.position, transform.position);
         if (Input.GetButton("Interact-Vehicle") && distance < 3 && !insideCar) {
             EnterCar();
         }
@@ -33,16 +32,16 @@ public class CarControllerJO : MonoBehaviour {
         }
     }
 
-    private void EnterCar() {
+    public void EnterCar() {
         player.SetActive(false);
-        movement.enabled = true;
+        carMovementJO.enabled = true;
         insideCar = true;
     }
 
-    private void ExitCar(Vector3 playerOffset) {
-        player.transform.position = car.transform.position + playerOffset;
+    public void ExitCar(Vector3 playerOffset) {
+        player.transform.position = transform.position + playerOffset;
         player.SetActive(true);
-        movement.enabled = false;
+        carMovementJO.enabled = false;
         insideCar = false;
     }
 }
