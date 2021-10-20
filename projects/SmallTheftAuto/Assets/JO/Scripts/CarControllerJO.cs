@@ -9,25 +9,25 @@ public class CarController : MonoBehaviour {
     public GameObject car;
     public PlayerMovementJO movement;
 
-    private bool touchingCar;
     private bool insideCar;
 
     private Vector3 playerOffset = new Vector3(3, 0, 0);
+
 
     // Start is called before the first frame update
     void Start() {
         movement.enabled = false;
     }
 
-    private void OnCollisionEnter(Collision other) {
-        touchingCar = true;
-    }
-
     // Update is called once per frame
     void FixedUpdate()
     {
+        float distance = Vector3.Distance( player.transform.position, car.transform.position);
+        if (distance < 3 && !insideCar) {
+            EnterCar();
+        }
         //Get in
-        if (Input.GetKeyDown(KeyCode.E) && touchingCar) {
+        if (Input.GetKeyDown(KeyCode.E) && !insideCar) {
             EnterCar();
         }
         
