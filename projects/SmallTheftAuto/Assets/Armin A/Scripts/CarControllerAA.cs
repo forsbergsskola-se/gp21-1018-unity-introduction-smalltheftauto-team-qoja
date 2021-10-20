@@ -11,6 +11,8 @@ public class CarControllerAA : MonoBehaviour
     private bool contactCar;
     private bool insideCar;
     private Vector3 playerOffset = new Vector3(1, 0, 0);
+     
+    
     
     // Start is called before the first frame update
     void Start()
@@ -27,19 +29,36 @@ public class CarControllerAA : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float distance =  Vector3.Distance(player.transform.position, car.transform.position);
+
+        if (distance<2)
+        {
+            
+        }
+        
         if (Input.GetKeyDown(KeyCode.E) && contactCar)
         {
-            player.SetActive(false);
-            movement.enabled = true;
-            insideCar = true;
+            EnterCar();
         }
 
         if (Input.GetKeyDown(KeyCode.Q) && insideCar)
         {
-            player.transform.position = car.transform.position + playerOffset;
-            player.SetActive(true);
-            movement.enabled = false;
-            insideCar = false;
+            LeaveCar();
         }
+    }
+
+    void EnterCar()
+    {
+        player.SetActive(false);
+        movement.enabled = true;
+        insideCar = true;
+    }
+
+    void LeaveCar()
+    {
+        player.transform.position = car.transform.position + playerOffset;
+        player.SetActive(true);
+        movement.enabled = false;
+        insideCar = false;
     }
 }
