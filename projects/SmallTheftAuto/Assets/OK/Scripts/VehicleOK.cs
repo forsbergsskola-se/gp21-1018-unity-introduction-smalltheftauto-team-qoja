@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CarControllerOK : MonoBehaviour
+public class VehicleOK : MonoBehaviour
 {
 
     // public GameObject CarPrefab;
 
     public GameObject player;
 
-    public PlayerMovementOK movement;
+    public CarMovementOK movement;
     public GameObject car;
 
     private bool touchingCar = false;
@@ -30,22 +30,26 @@ public class CarControllerOK : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision other)
-    {
-        touchingCar = true;
-    }
+    // private void OnCollisionEnter(Collision other)
+    // {
+    //     touchingCar = true;
+    // }
 
     // Update is called once per frame
     void Update()
     {
 
-        //float Vector3.Distance(player.transform.position, car.transform.position);
+        float distance = Vector3.Distance(player.transform.position, car.transform.position);
 
-        if (Input.GetKeyUp(KeyCode.E) && touchingCar && insideCar == false)
+        if (distance < 3)
         {
-            EnterCar();
-
+           if (Input.GetKeyUp(KeyCode.E) && insideCar == false)
+           {
+               EnterCar();
+            } 
         }
+
+        
         else if (Input.GetKeyUp(KeyCode.E) && insideCar)
         {
             ExitCar();
