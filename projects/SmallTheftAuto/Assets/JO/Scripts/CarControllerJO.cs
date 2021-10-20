@@ -4,33 +4,29 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class CarController : MonoBehaviour {
+public class CarControllerJO : MonoBehaviour {
     public GameObject player;
     public GameObject car;
     public PlayerMovementJO movement;
 
-    private bool touchingCar;
     private bool insideCar;
 
     private Vector3 playerOffset = new Vector3(3, 0, 0);
+
 
     // Start is called before the first frame update
     void Start() {
         movement.enabled = false;
     }
 
-    private void OnCollisionEnter(Collision other) {
-        touchingCar = true;
-    }
-
     // Update is called once per frame
     void FixedUpdate()
     {
-        //Get in
-        if (Input.GetKeyDown(KeyCode.E) && touchingCar) {
+        float distance = Vector3.Distance( player.transform.position, car.transform.position);
+        if (Input.GetButton("Interact-Vehicle") && distance < 3 && !insideCar) {
             EnterCar();
         }
-        
+
         //Get out
         if (Input.GetKeyDown(KeyCode.Q) && insideCar) {
             ExitCar(playerOffset);
