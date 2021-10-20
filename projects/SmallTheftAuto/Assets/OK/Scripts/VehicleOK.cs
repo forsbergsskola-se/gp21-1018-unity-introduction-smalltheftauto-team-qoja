@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CarControllerOK : MonoBehaviour
+public class VehicleOK : MonoBehaviour
 {
 
     // public GameObject CarPrefab;
