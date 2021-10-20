@@ -6,8 +6,7 @@ using UnityEngine;
 
 public class VehicleJO : MonoBehaviour {
     public GameObject player;
-    public CarMovementJO carMovementJO;
-
+    
     private bool insideCar;
 
     private Vector3 playerOffset = new Vector3(3, 0, 0);
@@ -15,7 +14,7 @@ public class VehicleJO : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        carMovementJO.enabled = false;
+        GetComponent<CarMovementJO>().enabled = false;
     }
 
     // Update is called once per frame
@@ -23,6 +22,9 @@ public class VehicleJO : MonoBehaviour {
     {
         float distance = Vector3.Distance( player.transform.position, transform.position);
         if (Input.GetButton("Interact-Vehicle") && distance < 3 && !insideCar) {
+            //Split in isplayercclosetocar method
+            //Put field bool inside car to method bool
+            
             EnterCar();
         }
 
@@ -34,14 +36,14 @@ public class VehicleJO : MonoBehaviour {
 
     public void EnterCar() {
         player.SetActive(false);
-        carMovementJO.enabled = true;
+        GetComponent<CarMovementJO>().enabled = true;
         insideCar = true;
     }
 
     public void ExitCar(Vector3 playerOffset) {
         player.transform.position = transform.position + playerOffset;
         player.SetActive(true);
-        carMovementJO.enabled = false;
+        GetComponent<CarMovementJO>().enabled = false;
         insideCar = false;
     }
 }
