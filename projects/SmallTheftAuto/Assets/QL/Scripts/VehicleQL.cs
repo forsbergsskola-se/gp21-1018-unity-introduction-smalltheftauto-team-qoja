@@ -15,10 +15,9 @@ public class VehicleQL : MonoBehaviour
         //if (Input.GetKeyDown(KeyCode.F))
         if(Input.GetButtonDown("Interact-Vehicle"))
         {
-            if (player.activeInHierarchy)
+            if (!PlayerIsInCar())
             {
                 float distance = Vector3.Distance(player.transform.position, transform.position);
-                Debug.Log(distance);
                 if(distance < 3)
                     EnterCar();
             }
@@ -29,15 +28,20 @@ public class VehicleQL : MonoBehaviour
         }
     }
 
-    void EnterCar()
+    private bool PlayerIsInCar()
+    {
+        return !player.activeInHierarchy;
+    }
+
+    public void EnterCar()
     {
         player.SetActive(false);
         carMovement.enabled = true;
     }
 
-    void LeaveCar()
+    public void LeaveCar()
     {
-        player.transform.position = this.transform.position;
+        player.transform.position = transform.position;
         player.SetActive(true);
         carMovement.enabled = false;
     }
