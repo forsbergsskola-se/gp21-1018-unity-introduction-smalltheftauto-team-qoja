@@ -29,17 +29,17 @@ public class Vehicle : MonoBehaviour
 
         //Get out
         if (Input.GetKeyDown(KeyCode.Q) && insideCar) { //Change to interact vehicle
-            ExitCar(playerOffset);
+            ExitCar(playerOffset, );
         }
     }
 
-    public void EnterCar() {
+    public void EnterCar(GameObject player) {
         player.SetActive(false);
         GetComponent<VehicleMovement>().enabled = true;
         insideCar = true;
     }
 
-    public void ExitCar(Vector3 playerOffset) {
+    public void ExitCar(Vector3 playerOffset, GameObject player) {
         player.transform.position = transform.position + playerOffset;
         player.SetActive(true);
         GetComponent<VehicleMovement>().enabled = false;
