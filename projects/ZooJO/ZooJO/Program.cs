@@ -19,7 +19,7 @@ namespace ZooJO {
     
     //Zoo
     public class Zoo<TAnimal> where TAnimal : Animal {
-        private static TAnimal[] _animals = {};
+        private static TAnimal[] _animals = Array.Empty<TAnimal>();
         public void AddAnimal(TAnimal animal) {
             
             Array.Resize(ref _animals, _animals.Length + 1);

@@ -18,7 +18,7 @@ public class VehicleJO : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         float distance = Vector3.Distance( player.transform.position, transform.position);
         if (Input.GetButton("Interact-Vehicle") && distance < 3 && !insideCar) {
