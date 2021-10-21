@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ZooQL
 {
@@ -15,21 +16,24 @@ namespace ZooQL
     public class Clownfish:Fish{}
     public class Student{}
 
-    public class Zoo<T> where T:Animal
+    public class Zoo<TAnimal> where TAnimal:Animal
     {
-        private T[] _arrayT = {};
-        public void AddAnimal(T t)
+        //private TAnimal[] _arrayT = {};
+        //private TAnimal[] animals = Array.Empty<TAnimal>();
+        List<TAnimal> animals = new List<TAnimal>();
+        public void AddAnimal(TAnimal animal)
         {
-            Array.Resize(ref _arrayT, _arrayT.Length + 1);
-            _arrayT[^1] = t;
+            //Array.Resize(ref animals, animals.Length + 1);
+            //animals[^1] = animal;
             //foreach (var VARIABLE in _arrayT) Console.WriteLine(VARIABLE);
+            this.animals.Add((animal));
         }
 
-        public bool HasAnimal<Tcheck>() where Tcheck:T
+        public bool HasAnimal<TCheck>() where TCheck:TAnimal
         {
-            foreach (var item in _arrayT)
+            foreach (var item in animals)
             {
-                if (item is Tcheck) return true;
+                if (item is TCheck) return true;
             }
             return false;
         }
