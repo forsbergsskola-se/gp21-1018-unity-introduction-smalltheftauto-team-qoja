@@ -22,7 +22,7 @@ public class DriverOK : MonoBehaviour
                 if (distance < 3)
                 {
                     Debug.Log("aaaaaaah too close");
-                    //VehicleOK.Enter(DriverOK);
+                  //VehicleOK.Enter(DriverOK);
                     
                 }
 
