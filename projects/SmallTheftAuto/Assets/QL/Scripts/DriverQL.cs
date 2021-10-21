@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class DriverQL : MonoBehaviour
 {
-    private GameObject driver;
     private void Start()
     {
         
@@ -11,41 +10,42 @@ public class DriverQL : MonoBehaviour
 
     void Update()
     {
-        CarMovementQL[] car = FindObjectsOfType<CarMovementQL>();
-        float distance = Vector3.Distance(this.transform.position, car[0].transform.position);
         if(Input.GetButtonDown("Interact-Vehicle"))
         {
-            Debug.Log(distance);
-            if (distance < 3)
+            CarMovementQL[] cars = FindObjectsOfType<CarMovementQL>();
+            float[] distances = new float[cars.Length];
+            for (int i = 0; i < cars.Length; i++)
             {
-                //driver = FindObjectOfType<GameObject>();
-                //driver.GetComponent<VehicleQL>().EnterCar();
-                driver = GameObject.FindGameObjectWithTag("Player");
-                GetComponent<VehicleQL>().EnterCar(driver);
+                distances[i] = Vector3.Distance(this.transform.position, cars[i].transform.position);
             }
-                
-
-            // if (player.activeInHierarchy)
+            float distance = Vector3.Distance(this.transform.position, cars[0].transform.position);
+            int index = Min(distances);
+            Debug.Log(distances[index]);
+            if (distances[index] < 3)
+            {
+                cars[index].GetComponent<VehicleQL>().EnterCar(this.gameObject);
+            }
+            // if (distance < 3)
             // {
-            //     float distance = Vector3.Distance(player.transform.position, movement.transform.position);
-            //     if (distance < 3)
-            //     {
-            //         //player.GetComponent<VehicleQL>().EnterCar();
-            //         try
-            //         {
-            //             player.GetComponent<VehicleQL>().EnterCar();
-            //         }
-            //         catch (NullReferenceException ex)
-            //         {
-            //             Debug.Log("player in the car");
-            //         }
-            //     }
-            //         
+            //     Debug.Log(distance);
+            //     cars[0].GetComponent<VehicleQL>().EnterCar(this.gameObject);
             // }
-            // else
-            // {
-            //     player.GetComponent<VehicleQL>().LeaveCar();
-            // }
+            else Debug.Log("Cannot enter the car");
         }
+    }
+
+    private int Min(float[] array)
+    {
+        int index=0;
+        float tmp = 1000f;
+        for(int i=0; i<array.Length; i++)
+        {
+            if (array[i] < tmp)
+            {
+                tmp = array[i];
+                index = i;
+            }
+        }
+        return index;
     }
 }

@@ -2,12 +2,10 @@ using UnityEngine;
 
 public class VehicleQL : MonoBehaviour
 {
-    //public GameObject player;
-    //public CarMovementQL carMovement;
-
+    private GameObject driver;
+    public GameObject player;
     void Start()
     {
-        //carMovement.enabled = false;
         GetComponent<CarMovementQL>().enabled = false;
     }
     
@@ -28,12 +26,12 @@ public class VehicleQL : MonoBehaviour
         //         LeaveCar();
         //     }
         // }
-        GameObject driver = FindObjectOfType<GameObject>();
-        if (Input.GetKeyDown(KeyCode.F))
+        
+        if (Input.GetButtonDown("Interact-Vehicle"))
         {
             if (driver != null)
             {
-                LeaveCar(driver);
+                LeaveCar();
             }
         }
     }
@@ -44,22 +42,19 @@ public class VehicleQL : MonoBehaviour
         //return !GetComponent<GameObject>().activeInHierarchy;
     //}
 
-    //public void EnterCar()
-    public void EnterCar(GameObject driver)
+    public void EnterCar(GameObject player)
     {
-        driver.SetActive(false);
-        //carMovement.enabled = true;
-        //GetComponent<GameObject>().SetActive(false);
+        driver = player;
+        player.SetActive(false);
         GetComponent<CarMovementQL>().enabled = true;
     }
 
-    public void LeaveCar(GameObject driver)
+    private void LeaveCar()
     {
-        driver.transform.position = transform.position;
-        driver.SetActive(true);
-        //carMovement.enabled = false;
-        //GetComponent<GameObject>().transform.position = transform.position;
-        //GetComponent<GameObject>().SetActive(true);
+        driver.transform.position = this.transform.position;
+        player.SetActive(true);
+        player = driver;
+        driver = null;
         GetComponent<CarMovementQL>().enabled = false;
     }
 }
