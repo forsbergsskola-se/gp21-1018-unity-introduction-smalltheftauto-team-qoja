@@ -1519,6 +1519,14 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 894581869}
+    - target: {fileID: 9162000635063815702, guid: b8e2799b10674924e96ac9481dd58bbe, type: 3}
+      propertyPath: m_Size.y
+      value: 6.600329
+      objectReference: {fileID: 0}
+    - target: {fileID: 9162000635063815702, guid: b8e2799b10674924e96ac9481dd58bbe, type: 3}
+      propertyPath: m_Center.y
+      value: 2.1360996
+      objectReference: {fileID: 0}
     - target: {fileID: 9162000635063815707, guid: b8e2799b10674924e96ac9481dd58bbe, type: 3}
       propertyPath: m_Name
       value: Car
