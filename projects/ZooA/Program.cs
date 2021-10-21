@@ -76,6 +76,14 @@ public class Program {
 
         public bool HasAnimal<TSpecies>() where TSpecies : TAnimal {
             // TODO return true/false, depending on whether any TAnimal in animals is of type TSpecies
+            for (int i = 0; i < this.animals.Count; i++)
+            {
+                if (this.animals[i]is TSpecies)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
