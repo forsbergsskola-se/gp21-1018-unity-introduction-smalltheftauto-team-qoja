@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Vehicle : MonoBehaviour
 {
-    public GameObject player; // Should be automated
+    //public GameObject player; // Should be automated
     
     private bool insideCar;
 
