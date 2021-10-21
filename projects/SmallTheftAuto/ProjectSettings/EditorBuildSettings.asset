@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/OK/Scenes/GameOK.unity
+    guid: f0ba5783a60c64a429aa1080a1b34a56
   m_configObjects: {}

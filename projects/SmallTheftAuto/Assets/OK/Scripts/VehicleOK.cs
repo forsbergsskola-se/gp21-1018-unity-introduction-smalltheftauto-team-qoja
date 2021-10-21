@@ -67,6 +67,8 @@ bool PlayerIsInCar()
         {
             player.SetActive(false);
             GetComponent<CarMovementOK>().enabled = true;
+            this.gameObject.tag = "Player";
+            
             //insideCar = true;
            // PlayerIsInCar();
 
@@ -78,6 +80,7 @@ bool PlayerIsInCar()
             player.SetActive(true);
             player.transform.position = car.transform.position + playerOffSet;
             GetComponent<CarMovementOK>().enabled = false;
+            this.gameObject.tag = "Vehicle";
            // insideCar = false;
            
         }
