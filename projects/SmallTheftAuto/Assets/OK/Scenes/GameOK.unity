@@ -170,6 +170,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   rotationSpeed: 100
+--- !u!114 &18714475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18714470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f2153e594570ee43829ca9c3ae8f347, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &96001175
 GameObject:
   m_ObjectHideFlags: 0
@@ -732,6 +744,18 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5425114288696277138, guid: f2d0d13245b7d68429f609185c925f3d, type: 3}
   m_PrefabInstance: {fileID: 5425114288976897107}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2013142210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013142209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6338eeed7ef994b4d8cdfef7c08cf79c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2200528063834494452
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -905,12 +929,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5425114288696277138, guid: f2d0d13245b7d68429f609185c925f3d, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+    - target: {fileID: 5425114288696277138, guid: f2d0d13245b7d68429f609185c925f3d, type: 3}
       propertyPath: m_Name
-      value: Player 3D
+      value: PlayerOK
       objectReference: {fileID: 0}
     - target: {fileID: 5425114288696277138, guid: f2d0d13245b7d68429f609185c925f3d, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5425114288696277138, guid: f2d0d13245b7d68429f609185c925f3d, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5425114288696277141, guid: f2d0d13245b7d68429f609185c925f3d, type: 3}
       propertyPath: m_Drag
@@ -926,6 +958,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5425114288696277141, guid: f2d0d13245b7d68429f609185c925f3d, type: 3}
       propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5425114288696277142, guid: f2d0d13245b7d68429f609185c925f3d, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5425114288696277143, guid: f2d0d13245b7d68429f609185c925f3d, type: 3}

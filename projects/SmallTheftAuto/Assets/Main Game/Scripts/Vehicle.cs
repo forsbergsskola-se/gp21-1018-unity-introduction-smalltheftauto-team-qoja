@@ -1,11 +1,10 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
-public class VehicleJO : MonoBehaviour {
-    public GameObject player;
+public class Vehicle : MonoBehaviour
+{
+    public GameObject player; // Should be automated
     
     private bool insideCar;
 
@@ -14,7 +13,7 @@ public class VehicleJO : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        GetComponent<CarMovementJO>().enabled = false;
+        GetComponent<VehicleMovement>().enabled = false;
     }
 
     // Update is called once per frame
@@ -29,21 +28,22 @@ public class VehicleJO : MonoBehaviour {
         }
 
         //Get out
-        if (Input.GetKeyDown(KeyCode.Q) && insideCar) {
+        if (Input.GetKeyDown(KeyCode.Q) && insideCar) { //Change to interact vehicle
             ExitCar(playerOffset);
         }
     }
 
     public void EnterCar() {
         player.SetActive(false);
-        GetComponent<CarMovementJO>().enabled = true;
+        GetComponent<VehicleMovement>().enabled = true;
         insideCar = true;
     }
 
     public void ExitCar(Vector3 playerOffset) {
         player.transform.position = transform.position + playerOffset;
         player.SetActive(true);
-        GetComponent<CarMovementJO>().enabled = false;
+        GetComponent<VehicleMovement>().enabled = false;
         insideCar = false;
     }
-}
+} 
+

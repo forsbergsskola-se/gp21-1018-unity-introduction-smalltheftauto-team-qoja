@@ -18,10 +18,7 @@ public class VehicleOK : MonoBehaviour
     //private bool insideCar = false;
     private Vector3 playerOffSet = new Vector3(2,0,0);
 
-    bool PlayerIsInCar()
-    {
-        return !this.player.activeInHierarchy;
-    }
+    
     
 
 
@@ -30,10 +27,16 @@ public class VehicleOK : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<CarMovementOK>().enabled = false;
+        GetComponent<CarMovementOK>().enabled = false; //To automatically assign the Carmovement script
+        //player = FindObjectOfType<PlayerMovementOK>();
+        //PlayerOK playerOk = FindObjectOfType<PlayerOK>();
+        this.player = player;
 
     }
-
+bool PlayerIsInCar()
+    {
+        return !this.player.activeInHierarchy;
+    }
     // private void OnCollisionEnter(Collision other)
     // {
     //     touchingCar = true;
@@ -42,6 +45,7 @@ public class VehicleOK : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //FindObjectsOfType<PlayerMovementOK>
 
         float distance = Vector3.Distance(player.transform.position, this.transform.position);
 
