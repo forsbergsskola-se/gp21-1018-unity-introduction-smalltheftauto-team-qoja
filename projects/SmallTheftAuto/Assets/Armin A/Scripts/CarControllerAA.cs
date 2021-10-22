@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CarControllerAA : MonoBehaviour
@@ -11,6 +12,7 @@ public class CarControllerAA : MonoBehaviour
     private bool contactCar;
     private bool insideCar;
     private Vector3 playerOffset = new Vector3(1, 0, 0);
+    public GameObject carText;
      
     
     
@@ -30,17 +32,13 @@ public class CarControllerAA : MonoBehaviour
     void Update()
     {
         float distance =  Vector3.Distance(player.transform.position, car.transform.position);
-
-        if (distance < 2 && Input.GetKeyDown(KeyCode.F))
-        {
-            EnterCar();
-        }
-
-
+        
+        
         if (Input.GetKeyDown(KeyCode.E) && contactCar)
         {
             EnterCar();
         }
+        
 
         if (Input.GetKeyDown(KeyCode.Q) && insideCar)
         {
@@ -53,6 +51,7 @@ public class CarControllerAA : MonoBehaviour
         player.SetActive(false);
         movement.enabled = true;
         insideCar = true;
+        carText.SetActive(true);
     }
 
     void LeaveCar()
