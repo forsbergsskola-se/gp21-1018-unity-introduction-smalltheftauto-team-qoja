@@ -286,7 +286,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 7.121208
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -425,6 +425,7 @@ GameObject:
   - component: {fileID: 668325025}
   - component: {fileID: 668325024}
   - component: {fileID: 668325022}
+  - component: {fileID: 668325026}
   m_Layer: 0
   m_Name: Car
   m_TagString: Vehicle
@@ -503,6 +504,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   rotationSpeed: 100
+--- !u!50 &668325026
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668325021}
+  m_BodyType: 0
+  m_Simulated: 0
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 500
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1191147844
 GameObject:
   m_ObjectHideFlags: 0
