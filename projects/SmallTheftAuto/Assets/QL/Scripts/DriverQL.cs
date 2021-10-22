@@ -18,7 +18,6 @@ public class DriverQL : MonoBehaviour
             {
                 distances[i] = Vector3.Distance(this.transform.position, cars[i].transform.position);
             }
-            float distance = Vector3.Distance(this.transform.position, cars[0].transform.position);
             int index = Min(distances);
             Debug.Log(distances[index]);
             if (distances[index] < 3)

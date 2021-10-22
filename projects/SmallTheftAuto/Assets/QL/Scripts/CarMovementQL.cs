@@ -2,23 +2,24 @@ using UnityEngine;
 
 public class CarMovementQL : MonoBehaviour
 {
-    [SerializeField] float speed = 5.0f;
-    [SerializeField] float rotationSpeed = 180.0f;
+    [SerializeField] float accelerationGear = 1.0f;
+    [SerializeField] float steeringGear = 1.0f;
+    private float steering, acceleration;
     
+    private Rigidbody2D rb;
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
     }
     
-    void Update()
+    void FixedUpdate()
     {
-        float translation = Input.GetAxis("Vertical") * speed; 
-        float rotation = -Input.GetAxis("Horizontal") * rotationSpeed;
-
-        translation *= Time.deltaTime;
-        rotation *= Time.deltaTime;
-
-        transform.Translate(0f, translation, 0f);
-        transform.Rotate(0f,0f,rotation);
+        acceleration = Input.GetAxis("Vertical") * accelerationGear * 10;
+        steering = -Input.GetAxis("Horizontal") * steeringGear / 2 ;
+        float direction = Mathf.Sign(Vector2.Dot(rb.velocity, rb.GetRelativeVector(Vector2.up)));
+        //direction is 1 if car is moving forward and -1 if reverse
+        rb.rotation += steering * rb.velocity.magnitude * direction;
+        rb.AddRelativeForce(Vector2.up * acceleration * rb.mass);
+        rb.AddRelativeForce(-Vector2.right * rb.velocity.magnitude * steering * rb.mass);
     }
 }

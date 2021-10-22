@@ -3,7 +3,7 @@ using UnityEngine;
 public class VehicleQL : MonoBehaviour
 {
     private GameObject driver;
-    public GameObject player;
+    //public GameObject player;
     void Start()
     {
         GetComponent<CarMovementQL>().enabled = false;
@@ -52,8 +52,8 @@ public class VehicleQL : MonoBehaviour
     private void LeaveCar()
     {
         driver.transform.position = this.transform.position;
-        player.SetActive(true);
-        player = driver;
+        driver.SetActive(true);
+        //player = driver;
         driver = null;
         GetComponent<CarMovementQL>().enabled = false;
     }
