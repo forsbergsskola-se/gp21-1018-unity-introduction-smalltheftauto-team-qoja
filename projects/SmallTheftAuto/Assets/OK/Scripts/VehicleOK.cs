@@ -5,6 +5,7 @@ public class VehicleOK : MonoBehaviour
     private GameObject driver;
     //public GameObject player;
     private Vector3 playerOffset = new Vector3(3, 0, 0);
+    //private GameObject NiceCarOK;
     void Start() {
         GetComponent<VehicleMovementOK>().enabled = false;
     }
@@ -26,6 +27,8 @@ public class VehicleOK : MonoBehaviour
         player.SetActive(false);
         GetComponent<VehicleMovementOK>().enabled = true;
         gameObject.tag = "Player";
+       // GameObject NiceCarPrefab = GameObject.Instantiate(NiceCarOK, this.transform.position, 0);
+        
     }
 
     public void ExitCar(Vector3 playerOffset) {
