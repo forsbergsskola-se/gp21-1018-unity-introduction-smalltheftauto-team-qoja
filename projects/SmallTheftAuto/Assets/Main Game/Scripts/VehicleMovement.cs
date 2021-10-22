@@ -37,7 +37,7 @@ public class VehicleMovement : MonoBehaviour
         direction = Mathf.Sign(Vector2.Dot (rb.velocity, rb.GetRelativeVector(Vector2.up)));
         rb.rotation += steeringAmount * steeringPower * rb.velocity.magnitude * direction;
 
-        rb.AddRelativeForce (Vector2.up * speed);
+        rb.AddRelativeForce (Vector2.up * speed); //Ask teacher how this works
 
         rb.AddRelativeForce ( - Vector2.right * rb.velocity.magnitude * steeringAmount / 5);
 			
