@@ -4,6 +4,7 @@ public class VehicleQL : MonoBehaviour
 {
     private GameObject driver;
     //public GameObject player;
+   // public GameObject floatingText;
     void Start()
     {
         GetComponent<CarMovementQL>().enabled = false;

@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class DriverQL : MonoBehaviour
 {
+    public GameObject floatingTextQL;
     private void Start()
     {
         
@@ -23,6 +24,7 @@ public class DriverQL : MonoBehaviour
             if (distances[index] < 3)
             {
                 cars[index].GetComponent<VehicleQL>().EnterCar(this.gameObject);
+                Instantiate(floatingTextQL, transform.position, Quaternion.identity);
             }
             
             else Debug.Log("Cannot enter the car");
