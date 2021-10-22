@@ -1,46 +1,45 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Mathematics;
+
 
 public class VehicleMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
-    [SerializeField] float speed = 10.0f;
-    [SerializeField] float rotationSpeed = 100.0f;
-    private Rigidbody2D rb;
-    
+    Rigidbody2D rb;
 
-    void Start() {
-        rb = GetComponent<Rigidbody2D>();
+    [SerializeField]
+    float accelerationPower = 5f;
+    [SerializeField]
+    float steeringPower = 5f;
+    float steeringAmount, speed, direction;
+    [SerializeField] private float maxSpeed = 50;
 
+    private float MAXSpeed
+    {
+        get => maxSpeed;
+        set => maxSpeed = (value* 10);
     }
 
-    void Update() {
-        if (Input.GetKey(KeyCode.W))
-        {
-            //Move the Rigidbody upwards constantly at speed you define (the green arrow axis in Scene view)
-            rb.velocity = transform.up * speed;
-        }
+    // Use this for initialization
+    void Start () {
+        rb = GetComponent<Rigidbody2D> ();
+    }
+	
+    // Update is called once per frame
+    void FixedUpdate () {
 
-        if (Input.GetKey(KeyCode.S))
-        {
-            //Move the Rigidbody downwards constantly at the speed you define (the green arrow axis in Scene view)
-            rb.velocity = -transform.up * speed;
-        }
+        steeringAmount = - Input.GetAxis ("Horizontal");
+       // speed = Input.GetAxis ("Vertical") * accelerationPower;
+      
+        speed = Mathf.Clamp((Input.GetAxis ("Vertical") * accelerationPower), -MAXSpeed/2, MAXSpeed);
+        direction = Mathf.Sign(Vector2.Dot (rb.velocity, rb.GetRelativeVector(Vector2.up)));
+        rb.rotation += steeringAmount * steeringPower * rb.velocity.magnitude * direction;
 
-        if (Input.GetKey(KeyCode.A))
-        {
-            //rotate the sprite about the Z axis in the positive direction
-            transform.Rotate(new Vector3(0, 0, 1) * Time.deltaTime * speed);
-        }
+        rb.AddRelativeForce (Vector2.up * speed); //Ask teacher how this works
 
-        if (Input.GetKey(KeyCode.D))
-        {
-            //rotate the sprite about the Z axis in the negative direction
-            transform.Rotate(new Vector3(0, 0, -1) * Time.deltaTime * speed);
-        }
-        
-        //transform.Translate(0f, speed * Time.deltaTime*Input.GetAxis("Vertical"), 0f);
-        //transform.Rotate(0f, 0f, -rotationSpeed * Time.deltaTime*Input.GetAxis("Horizontal"));
+        rb.AddRelativeForce ( - Vector2.right * rb.velocity.magnitude * steeringAmount / 5);
+			
     }
 }
