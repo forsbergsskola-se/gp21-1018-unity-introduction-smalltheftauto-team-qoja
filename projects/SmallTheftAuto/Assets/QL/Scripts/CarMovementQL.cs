@@ -5,6 +5,7 @@ public class CarMovementQL : MonoBehaviour
     [SerializeField] float accelerationGear = 1.0f;
     [SerializeField] float steeringGear = 1.0f;
     private float steering, acceleration;
+    private float maxAcceleration = 3;
     
     private Rigidbody2D rb;
     void Start()
@@ -15,6 +16,7 @@ public class CarMovementQL : MonoBehaviour
     void FixedUpdate()
     {
         acceleration = Input.GetAxis("Vertical") * accelerationGear * 10;
+        acceleration = Mathf.Clamp(acceleration, -maxAcceleration / 2, maxAcceleration);
         steering = -Input.GetAxis("Horizontal") * steeringGear / 2 ;
         float direction = Mathf.Sign(Vector2.Dot(rb.velocity, rb.GetRelativeVector(Vector2.up)));
         //direction is 1 if car is moving forward and -1 if reverse
