@@ -9,7 +9,6 @@ public class CarControllerAA : MonoBehaviour
     public GameObject player;
     public PlayerMovementAA movement;
     public GameObject car;
-    private bool contactCar;
     private bool insideCar;
     private Vector3 playerOffset = new Vector3(1, 0, 0);
     public GameObject carText;
@@ -21,20 +20,14 @@ public class CarControllerAA : MonoBehaviour
     {
         movement.enabled = false;
     }
-
-    private void OnCollisionEnter(Collision other)
-    {
-        contactCar = true;
-       
-    }
-
+    
     // Update is called once per frame
     void Update()
     {
         float distance =  Vector3.Distance(player.transform.position, car.transform.position);
         
         
-        if (Input.GetKeyDown(KeyCode.E) && contactCar)
+        if (Input.GetKeyDown(KeyCode.E) && distance  < 5 && !insideCar)
         {
             EnterCar();
         }
@@ -48,6 +41,7 @@ public class CarControllerAA : MonoBehaviour
 
     void EnterCar()
     {
+        carText.SetActive(false);
         player.SetActive(false);
         movement.enabled = true;
         insideCar = true;
