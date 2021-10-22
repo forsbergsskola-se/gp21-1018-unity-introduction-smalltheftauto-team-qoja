@@ -5,45 +5,40 @@ using TMPro;
 using UnityEngine;
 
 public class VehicleJO : MonoBehaviour {
-    public GameObject player;
-    
-    private bool insideCar;
-
+    private GameObject driver;
     private Vector3 playerOffset = new Vector3(3, 0, 0);
-
-
-    // Start is called before the first frame update
+    
     void Start() {
-        GetComponent<CarMovementJO>().enabled = false;
+        GetComponent<VehicleMovementJO>().enabled = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        float distance = Vector3.Distance( player.transform.position, transform.position);
-        if (Input.GetButton("Interact-Vehicle") && distance < 3 && !insideCar) {
-            //Split in isplayercclosetocar method
-            //Put field bool inside car to method bool
-            
-            EnterCar();
-        }
-
-        //Get out
-        if (Input.GetKeyDown(KeyCode.Q) && insideCar) {
-            ExitCar(playerOffset);
+        if (Input.GetButtonDown("Interact-Vehicle"))
+        {
+            if (driver != null)
+            {
+                ExitCar(playerOffset);
+            }
         }
     }
 
-    public void EnterCar() {
+    public void EnterCar(GameObject player)
+    {
+        driver = player;
         player.SetActive(false);
-        GetComponent<CarMovementJO>().enabled = true;
-        insideCar = true;
+        GetComponent<VehicleMovementJO>().enabled = true;
+        gameObject.tag = "Player";
     }
 
     public void ExitCar(Vector3 playerOffset) {
-        player.transform.position = transform.position + playerOffset;
-        player.SetActive(true);
-        GetComponent<CarMovementJO>().enabled = false;
-        insideCar = false;
+        driver.transform.position = transform.position + playerOffset;
+        Debug.Log("I'm suppose to exit");
+        driver.SetActive(true);
+        Debug.Log("I'm exited");
+        //player = driver;
+        driver = null;
+        GetComponent<VehicleMovementJO>().enabled = false;
+        gameObject.tag = "Vehicle";
     }
 }

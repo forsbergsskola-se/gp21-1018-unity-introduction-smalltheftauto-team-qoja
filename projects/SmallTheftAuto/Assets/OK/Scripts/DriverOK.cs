@@ -1,37 +1,42 @@
-// using System;
-// using System.Collections;
-// using System.Collections.Generic;
-// using UnityEngine;
-//
-// public class DriverOK : MonoBehaviour
-// {
-//     // Start is called before the first frame update
-//     void Enter()
-//     {
-//         // private driver = DriverOK;
-//     }
-//
-//     // Update is called once per frame
-// //     void Update()
-// //     {
-// //         if (Input.GetKeyDown(KeyCode.F))
-// //             
-// //             GameObject.fin
-// //         {
-// //             VehicleOK[] CarsNearby = new 
-// //             foreach (VehicleOK car in FindObjectsOfType<VehicleOK>())
-// //             {
-// //                 float distance = Vector3.Distance(this.transform.position, car.transform.position);
-// //                 if (distance < 3)
-// //                 {
-// //                     Debug.Log("aaaaaaah too close");
-// //                   //VehicleOK.Enter(DriverOK);
-// //                   Vehicle currentVehcile = car[0];
-// //                         if Vector2.distance(this.transform.position, foundvehicles[i]) < Vector2.distance(this.transform.position, currentVehcile)
-// //                 }
-// //
-// //             }
-// //
-// //         }
-// //     }
-// // }
+using UnityEngine;
+
+public class DriverOK : MonoBehaviour {
+    void Update() {
+        if (Input.GetButtonDown("Interact-VehicleOK")) {
+            EnterClosestVehicle();
+            Debug.Log("I entered!");
+        }
+    }
+
+    public int FindClosestCar(float[] distancesToVehicles)
+    {
+        int indexOfClosestVehicle = 0;
+        float closestPosition = 1000f;
+        
+        for(int i = 0; i < distancesToVehicles.Length; i++)
+        {
+            if (distancesToVehicles[i] < closestPosition)
+            {
+                closestPosition = distancesToVehicles[i];
+                indexOfClosestVehicle = i;
+            }
+        }
+        
+        return indexOfClosestVehicle;
+    }
+    
+    private void EnterClosestVehicle() {
+        VehicleOK[] foundVehicles = FindObjectsOfType<VehicleOK>();
+        float[] distancesToVehicles = new float[foundVehicles.Length];
+
+        for (int i = 0; i < foundVehicles.Length; i++) {
+            distancesToVehicles[i] = Vector2.Distance(this.transform.position, foundVehicles[i].transform.position);
+        }
+
+        int indexOfClosestCar = FindClosestCar(distancesToVehicles);
+
+        if (distancesToVehicles[indexOfClosestCar] < 3) {
+            foundVehicles[indexOfClosestCar].GetComponent<VehicleOK>().EnterCar(this.gameObject);
+        }
+    }
+}

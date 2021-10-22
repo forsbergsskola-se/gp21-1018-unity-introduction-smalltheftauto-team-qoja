@@ -1,89 +1,44 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class VehicleOK : MonoBehaviour
 {
-
-    // public GameObject CarPrefab;
-
-    public GameObject player;
-
-    //public CarMovementOK movement;
-    public GameObject car;
-
-    private bool touchingCar = false;
-
-    //private bool insideCar = false;
-    private Vector3 playerOffSet = new Vector3(2,0,0);
-
-    
-    
-
-
-    public Rigidbody rig;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        GetComponent<CarMovementOK>().enabled = false; //To automatically assign the Carmovement script
-        //player = FindObjectOfType<PlayerMovementOK>();
-        //PlayerOK playerOk = FindObjectOfType<PlayerOK>();
-        this.player = player;
-
+    private GameObject driver;
+    //public GameObject player;
+    private Vector3 playerOffset = new Vector3(3, 0, 0);
+    //private GameObject NiceCarOK;
+    void Start() {
+        GetComponent<VehicleMovementOK>().enabled = false;
     }
-bool PlayerIsInCar()
-    {
-        return !this.player.activeInHierarchy;
-    }
-    // private void OnCollisionEnter(Collision other)
-    // {
-    //     touchingCar = true;
-    // }
 
-    // Update is called once per frame
     void Update()
     {
-        //FindObjectsOfType<PlayerMovementOK>
-
-        float distance = Vector3.Distance(player.transform.position, this.transform.position);
-
-        if(Input.GetKeyDown(KeyCode.E))
+        if (Input.GetButtonDown("Interact-Vehicle"))
         {
-            
-               if ( this.player.activeInHierarchy && distance < 3)
-               {
-                   EnterCar();
-               }
-               else
-               {
-                   ExitCar();
-               }
+            if (driver != null)
+            {
+                ExitCar(playerOffset);
+            }
         }
+    }
+
+    public void EnterCar(GameObject player)
+    {
+        driver = player;
+        player.SetActive(false);
+        GetComponent<VehicleMovementOK>().enabled = true;
+        gameObject.tag = "Player";
+       // GameObject NiceCarPrefab = GameObject.Instantiate(NiceCarOK, this.transform.position, 0);
         
+    }
 
-        void EnterCar()
-        {
-            player.SetActive(false);
-            GetComponent<CarMovementOK>().enabled = true;
-            this.gameObject.tag = "Player";
-            
-            //insideCar = true;
-           // PlayerIsInCar();
-
-        }
-
-        void ExitCar()
-        {
-            
-            player.SetActive(true);
-            player.transform.position = car.transform.position + playerOffSet;
-            GetComponent<CarMovementOK>().enabled = false;
-            this.gameObject.tag = "Vehicle";
-           // insideCar = false;
-           
-        }
-          
+    public void ExitCar(Vector3 playerOffset) {
+        driver.transform.position = transform.position + playerOffset;
+        Debug.Log("I'm suppose to exit");
+        driver.SetActive(true);
+        Debug.Log("I'm exited");
+        //player = driver;
+        driver = null;
+        GetComponent<VehicleMovementOK>().enabled = false;
+        gameObject.tag = "Vehicle";
     }
 }
