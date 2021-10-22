@@ -25,6 +25,7 @@ public class Vehicle : MonoBehaviour
         driver = player;
         player.SetActive(false);
         GetComponent<VehicleMovement>().enabled = true;
+        gameObject.tag = "Player";
     }
 
     public void ExitCar(Vector3 playerOffset) {
@@ -35,6 +36,7 @@ public class Vehicle : MonoBehaviour
         //player = driver;
         driver = null;
         GetComponent<VehicleMovement>().enabled = false;
+        gameObject.tag = "Vehicle";
     }
 } 
 
