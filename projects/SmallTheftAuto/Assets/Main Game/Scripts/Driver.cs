@@ -1,31 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Driver : MonoBehaviour {
-    public GameObject player;
-    private Vector3 playerOffset = new Vector3(3, 0, 0);
-
-    private bool _isInsideCar;
-
-    void Awake() {
-    }
-
     void Update() {
         if (Input.GetButtonDown("Interact-Vehicle")) {
-            if (!_isInsideCar) {
-                EnterClosestVehicle();
-                Debug.Log("I entered!");
-                _isInsideCar = true;
-            }
-        }
-
-        if (Input.GetButtonDown("Interact-Vehicle") && _isInsideCar) {
-            Debug.Log("I try to exit!");
-            GetComponent<Vehicle>().ExitCar(playerOffset, player);
-            Debug.Log("I failed to exit!");
-            _isInsideCar = false;
+            EnterClosestVehicle();
+            Debug.Log("I entered!");
         }
     }
 
@@ -57,7 +36,7 @@ public class Driver : MonoBehaviour {
         int indexOfClosestCar = FindClosestCar(distancesToVehicles);
 
         if (distancesToVehicles[indexOfClosestCar] < 3) {
-            foundVehicles[indexOfClosestCar].GetComponent<Vehicle>().EnterCar(player);
+            foundVehicles[indexOfClosestCar].GetComponent<Vehicle>().EnterCar(this.gameObject);
         }
     }
 }

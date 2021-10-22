@@ -25,11 +25,7 @@ public class DriverQL : MonoBehaviour
             {
                 cars[index].GetComponent<VehicleQL>().EnterCar(this.gameObject);
             }
-            // if (distance < 3)
-            // {
-            //     Debug.Log(distance);
-            //     cars[0].GetComponent<VehicleQL>().EnterCar(this.gameObject);
-            // }
+            
             else Debug.Log("Cannot enter the car");
         }
     }

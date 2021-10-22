@@ -7,6 +7,8 @@ public class TimerProQL : MonoBehaviour
 {
     private TextMeshProUGUI timer;
     private float timePassed;
+    private int timeSecond;
+    
     void Start()
     {
         timer = GetComponent<TextMeshProUGUI>();
@@ -16,6 +18,8 @@ public class TimerProQL : MonoBehaviour
     void Update()
     {
         timePassed += Time.deltaTime;
-        timer.text = timePassed.ToString("N2");
+        
+        
+        timer.text = timePassed.ToString("0");
     }
 }
