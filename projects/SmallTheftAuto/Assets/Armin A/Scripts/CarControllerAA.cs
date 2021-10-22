@@ -52,6 +52,13 @@ public class CarControllerAA : MonoBehaviour
         movement.enabled = true;
         insideCar = true;
         carText.SetActive(true);
+        Invoke("SetFalse", 3f);
+
+    }
+
+    void SetFalse()
+    {
+        carText.SetActive(false);
     }
 
     void LeaveCar()
