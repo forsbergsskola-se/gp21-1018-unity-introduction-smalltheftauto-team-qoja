@@ -13,7 +13,7 @@ public class FollowTarget : MonoBehaviour
        
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         target = GameObject.FindGameObjectWithTag("Player");
         transform.position = (target.transform.position + offset);
