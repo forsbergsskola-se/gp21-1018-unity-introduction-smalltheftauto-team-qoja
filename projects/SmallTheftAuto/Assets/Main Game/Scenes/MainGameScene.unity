@@ -517,7 +517,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 100
+  m_Mass: 1000
   m_LinearDrag: 6.64
   m_AngularDrag: 2.61
   m_GravityScale: 0
@@ -608,8 +608,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49e0ab1cc9d83aa41a5cd08707b356e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
   rotationSpeed: 100
+  runSpeed: 20
+  walkSpeed: 10
 --- !u!61 &1191147849
 BoxCollider2D:
   m_ObjectHideFlags: 0
