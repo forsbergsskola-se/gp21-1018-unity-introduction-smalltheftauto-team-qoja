@@ -1,24 +1,39 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Vehicle : MonoBehaviour
 {
+    private GameObject driver;
+    //public GameObject player;
+    private Vector3 playerOffset = new Vector3(3, 0, 0);
     void Start() {
         GetComponent<VehicleMovement>().enabled = false;
     }
 
-    public void EnterCar(GameObject player) {
+    void Update()
+    {
+        if (Input.GetButtonDown("Interact-Vehicle"))
+        {
+            if (driver != null)
+            {
+                ExitCar(playerOffset);
+            }
+        }
+    }
+
+    public void EnterCar(GameObject player)
+    {
+        driver = player;
         player.SetActive(false);
         GetComponent<VehicleMovement>().enabled = true;
     }
 
-    public void ExitCar(Vector3 playerOffset, GameObject player) {
-        player.transform.position = transform.position + playerOffset;
+    public void ExitCar(Vector3 playerOffset) {
+        driver.transform.position = transform.position + playerOffset;
         Debug.Log("I'm suppose to exit");
-        player.SetActive(true);
+        driver.SetActive(true);
         Debug.Log("I'm exited");
-
+        //player = driver;
+        driver = null;
         GetComponent<VehicleMovement>().enabled = false;
     }
 } 
