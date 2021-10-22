@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Mathematics;
+
 
 public class VehicleMovement : MonoBehaviour
 {
@@ -11,6 +14,13 @@ public class VehicleMovement : MonoBehaviour
     [SerializeField]
     float steeringPower = 5f;
     float steeringAmount, speed, direction;
+    [SerializeField] private float maxSpeed = 50;
+
+    private float MAXSpeed
+    {
+        get => maxSpeed;
+        set => maxSpeed = (value* 10);
+    }
 
     // Use this for initialization
     void Start () {
@@ -21,13 +31,15 @@ public class VehicleMovement : MonoBehaviour
     void FixedUpdate () {
 
         steeringAmount = - Input.GetAxis ("Horizontal");
-        speed = Input.GetAxis ("Vertical") * accelerationPower;
+       // speed = Input.GetAxis ("Vertical") * accelerationPower;
+      
+        speed = Mathf.Clamp((Input.GetAxis ("Vertical") * accelerationPower), 0, MAXSpeed);
         direction = Mathf.Sign(Vector2.Dot (rb.velocity, rb.GetRelativeVector(Vector2.up)));
         rb.rotation += steeringAmount * steeringPower * rb.velocity.magnitude * direction;
 
         rb.AddRelativeForce (Vector2.up * speed);
 
-        rb.AddRelativeForce ( - Vector2.right * rb.velocity.magnitude * steeringAmount / 2);
+        rb.AddRelativeForce ( - Vector2.right * rb.velocity.magnitude * steeringAmount / 5);
 			
     }
 }
