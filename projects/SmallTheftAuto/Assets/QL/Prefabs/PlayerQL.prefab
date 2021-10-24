@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8628261825823071513}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.015, y: 0.426, z: -0.8}
+  m_LocalPosition: {x: 0, y: 0.25, z: -0.8}
   m_LocalScale: {x: 1.29, y: 1.29, z: 1.29}
   m_Children: []
   m_Father: {fileID: 8628261827757162515}
@@ -123,8 +123,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8628261826857941602}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.014999986, y: -0.014152765, z: 0}
-  m_LocalScale: {x: 2.84, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -0.2, z: 0}
+  m_LocalScale: {x: 2.4, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8628261827757162515}
   m_RootOrder: 1
@@ -203,11 +203,11 @@ GameObject:
   - component: {fileID: 8628261827757162515}
   - component: {fileID: 8628261827757162514}
   - component: {fileID: 8628261827757162524}
-  - component: {fileID: 2108048189132931035}
-  - component: {fileID: -8802254024343768577}
+  - component: {fileID: 7324896574263173361}
+  - component: {fileID: 7003111845500511760}
   m_Layer: 0
   m_Name: PlayerQL
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  rotationSpeed: 100
+  rotationSpeed: 180
 --- !u!114 &8628261827757162524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,7 +255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dogPrefab: {fileID: 3514230013359068048, guid: cdc52ffbbbc75fc41974c76c99e0935e, type: 3}
---- !u!114 &2108048189132931035
+--- !u!114 &7324896574263173361
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floatingTextQL: {fileID: 7126206326779532771, guid: a1a908ae94ed66e43bcc8fbe16080847, type: 3}
---- !u!50 &-8802254024343768577
+--- !u!50 &7003111845500511760
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0

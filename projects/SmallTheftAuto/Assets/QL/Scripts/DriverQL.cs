@@ -23,10 +23,10 @@ public class DriverQL : MonoBehaviour
             //Debug.Log(distances[index]);
             if (distances[index] < 3)
             {
-                cars[index].GetComponent<VehicleQL>().EnterCar(this.gameObject);
+                //cars[index].GetComponent<VehicleQL>().EnterCar(this.gameObject);
+                cars[index].GetComponent<VehicleQL>().EnterCar();
                 Instantiate(floatingTextQL, transform.position, Quaternion.identity);
             }
-            
             else Debug.Log("Cannot enter the car");
         }
     }
