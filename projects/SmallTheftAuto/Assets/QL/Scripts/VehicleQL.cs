@@ -1,10 +1,10 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class VehicleQL : MonoBehaviour
 {
     private GameObject driver;
-    //public GameObject player;
-   // public GameObject floatingText;
     void Start()
     {
         GetComponent<CarMovementQL>().enabled = false;
@@ -12,22 +12,6 @@ public class VehicleQL : MonoBehaviour
     
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.F))
-        // if(Input.GetButtonDown("Interact-Vehicle"))
-        // {
-        //     if (!PlayerIsInCar())
-        //     {
-        //         float distance = Vector3.Distance(player.transform.position, transform.position);
-        //         //float distance = Vector3.Distance(GetComponent<GameObject>().transform.position, transform.position);
-        //         if(distance < 3)
-        //             EnterCar();
-        //     }
-        //     else
-        //     {
-        //         LeaveCar();
-        //     }
-        // }
-        
         if (Input.GetButtonDown("Interact-Vehicle"))
         {
             if (driver != null)
@@ -35,13 +19,8 @@ public class VehicleQL : MonoBehaviour
                 LeaveCar();
             }
         }
+        
     }
-
-    //private bool PlayerIsInCar()
-    //{
-        //return !player.activeInHierarchy;
-        //return !GetComponent<GameObject>().activeInHierarchy;
-    //}
 
     public void EnterCar(GameObject player)
     {
@@ -49,7 +28,6 @@ public class VehicleQL : MonoBehaviour
         player.SetActive(false);
         GetComponent<CarMovementQL>().enabled = true;
     }
-
     private void LeaveCar()
     {
         driver.transform.position = this.transform.position;

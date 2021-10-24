@@ -20,7 +20,7 @@ public class DriverQL : MonoBehaviour
                 distances[i] = Vector3.Distance(this.transform.position, cars[i].transform.position);
             }
             int index = Min(distances);
-            Debug.Log(distances[index]);
+            //Debug.Log(distances[index]);
             if (distances[index] < 3)
             {
                 cars[index].GetComponent<VehicleQL>().EnterCar(this.gameObject);

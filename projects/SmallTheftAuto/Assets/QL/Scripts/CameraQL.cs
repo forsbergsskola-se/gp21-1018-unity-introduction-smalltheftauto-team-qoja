@@ -5,7 +5,7 @@ public class CameraQL : MonoBehaviour
     private float smoothTime = 0.3f;
     private Vector3 velocity = Vector3.zero;
     private PlayerMovementQL player;
-    private CarMovementQL car;
+    private CarMovementQL[] cars;
     private Transform target;
     void Start()
     {
@@ -17,8 +17,14 @@ public class CameraQL : MonoBehaviour
     {
         if (!player.isActiveAndEnabled)
         {
-            car = FindObjectOfType<CarMovementQL>();
-            target = car.transform;
+            cars = FindObjectsOfType<CarMovementQL>();
+            float[] distances = new float[cars.Length];
+            for (int i = 0; i < cars.Length; i++)
+            {
+                distances[i] = Vector3.Distance(this.transform.position, cars[i].transform.position);
+            }
+            int index = Min(distances);
+            target = cars[index].transform;
         }
         else
         {
@@ -28,5 +34,19 @@ public class CameraQL : MonoBehaviour
         Vector3 goalPos = target.position;
         goalPos.z = -10;
         this.transform.position = Vector3.SmoothDamp (transform.position, goalPos, ref velocity, smoothTime);
+    }
+    public int Min(float[] array)
+    {
+        int index=0;
+        float tmp = 1000f;
+        for(int i=0; i<array.Length; i++)
+        {
+            if (array[i] < tmp)
+            {
+                tmp = array[i];
+                index = i;
+            }
+        }
+        return index;
     }
 }

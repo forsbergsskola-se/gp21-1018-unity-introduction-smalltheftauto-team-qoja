@@ -8,7 +8,7 @@ public class TimerProQL : MonoBehaviour
     private TextMeshProUGUI timer;
     private float timePassed;
     private int timeSecond;
-    private float maxTime = 10f;
+    private float maxTime = 100f;
 
     void Start()
     {

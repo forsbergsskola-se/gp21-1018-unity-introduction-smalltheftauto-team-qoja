@@ -19,7 +19,7 @@ public class FloatingTextQL : MonoBehaviour
         temp.a -= Time.deltaTime;
         temp.a = Mathf.Clamp(temp.a, 0f, 1f);
         this.gameObject.GetComponent<TextMesh>().color = temp;
-        Debug.Log(temp.a);
+        //Debug.Log(temp.a);
         if(temp.a < 0.01) Destroy(gameObject);
     }
 
