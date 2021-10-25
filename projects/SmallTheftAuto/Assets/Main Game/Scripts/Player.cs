@@ -67,6 +67,7 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag("Fire"))
         {
             inFire = false;
+            StopCoroutine(ImInFire());
             Debug.Log("I left fire");
         }
         
@@ -93,6 +94,8 @@ public class Player : MonoBehaviour
             yield return new WaitForSeconds(3);
             Debug.Log("Finished damage: " + Time.time);
         }
+        
+        Debug.Log("Still in coroutine");
     }
 
     private void OnDeath()

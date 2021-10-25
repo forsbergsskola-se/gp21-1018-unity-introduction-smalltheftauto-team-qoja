@@ -28,6 +28,7 @@ public class Driver : MonoBehaviour {
     private void EnterClosestVehicle() {
         Vehicle[] foundVehicles = FindObjectsOfType<Vehicle>();
         float[] distancesToVehicles = new float[foundVehicles.Length];
+        Vehicle closestCar;
 
         for (int i = 0; i < foundVehicles.Length; i++) {
             distancesToVehicles[i] = Vector2.Distance(this.transform.position, foundVehicles[i].transform.position);
@@ -36,7 +37,9 @@ public class Driver : MonoBehaviour {
         int indexOfClosestCar = FindClosestCar(distancesToVehicles);
 
         if (distancesToVehicles[indexOfClosestCar] < 3) {
-            foundVehicles[indexOfClosestCar].GetComponent<Vehicle>().EnterCar(this.gameObject);
+            closestCar = foundVehicles[indexOfClosestCar].GetComponent<Vehicle>();
+            this.gameObject.transform.parent = closestCar.transform;
+            closestCar.EnterCar(this.gameObject);
         }
     }
 }

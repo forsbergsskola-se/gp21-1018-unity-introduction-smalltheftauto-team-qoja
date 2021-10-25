@@ -5,17 +5,20 @@ using UnityEngine;
 
 public class FollowTarget : MonoBehaviour
 {
-    //public Transform target;
-    public Vector3 offset;
-    private GameObject target;
-    private void Start()
-    {
-       
+    [SerializeField] private Vector3 offset;
+    [SerializeField] private float tweenTime = 0.3f;
+
+    private Player player;
+
+    protected void Start() {
+        player = FindObjectOfType<Player>();
     }
 
-    private void LateUpdate()
-    {
-        target = GameObject.FindGameObjectWithTag("Player");
-        transform.position = (target.transform.position + offset);
+    protected void Update() {
+        Vector3 targetPosition = player.transform.position + offset;
+        Vector3 movement = (targetPosition - transform.position) * Time.deltaTime / tweenTime;
+        transform.Translate(movement);
     }
+    
+    //if player deactivated target becomes car
 }
