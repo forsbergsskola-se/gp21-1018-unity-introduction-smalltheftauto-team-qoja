@@ -1,33 +1,43 @@
 using System.Collections;
 using UnityEngine;
-using TMPro;
 using UnityEngine.SceneManagement;
 
-public class PlayerHealthQL : MonoBehaviour
+public class PlayerQL : MonoBehaviour
 {
-    private TextMeshProUGUI playerHealth;
     private int health;
+    private int money;
 
+    public int Health
+    {
+        get => health;
+        private set
+        {
+            health = value;
+        }
+    }
     void Start()
     {
-        playerHealth = GetComponent<TextMeshProUGUI>();
-        health = 2;
-        playerHealth.enableAutoSizing = true;
+        Health = 2;
+        money = 100;
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.G))
         {
-            health--;
+            Health--;
         }
 
-        if (health == 0)
+        if (Health == 0)
         {
             Debug.Log("Player dies!");
             StartCoroutine(RestartScene());
         }
-        playerHealth.text = "Player health " + health;
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            money -= 10;
+        }
     }
 
     IEnumerator RestartScene()
