@@ -9,7 +9,18 @@ public class Player : MonoBehaviour
 
     [SerializeField] private int health = 100;
     private int money = 0;
+    private int fireDamage = 5;
+    
+    public bool IsAlive => health > 0;
+    public bool IsDead => !IsAlive;
+    private bool inFire = false;
 
+    public Player(int MaxHealth) //Player's constructor
+    {
+        this.health = MaxHealth;
+
+    }
+    
     private int Money
     {
         get;
@@ -20,39 +31,16 @@ public class Player : MonoBehaviour
         get;
         set;
     }
-    public bool IsAlive => health > 0;
-    public bool IsDead => !IsAlive;
-
-    private bool inFire = false;
-    private int fireDamage = 5;
-
-    public void TakeDamage(int value)
-    {
-        health -= value;
-        if(IsDead)
-        {
-            OnDeath();
-        }
-    }
-
+    
     // private Weapon Weapon    // We will need this later to apply weapons. But we need to create a weapon class and weapons first.
     // {
     //     get;
     //     set;
     // }
-
-    public void EquipWeapon()
-    {
-        
-    }
-
-    public Player(int MaxHealth) //Player's constructor
-    {
-        this.health = MaxHealth;
-
-    }
     
-    
+    private void Start() {
+        Debug.Log("My health is " + health);
+    }
 
     private void Update()
     {
@@ -63,7 +51,7 @@ public class Player : MonoBehaviour
         }
         
     }
-
+    
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Fire"))
@@ -84,10 +72,22 @@ public class Player : MonoBehaviour
         
     }
 
+    private void TakeDamage(int damage)
+    {
+        Debug.Log("Damage value is " + damage);
+        health -= damage;
+        Debug.Log("My health is " + health);
+        if(IsDead)
+        {
+            OnDeath();
+        }
+    }
+
     private IEnumerator ImInFire() //Takes x amount of damage every y seconds
     {
         while (inFire) {
             Debug.Log("Start : " + Time.time);
+            Debug.Log("Firedamage is" + fireDamage);
             TakeDamage(fireDamage);
             Debug.Log(health);
             yield return new WaitForSeconds(3);
@@ -102,8 +102,9 @@ public class Player : MonoBehaviour
         
         //RestartScene()  - Call this method from GameManager
     }
-    
-    // Access FindObjectOfType
-    
-    
+
+    public void EquipWeapon()
+    {
+        
+    }
 }
