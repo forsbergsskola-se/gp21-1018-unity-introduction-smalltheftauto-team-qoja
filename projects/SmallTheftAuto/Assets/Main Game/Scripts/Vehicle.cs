@@ -9,6 +9,7 @@ public class Vehicle : MonoBehaviour //, IIsExploadable
     private Vector3 playerOffset = new Vector3(3, 0, 0);
     private int wallDamage = 10;
     private GameObject carExplosion;
+    private int maxHealth = 100;
     void Start() {
         GetComponent<VehicleMovement>().enabled = false;
     }
@@ -35,8 +36,7 @@ public class Vehicle : MonoBehaviour //, IIsExploadable
         //Trigger car on fire animation
         //SetOnFire(); // We want a method here to set the car on fire
         Debug.Log("I'm on fire!");
-        carExplosion.transform.position = gameObject.transform.position;
-        carExplosion.SetActive(true);
+        
     }
 
     void Update()
@@ -49,6 +49,7 @@ public class Vehicle : MonoBehaviour //, IIsExploadable
             }
         }
         if(Health <= healthThreshhold) OnFire();
+        if (Health == 0) OnDeath();
     }
 
     public void EnterCar(GameObject player)
@@ -70,6 +71,14 @@ public class Vehicle : MonoBehaviour //, IIsExploadable
     private void TakeDamage(int value)
     {
         Health -= value;
+        Health = Mathf.Clamp(Health, 0, maxHealth);
+    }
+
+    private void OnDeath()
+    {
+        carExplosion.transform.position = gameObject.transform.position;
+        carExplosion.SetActive(true);
+        gameObject.SetActive(false);
     }
 } 
 
