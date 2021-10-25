@@ -31,7 +31,7 @@ public class DriverQL : MonoBehaviour
         }
     }
 
-    private int Min(float[] array)
+    public int Min(float[] array)
     {
         int index=0;
         float tmp = 1000f;

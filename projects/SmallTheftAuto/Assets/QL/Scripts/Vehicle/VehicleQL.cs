@@ -73,4 +73,9 @@ public class VehicleQL : MonoBehaviour
            Debug.Log("The player dies!");
        }
    }
+
+   public void CarTakeDamage(int value)
+   {
+       health -= value;
+   }
 }
