@@ -10,11 +10,12 @@ public class Vehicle : MonoBehaviour //, IIsExploadable
     private int wallDamage = 10;
     private GameObject carExplosion;
     void Start() {
-        GetComponent<VehicleMovement>().enabled = false;
+
     }
 
     private void Awake()
     {
+        GetComponent<VehicleMovement>().enabled = false; //diasble
         carExplosion = GameObject.Find("CarExplosion");
         carExplosion.SetActive(false);
     }
