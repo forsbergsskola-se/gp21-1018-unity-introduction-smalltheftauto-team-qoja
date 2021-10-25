@@ -22,6 +22,11 @@ public class Player : MonoBehaviour
     public bool IsAlive => Health > 0;
     public bool IsDead => !IsAlive;
 
+    private bool InFire = false;
+    private int FireDamage = 5;
+    private float timer;
+    private int wait = 1;
+
     public void TakeDamage(int value)
     {
         Health -= value;
@@ -42,15 +47,51 @@ public class Player : MonoBehaviour
         
     }
 
-    public Player(int MaxHealth) //Player's constructior
+    public Player(int MaxHealth) //Player's constructor
     {
         this.Health = MaxHealth;
 
     }
+    
+    
 
-    private void FixedUpdate()
+    private void Update()
     {
         
+        // if (InFire)
+        // {
+        //     StartCoroutine("ImInFire");
+        //     
+        // }
+        
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Fire"))
+        {
+            InFire = true;
+            Debug.Log("I Enter fire");
+            StartCoroutine("ImInFire");
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Fire"))
+        {
+            InFire = false;
+            Debug.Log("I left fire");
+        }
+        
+    }
+
+    private IEnumerator ImInFire() //Takes x amount of damage every y seconds
+    {
+        TakeDamage(FireDamage);
+        
+        yield return new WaitForSeconds(1); 
+        Debug.Log(InFire);
     }
 
     private void OnDeath()

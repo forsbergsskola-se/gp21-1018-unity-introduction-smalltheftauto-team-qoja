@@ -1,12 +1,32 @@
+using System;
 using UnityEngine;
 
-public class Vehicle : MonoBehaviour
+public class Vehicle : MonoBehaviour //, IIsExploadable
 {
+    [SerializeField] private int Health = 100;
     private GameObject driver;
-    //public GameObject player;
+    [SerializeField] private int HealthThreshhold = 30;
     private Vector3 playerOffset = new Vector3(3, 0, 0);
     void Start() {
         GetComponent<VehicleMovement>().enabled = false;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (gameObject.tag == "Building")
+        {
+            //Function here to take vehicle dmg
+        }
+        
+    }
+
+    void OnFire()
+    {
+        if (Health < HealthThreshhold)
+        {
+            //Trigger car on fire animation
+            //SetOnFire(); // We want a method here to set the car on fire
+        }
     }
 
     void Update()
