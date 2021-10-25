@@ -7,7 +7,8 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
 
-    [SerializeField] private int Health = 100;
+    [SerializeField] private int health = 100;
+    private int money = 0;
 
     private int Money
     {
@@ -19,17 +20,15 @@ public class Player : MonoBehaviour
         get;
         set;
     }
-    public bool IsAlive => Health > 0;
+    public bool IsAlive => health > 0;
     public bool IsDead => !IsAlive;
 
-    private bool InFire = false;
-    private int FireDamage = 5;
-    private float timer;
-    private int wait = 1;
+    private bool inFire = false;
+    private int fireDamage = 5;
 
     public void TakeDamage(int value)
     {
-        Health -= value;
+        health -= value;
         if(IsDead)
         {
             OnDeath();
@@ -49,7 +48,7 @@ public class Player : MonoBehaviour
 
     public Player(int MaxHealth) //Player's constructor
     {
-        this.Health = MaxHealth;
+        this.health = MaxHealth;
 
     }
     
@@ -58,11 +57,10 @@ public class Player : MonoBehaviour
     private void Update()
     {
         
-        // if (InFire)
-        // {
-        //     StartCoroutine("ImInFire");
-        //     
-        // }
+        if (inFire)
+        {
+
+        }
         
     }
 
@@ -70,9 +68,9 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Fire"))
         {
-            InFire = true;
-            Debug.Log("I Enter fire");
-            StartCoroutine("ImInFire");
+            inFire = true;
+            Debug.Log("I am in fire");
+            StartCoroutine(ImInFire());
         }
     }
 
@@ -80,7 +78,7 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Fire"))
         {
-            InFire = false;
+            inFire = false;
             Debug.Log("I left fire");
         }
         
@@ -88,10 +86,13 @@ public class Player : MonoBehaviour
 
     private IEnumerator ImInFire() //Takes x amount of damage every y seconds
     {
-        TakeDamage(FireDamage);
-        
-        yield return new WaitForSeconds(1); 
-        Debug.Log(InFire);
+        while (inFire) {
+            Debug.Log("Start : " + Time.time);
+            TakeDamage(fireDamage);
+            Debug.Log(health);
+            yield return new WaitForSeconds(3);
+            Debug.Log("Finished damage: " + Time.time);
+        }
     }
 
     private void OnDeath()
