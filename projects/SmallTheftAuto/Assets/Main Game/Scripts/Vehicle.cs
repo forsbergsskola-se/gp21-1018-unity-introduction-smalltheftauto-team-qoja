@@ -5,7 +5,7 @@ public class Vehicle : MonoBehaviour //, IIsExploadable
 {
     [SerializeField] private int Health = 100;
     private GameObject driver;
-    [SerializeField] private int HealthThreshhold = 30;
+    [SerializeField] private int healthThreshhold = 30;
     private Vector3 playerOffset = new Vector3(3, 0, 0);
     void Start() {
         GetComponent<VehicleMovement>().enabled = false;
@@ -22,7 +22,7 @@ public class Vehicle : MonoBehaviour //, IIsExploadable
 
     void OnFire()
     {
-        if (Health < HealthThreshhold)
+        if (Health < healthThreshhold)
         {
             //Trigger car on fire animation
             //SetOnFire(); // We want a method here to set the car on fire
@@ -45,18 +45,15 @@ public class Vehicle : MonoBehaviour //, IIsExploadable
         driver = player;
         player.SetActive(false);
         GetComponent<VehicleMovement>().enabled = true;
-        gameObject.tag = "Player";
     }
 
     public void ExitCar(Vector3 playerOffset) {
+        driver.transform.parent = null;
         driver.transform.position = transform.position + playerOffset;
-        Debug.Log("I'm suppose to exit");
         driver.SetActive(true);
-        Debug.Log("I'm exited");
-        //player = driver;
+        Debug.Log("I exited");
         driver = null;
         GetComponent<VehicleMovement>().enabled = false;
-        gameObject.tag = "Vehicle";
     }
 } 
 
