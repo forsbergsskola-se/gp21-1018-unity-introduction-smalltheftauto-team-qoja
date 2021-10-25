@@ -10,11 +10,11 @@ public class VehicleMovement : MonoBehaviour
     Rigidbody2D rb;
 
     [SerializeField]
-    float accelerationPower = 5f;
+    float accelerationPower = 30000f;
     [SerializeField]
-    float steeringPower = 5f;
+    float steeringPower = 0.2f; //Has to be between 0-1
     float steeringAmount, speed, direction;
-    [SerializeField] private float maxSpeed = 50;
+    [SerializeField] private float maxSpeed = 30000;
 
     private float MAXSpeed
     {
@@ -24,7 +24,7 @@ public class VehicleMovement : MonoBehaviour
 
     // Use this for initialization
     void Start () {
-        rb = GetComponent<Rigidbody2D> ();
+        rb = GetComponentInChildren<Rigidbody2D> ();
     }
 	
     // Update is called once per frame
