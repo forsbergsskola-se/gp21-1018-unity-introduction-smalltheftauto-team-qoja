@@ -11,11 +11,12 @@ public class Vehicle : MonoBehaviour //, IIsExploadable
     private GameObject carExplosion;
     private int maxHealth = 100;
     void Start() {
-        GetComponent<VehicleMovement>().enabled = false;
+
     }
 
     private void Awake()
     {
+        GetComponent<VehicleMovement>().enabled = false; //diasble
         carExplosion = GameObject.Find("CarExplosion");
         carExplosion.SetActive(false);
     }
