@@ -8,6 +8,7 @@ public class Weapon : MonoBehaviour
     public Transform firePoint;
     public GameObject bulletPrefab;
     public int bulletNumber = 7;
+    public int maxBullet = 7;
 
     // Update is called once per frame
     void Update()
@@ -19,7 +20,7 @@ public class Weapon : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            bulletNumber = 7;
+            bulletNumber = maxBullet;
         }
     }
 
