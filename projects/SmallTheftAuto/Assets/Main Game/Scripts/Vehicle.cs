@@ -17,7 +17,7 @@ public class Vehicle : MonoBehaviour //, IIsExploadable
     {
         GetComponent<VehicleMovement>().enabled = false; //diasble
         carExplosion = GameObject.Find("CarExplosion");
-        carExplosion.SetActive(false);
+        //carExplosion.SetActive(false);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -60,6 +60,7 @@ public class Vehicle : MonoBehaviour //, IIsExploadable
     }
 
     public void ExitCar(Vector3 playerOffset) {
+        Debug.Log("I'm in exit method");
         driver.transform.parent = null;
         driver.transform.position = transform.position + playerOffset;
         driver.SetActive(true);
