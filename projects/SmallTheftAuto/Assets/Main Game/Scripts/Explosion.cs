@@ -10,6 +10,7 @@ public class Explosion : MonoBehaviour
 
     protected void Start()
     {
+        Debug.Log("I am awake");
         Explode();
     }
 
@@ -27,5 +28,7 @@ public class Explosion : MonoBehaviour
                 // Add a force to the rigidbody away from the explosion
             }
         }
+
+        gameObject.SetActive(false); //instead of doing this, later we can just change the model into a charred version of the same model.
     }
 }
