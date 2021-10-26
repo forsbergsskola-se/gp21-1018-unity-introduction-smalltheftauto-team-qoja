@@ -20,11 +20,15 @@ public class Player : MonoBehaviour
         this.health = MaxHealth;
 
     }
-    
-    private int Money
+
+    public int Health
     {
-        get;
-        set;
+        get => health;
+    }
+    
+    public int Money
+    {
+        get => money;
     }
     private int Score
     {
