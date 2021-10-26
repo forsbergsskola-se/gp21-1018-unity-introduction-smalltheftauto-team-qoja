@@ -18,7 +18,7 @@ public class PlayerInfo : MonoBehaviour
     {
         health = player.GetComponent<Player>().Health;
         money = player.GetComponent<Player>().Money;
-        playerInfo.text = "Player health " + health +"<br>Money "+money;
+        playerInfo.text = health +"<br><br>"+money;
         
     }
 }

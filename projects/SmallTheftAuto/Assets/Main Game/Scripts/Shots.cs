@@ -29,7 +29,7 @@ public class Shots : MonoBehaviour
         maxShotsPistol = weapon[0].GetComponent<Weapon>().maxBullet;
         leftShotsSmg = weapon[1].GetComponent<Weapon>().bulletNumber;
         maxShotsSmg = weapon[1].GetComponent<Weapon>().maxBullet;
-        shots.text = "Pistol shots " + leftShotsPistol + "/" + maxShotsPistol+"<br>Machine gun shots "+leftShotsSmg+"/"+maxShotsSmg;
+        shots.text = leftShotsPistol + "/" + maxShotsPistol+"<br><br>"+leftShotsSmg+"/"+maxShotsSmg;
         
     }
 }
