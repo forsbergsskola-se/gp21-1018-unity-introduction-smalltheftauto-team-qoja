@@ -3,17 +3,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Destructible : MonoBehaviour, IBurnable, IDamageable
 {
-    [SerializeField] private int health = 100;
+    [SerializeField] private int maxHealth = 100;
     [SerializeField] private int fireThreshold = 30;
+    private int health;
+    
 
+    private int Health
+    {
+        set => health = Mathf.Clamp(value, 0, maxHealth);
+        get => health;
+    }
+
+    public Destructible()
+    {
+        health = maxHealth;
+    }
+    
 
     private void Update()
     {
-        if (health <= fireThreshold)
+        if (Health <= fireThreshold)
         {
-            if (health <= 0)
+            if (Health <= 0)
             {
                 OnDeath();
                 return;
@@ -31,13 +45,13 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
     }
 
     public void TakeDamage(int damage) {
-        health -= damage;
+        Health -= damage;
     }
 
     public void OnCollisionEnter2D(Collision2D other)
     {
         IHurtOnCrash hurtOnCrash = other.gameObject.GetComponent<IHurtOnCrash>();
-        Debug.Log("Health is" + health);
+        Debug.Log("Health is" + Health);
         if (hurtOnCrash != null)
         {
             
@@ -49,12 +63,13 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
 
     public void OnDeath()
     {
+        Debug.Log("Destructible OnDeath");
         Explosion explosion = GetComponent<Explosion>(); //Checks if the object has the Explosions script and then calls that script if it does have it.
         
         if (explosion != null)
         {
             explosion.Explode();
         }
-        
+
     }
 }
