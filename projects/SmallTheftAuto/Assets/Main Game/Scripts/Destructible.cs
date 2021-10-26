@@ -11,6 +11,7 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
     private int health;
     public GameObject firePrefab;
     private bool isOnFire = false;
+    private bool hasBeenDestroyed = false;
     
 
     private int Health
@@ -35,9 +36,9 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
         
         if (Health <= fireThreshold)
         {
-            if (Health <= 0)
+            if (Health <= 0 && !hasBeenDestroyed)
             {
-                OnDeath(); // This get's called endlessly.
+                OnDeath(); // This get's called endlessly. -- Should be fixed with HasBeenDestroyed
                 return;
             }
 
@@ -63,7 +64,9 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
     }
 
     public void TakeDamage(int damage) {
+        Debug.Log("TakeDamage called for " + damage + "Damage. Health is " + Health);
         Health -= damage;
+        Debug.Log("Health is now " + Health);
     }
 
     public void OnCollisionEnter2D(Collision2D other)
@@ -89,5 +92,7 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
             explosion.Explode();
         }
 
+
+        hasBeenDestroyed = true;
     }
 }

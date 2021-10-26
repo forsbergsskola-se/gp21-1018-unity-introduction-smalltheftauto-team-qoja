@@ -71,6 +71,8 @@ GameObject:
   - component: {fileID: -7651850921552564980}
   - component: {fileID: -8340617204693385116}
   - component: {fileID: -4787811298094134596}
+  - component: {fileID: -1289833552380334345}
+  - component: {fileID: -277477904064335261}
   m_Layer: 0
   m_Name: PoliceCar
   m_TagString: Untagged
@@ -160,8 +162,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 377b20cb61a61a54b92926c6e3daa7de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 100
-  healthThreshhold: 30
 --- !u!114 &-8340617204693385116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,6 +198,35 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-1289833552380334345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2757999668784664481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13eddc746e17546709713acf9faf9cbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _radius: 3
+  _damage: 50
+--- !u!114 &-277477904064335261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2757999668784664481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04625673c14c54c4aa925b8cee2981c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  fireThreshold: 30
+  firePrefab: {fileID: 0}
 --- !u!1001 &1388990640588997910
 PrefabInstance:
   m_ObjectHideFlags: 0

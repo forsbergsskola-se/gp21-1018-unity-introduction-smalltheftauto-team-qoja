@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 6236542570563763819}
   - component: {fileID: 5320270149303115082}
   - component: {fileID: 3962613873759133647}
+  - component: {fileID: 7548472177825160357}
+  - component: {fileID: -948550733215811218}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -102,8 +104,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 377b20cb61a61a54b92926c6e3daa7de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 100
-  healthThreshhold: 30
 --- !u!114 &5320270149303115082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,6 +140,35 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &7548472177825160357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4407018877728255080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13eddc746e17546709713acf9faf9cbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _radius: 3
+  _damage: 50
+--- !u!114 &-948550733215811218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4407018877728255080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04625673c14c54c4aa925b8cee2981c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  fireThreshold: 30
+  firePrefab: {fileID: 0}
 --- !u!1 &6079347652469952330
 GameObject:
   m_ObjectHideFlags: 0
