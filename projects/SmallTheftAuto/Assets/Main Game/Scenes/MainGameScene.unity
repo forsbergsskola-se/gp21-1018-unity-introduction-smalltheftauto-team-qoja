@@ -198,8 +198,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 10, y: -10}
+  m_SizeDelta: {x: 400, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &40831462
 MonoBehaviour:
@@ -213,8 +213,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a2c74afff607404c9e365ee9d8a5404, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pistol: {fileID: 2070199505}
-  smg: {fileID: 1728449940}
+  weapon:
+  - {fileID: 2070199505}
+  - {fileID: 1728449940}
 --- !u!114 &40831463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4530,7 +4531,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a957639d15248134a9be03d5ae4fed7f, type: 3}
   m_PrefabInstance: {fileID: 1263296524}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1728449944
+--- !u!114 &1728449942
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4538,6 +4539,22 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1728449940}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 651bb3ab8b985fa4bbc43e85ccd8faa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firePoint: {fileID: 2120045343}
+  bulletPrefab: {fileID: 8241137594960322160, guid: f23a556892149fb48bed6dc5daf2ecb5, type: 3}
+  bulletNumber: 30
+  maxBullet: 30
+--- !u!114 &1728449944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728449940}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e97f80eb478b544fb343a416f4c1eb0, type: 3}
   m_Name: 
