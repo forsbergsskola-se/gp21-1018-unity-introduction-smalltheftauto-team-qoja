@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Vehicle : MonoBehaviour //, IIsExploadable
@@ -10,14 +11,16 @@ public class Vehicle : MonoBehaviour //, IIsExploadable
     private int wallDamage = 10;
     private GameObject carExplosion;
     private int maxHealth = 100;
+    private Explosion explosion;
 
     private void Awake()
     {
         GetComponent<VehicleMovement>().enabled = false; //diasble
         carExplosion = GameObject.Find("CarExplosion");
-        //carExplosion.SetActive(false);
+        explosion = GetComponent<Explosion>();
+        explosion.enabled = false;
     }
-
+    
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Wall"))
@@ -28,14 +31,7 @@ public class Vehicle : MonoBehaviour //, IIsExploadable
         }
         
     }
-
-    void OnFire()
-    {
-        //Trigger car on fire animation
-        //SetOnFire(); // We want a method here to set the car on fire
-        Debug.Log("I'm on fire!");
-        
-    }
+    
 
     void Update()
     {
@@ -46,7 +42,6 @@ public class Vehicle : MonoBehaviour //, IIsExploadable
                 ExitCar(playerOffset);
             }
         }
-        if(Health <= healthThreshhold) OnFire();
         if (Health == 0) OnDeath();
     }
 
@@ -67,16 +62,16 @@ public class Vehicle : MonoBehaviour //, IIsExploadable
         GetComponent<VehicleMovement>().enabled = false;
     }
 
+    //Destructible
     private void TakeDamage(int value)
     {
         Health -= value;
         Health = Mathf.Clamp(Health, 0, maxHealth);
     }
 
-    private void OnDeath()
-    {
-        carExplosion.transform.position = gameObject.transform.position;
-        carExplosion.SetActive(true);
+    private void OnDeath() {
+        explosion.enabled = true;
+        explosion.Explode();
         gameObject.SetActive(false);
     }
 } 
