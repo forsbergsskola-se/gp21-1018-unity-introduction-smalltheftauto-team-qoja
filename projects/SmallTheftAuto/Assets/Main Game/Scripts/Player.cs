@@ -36,6 +36,11 @@ public class Player : MonoBehaviour
         get;
         set;
     }
+
+    public GameObject Quest
+    {
+        get => quest;
+    }
     
     // private Weapon Weapon    // We will need this later to apply weapons. But we need to create a weapon class and weapons first.
     // {
@@ -129,10 +134,9 @@ public class Player : MonoBehaviour
                 distances[i] = Vector3.Distance(this.transform.position, quests[i].transform.position);
             }
             int index = this.GetComponent<Driver>().FindClosestCar(distances);
-            Debug.Log(distances[index]);
             if (distances[index] < 4.3)
             {
-                Debug.Log("Go kill people!");
+                //Debug.Log("Go kill people!");
                 quest = quests[index].gameObject;
                 quest.SetActive(false);
             }
