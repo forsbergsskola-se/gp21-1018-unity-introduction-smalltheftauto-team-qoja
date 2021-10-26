@@ -8,8 +8,9 @@ public class Shots : MonoBehaviour
     private int maxShotsPistol;
     private int leftShotsSmg;
     private int maxShotsSmg;
-    public GameObject pistol;
-    public GameObject smg;
+    public GameObject[] weapon;
+    private int[] leftShots;
+    private int[] maxShots;
     
     void Start()
     {
@@ -19,10 +20,16 @@ public class Shots : MonoBehaviour
 
     void Update()
     {
-        leftShotsPistol = pistol.GetComponent<Weapon>().bulletNumber;
-        maxShotsPistol = pistol.GetComponent<Weapon>().maxBullet;
-        leftShotsSmg = smg.GetComponent<Weapon2>().bulletNumber;
-        maxShotsSmg = smg.GetComponent<Weapon2>().maxBullet;
+        // for (int i = 0; i < weapon.Length; i++)
+        // {
+        //     leftShots[i] = weapon[i].GetComponent<Weapon>().bulletNumber;
+        //     maxShots[i] = weapon[i].GetComponent<Weapon>().maxBullet;
+        // }
+        leftShotsPistol = weapon[0].GetComponent<Weapon>().bulletNumber;
+        maxShotsPistol = weapon[0].GetComponent<Weapon>().maxBullet;
+        leftShotsSmg = weapon[1].GetComponent<Weapon>().bulletNumber;
+        maxShotsSmg = weapon[1].GetComponent<Weapon>().maxBullet;
         shots.text = "Pistol shots " + leftShotsPistol + "/" + maxShotsPistol+"<br>Machine gun shots "+leftShotsSmg+"/"+maxShotsSmg;
+        
     }
 }
