@@ -4,15 +4,12 @@ using UnityEngine;
 public class Vehicle : MonoBehaviour //, IIsExploadable
 {
     [SerializeField] private int Health = 100;
-    private GameObject driver;
     [SerializeField] private int healthThreshhold = 30;
+    private GameObject driver;
     private Vector3 playerOffset = new Vector3(3, 0, 0);
     private int wallDamage = 10;
     private GameObject carExplosion;
     private int maxHealth = 100;
-    void Start() {
-
-    }
 
     private void Awake()
     {
