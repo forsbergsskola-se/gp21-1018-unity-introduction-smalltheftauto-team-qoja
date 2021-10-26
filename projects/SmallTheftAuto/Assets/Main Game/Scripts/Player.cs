@@ -129,7 +129,8 @@ public class Player : MonoBehaviour
                 distances[i] = Vector3.Distance(this.transform.position, quests[i].transform.position);
             }
             int index = this.GetComponent<Driver>().FindClosestCar(distances);
-            if (distances[index] < 3)
+            Debug.Log(distances[index]);
+            if (distances[index] < 4.3)
             {
                 Debug.Log("Go kill people!");
                 quest = quests[index].gameObject;
