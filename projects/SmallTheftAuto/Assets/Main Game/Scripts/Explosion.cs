@@ -25,6 +25,7 @@ public class Explosion : MonoBehaviour
             burnable?.OnFire();
             
             //*****Added this so we can reference TakeDamage in destructable aswell, could also just replace the Iburnable check too in that case, but we'll talk about it tomorrow. Does not fully work right now tho*****
+            //**//
             Destructible destructible = collider.gameObject.GetComponentInParent<Destructible>();
             if (destructible != null)
             {
@@ -36,7 +37,7 @@ public class Explosion : MonoBehaviour
             {
                 Debug.Log("This message should not be seen");
             }
-            
+            //**//
 
             Rigidbody2D rigidbody = collider.gameObject.GetComponent<Rigidbody2D>();
             if (rigidbody != null) {
