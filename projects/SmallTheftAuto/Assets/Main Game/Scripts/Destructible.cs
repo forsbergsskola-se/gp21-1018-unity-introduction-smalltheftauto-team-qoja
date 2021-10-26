@@ -9,6 +9,8 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
     [SerializeField] private int maxHealth = 100;
     [SerializeField] private int fireThreshold = 30;
     private int health;
+    public GameObject firePrefab;
+    private bool isOnFire = false;
     
 
     private int Health
@@ -21,27 +23,43 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
     {
         health = maxHealth;
     }
-    
+
+    public void Start()
+    {
+        
+        //firePrefab = Resources.Load("Prefabs/Effects/Fire", GameObject) as GameObject;
+    }
 
     private void Update()
     {
+        
         if (Health <= fireThreshold)
         {
             if (Health <= 0)
             {
-                OnDeath();
+                OnDeath(); // This get's called endlessly.
                 return;
             }
+
+            if (!isOnFire)
+            {
+               OnFire(); 
+            }
             
-            OnFire();
         }
         
     }
 
     public void OnFire() {
+        
         Debug.Log(gameObject + "on fire");
-        //Trigger fire animation
+        (Instantiate (firePrefab, transform.position, transform.rotation) as GameObject).transform.parent = gameObject.transform;
         //Fire dies after a certain time
+        isOnFire = true;
+
+
+        //Trigger fire animation
+        
     }
 
     public void TakeDamage(int damage) {
@@ -63,7 +81,7 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
 
     public void OnDeath()
     {
-        Debug.Log("Destructible OnDeath");
+        
         Explosion explosion = GetComponent<Explosion>(); //Checks if the object has the Explosions script and then calls that script if it does have it.
         
         if (explosion != null)

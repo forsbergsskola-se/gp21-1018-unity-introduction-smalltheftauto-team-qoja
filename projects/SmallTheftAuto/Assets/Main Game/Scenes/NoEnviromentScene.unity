@@ -434,6 +434,8 @@ GameObject:
   - component: {fileID: 893637027}
   - component: {fileID: 893637026}
   - component: {fileID: 893637030}
+  - component: {fileID: 893637031}
+  - component: {fileID: 893637032}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Wall
@@ -552,6 +554,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &893637031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 893637025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7b7e72206aae4ad58841a0543b862b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &893637032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 893637025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04625673c14c54c4aa925b8cee2981c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 40
+  fireThreshold: 30
+  firePrefab: {fileID: 3928436555566799408, guid: 6620b82600b5580448afcc78bf7d2d71, type: 3}
 --- !u!1 &927700684
 GameObject:
   m_ObjectHideFlags: 0
@@ -1347,6 +1376,8 @@ GameObject:
   - component: {fileID: 1879412425}
   - component: {fileID: 1879412424}
   - component: {fileID: 1879412423}
+  - component: {fileID: 1879412428}
+  - component: {fileID: 1879412429}
   m_Layer: 0
   m_Name: Car
   m_TagString: Vehicle
@@ -1413,8 +1444,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 377b20cb61a61a54b92926c6e3daa7de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 40
-  healthThreshhold: 30
 --- !u!114 &1879412426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1449,6 +1478,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1879412428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879412422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04625673c14c54c4aa925b8cee2981c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 40
+  fireThreshold: 30
+  firePrefab: {fileID: 3928436555566799408, guid: 6620b82600b5580448afcc78bf7d2d71, type: 3}
+--- !u!114 &1879412429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879412422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13eddc746e17546709713acf9faf9cbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _radius: 3
+  _damage: 50
 --- !u!1 &1988477880
 GameObject:
   m_ObjectHideFlags: 0
