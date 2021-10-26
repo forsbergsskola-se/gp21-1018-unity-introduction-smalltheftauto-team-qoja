@@ -1,11 +1,8 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ProjectileQL : MonoBehaviour
 {
-    [SerializeField] private float speed = 5f;
+    float speed = 5f;
 
     public int Power { get; }
 
@@ -16,9 +13,9 @@ public class ProjectileQL : MonoBehaviour
 
     private Vector3 shootDirection;
     
-    void Start()
+    void Setup(Vector3 shootDirection)
     {
-        
+        Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
