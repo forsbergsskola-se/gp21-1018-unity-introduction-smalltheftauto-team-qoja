@@ -2,35 +2,36 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Vehicle : MonoBehaviour //, IIsExploadable
+public class Vehicle : MonoBehaviour, IHurtOnCrash
 {
-    [SerializeField] private int Health = 100;
-    [SerializeField] private int healthThreshhold = 30;
+    
+    
     private GameObject driver;
     private Vector3 playerOffset = new Vector3(3, 0, 0);
-    private int wallDamage = 10;
-    private GameObject carExplosion;
-    private int maxHealth = 100;
+    private int buildingDamage = 10;
+    
     private Explosion explosion;
+    private Destructible destructibleScript;
 
+    public int DamageOnCrash => 5;
+    
     private void Awake()
     {
+        destructibleScript = GetComponent<Destructible>();
         GetComponent<VehicleMovement>().enabled = false; //diasble
-        carExplosion = GameObject.Find("CarExplosion");
         explosion = GetComponent<Explosion>();
         explosion.enabled = false;
     }
     
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Wall"))
-        {
-            //Function here to take vehicle dmg
-            TakeDamage(wallDamage);
-            Debug.Log("Health of the car is: "+Health);
-        }
-        
-    }
+    // private void OnCollisionEnter2D(Collision2D other)
+    // {
+    //     if (other.gameObject.GetComponent<Building>())
+    //     {
+    //         //Function here to take vehicle dmg
+    //         //Debug.Log("Health of the car is: "+destructibleScript.health);
+    //     }
+    //     
+    // }
     
 
     void Update()
@@ -42,7 +43,7 @@ public class Vehicle : MonoBehaviour //, IIsExploadable
                 ExitCar(playerOffset);
             }
         }
-        if (Health == 0) OnDeath();
+       //if (Health == 0) OnDeath();
     }
 
     public void EnterCar(GameObject player)
@@ -63,16 +64,13 @@ public class Vehicle : MonoBehaviour //, IIsExploadable
     }
 
     //Destructible
-    private void TakeDamage(int value)
-    {
-        Health -= value;
-        Health = Mathf.Clamp(Health, 0, maxHealth);
-    }
 
     private void OnDeath() {
         explosion.enabled = true;
         explosion.Explode();
         gameObject.SetActive(false);
     }
+
+    
 } 
 
