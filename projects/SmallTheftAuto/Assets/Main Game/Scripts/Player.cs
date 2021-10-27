@@ -41,13 +41,7 @@ public class Player : MonoBehaviour
     {
         get => quest;
     }
-    
-    // private Weapon Weapon    // We will need this later to apply weapons. But we need to create a weapon class and weapons first.
-    // {
-    //     get;
-    //     set;
-    // }
-    
+
     private void Start() {
         Debug.Log("My health is " + health);
     }
@@ -57,14 +51,14 @@ public class Player : MonoBehaviour
         
         if (inFire)
         {
-
+            
         }
         QuestFinder();
         
         
     }
     
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Fire"))
         {
@@ -74,7 +68,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit2D(Collision2D other)
+    private void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Fire"))
         {
@@ -82,9 +76,9 @@ public class Player : MonoBehaviour
             StopCoroutine(ImInFire());
             Debug.Log("I left fire");
         }
-        
     }
 
+    //Want to move this to destructible but it fucks up UI
     private void TakeDamage(int damage)
     {
         Debug.Log("Damage value is " + damage);
@@ -98,16 +92,11 @@ public class Player : MonoBehaviour
 
     private IEnumerator ImInFire() //Takes x amount of damage every y seconds
     {
-        while (inFire) {
-            Debug.Log("Start : " + Time.time);
-            Debug.Log("Firedamage is" + FireDamage);
+        //Makes bool !inFire after 10 seconds
+        while (inFire) { //&& firetimer is not out
             TakeDamage(FireDamage);
-            Debug.Log(health);
             yield return new WaitForSeconds(3);
-            Debug.Log("Finished damage: " + Time.time);
         }
-        
-        Debug.Log("Still in coroutine");
     }
 
     private void OnDeath()

@@ -31,25 +31,30 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
         {
             if (Health <= 0 && !hasBeenDestroyed)
             {
-                OnDeath(); // This get's called endlessly. -- Should be fixed with HasBeenDestroyed
+                OnDeath();
                 return;
             }
 
-            if (!isOnFire)
+            // if gameobject is player and is in fire (ontriggerenter) take damage but don't get caught on fire
+            // to clean up so the player don't have to know if it should be damaged
+            if (!isOnFire) //!isOnFire and not player spawn animation
             {
                OnFire(); 
             }
         }
+        //If gameobject is player and isInfire (set from bool in ontriggerenter, call ImInFire rename takeFireDamage
+        //Edit so car can take also use takeFireDamage
+        //FireDamage stops after 10 sec but car can still explode if it reaches 0
     }
 
     public void OnFire()
     {
         Debug.Log(gameObject + "on fire");
         SpawnChild(firePrefab, fireOffset, Quaternion.identity);
+        Debug.Log($"Fire should spawn on {gameObject}");
+        //If gameobject has building script increase fire start size
 
         isOnFire = true;
-        
-        //Trigger fire animation
     }
 
 
@@ -64,20 +69,19 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
 
     public void TakeDamage(int damage)
     {
-        Debug.Log("TakeDamage called for " + damage + "Damage. Health is " + Health);
+        Debug.Log($"TakeDamage is called on {gameObject} for {damage} damage");
         Health -= damage;
-        Debug.Log("Health is now " + Health);
+        Debug.Log($"Health of {gameObject} is now {Health}");
     }
 
     public void OnCollisionEnter2D(Collision2D other)
     {
         IHurtOnCrash hurtOnCrash = other.gameObject.GetComponent<IHurtOnCrash>();
-        Debug.Log("Health is" + Health);
         if (hurtOnCrash != null)
         {
             
             TakeDamage(hurtOnCrash.DamageOnCrash);
-            Debug.Log("I should have taken damage" + hurtOnCrash.DamageOnCrash);
+            Debug.Log($"{gameObject} have taken {hurtOnCrash.DamageOnCrash} damage from colliding with {other}");
             
         }
     }
@@ -85,8 +89,8 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
     public void OnDeath()
     {
         Explosion explosion = GetComponent<Explosion>(); //Checks if the object has the Explosions script and then calls that script if it does have it.
-        if (explosion != null)
-        {
+        if (explosion != null) {
+            Debug.Log($"{gameObject} is exploding");
             explosion.Explode();
         }
         

@@ -10,13 +10,13 @@ public class Explosion : MonoBehaviour
 
     protected void Start()
     {
-        Debug.Log("I am awake");
         Explode();
     }
 
     public void Explode() {
         //Stores colliders that are in explosion radius in an array
         Collider2D[] nearbyColliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
+        Debug.Log(nearbyColliders);
         
         //Goes through the array and check if the gameobject of the collider has a burnable script component
         foreach (Collider2D collider in nearbyColliders) {
@@ -26,7 +26,7 @@ public class Explosion : MonoBehaviour
             
             //*****Added this so we can reference TakeDamage in destructable aswell, could also just replace the Iburnable check too in that case, but we'll talk about it tomorrow. Does not fully work right now tho*****
             //**//
-            Destructible destructible = collider.gameObject.GetComponentInParent<Destructible>();
+            /*Destructible destructible = collider.gameObject.GetComponentInParent<Destructible>();
             if (destructible != null)
             {
                 Debug.Log("I will deal" + explosionDamage + "Damage" );
@@ -37,7 +37,7 @@ public class Explosion : MonoBehaviour
             {
                 Debug.Log("This message should not be seen");
             }
-            //**//
+            //**/
 
             Rigidbody2D rigidbody = collider.gameObject.GetComponent<Rigidbody2D>();
             if (rigidbody != null) {
