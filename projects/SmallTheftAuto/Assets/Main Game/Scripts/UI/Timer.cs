@@ -8,26 +8,28 @@ public class Timer : MonoBehaviour
     private TextMeshProUGUI timer;
     private float timePassed;
     private int timeSecond;
-    private float maxTime = 200f;
+    private float maxTime = 10f;
+    public float timeLeft;
+    public bool timeIsOut;
 
     void Start()
     {
         timer = GetComponent<TextMeshProUGUI>();
         timePassed = 0;
         timer.enableAutoSizing = true;
+        ///timeLeft = maxTime;
     }
 
     void Update()
     {
         timePassed = Mathf.Clamp(timePassed+Time.deltaTime, 0, maxTime);
-        float timeLeft = maxTime - timePassed;
+        timeLeft = maxTime - timePassed;
         int timeInMinute = Mathf.FloorToInt(timeLeft / 60);
         int timeInSecond = Mathf.FloorToInt(timeLeft % 60);
         timer.text = timeInMinute + "m" + timeInSecond + "s";
         if (timeLeft == 0)
         {
-            //StartCoroutine(RestartScene());
-            
+            timeIsOut = true;
         }
     }
 

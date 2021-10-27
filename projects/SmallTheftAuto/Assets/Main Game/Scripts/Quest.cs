@@ -9,6 +9,7 @@ public class Quest : MonoBehaviour
     public GameObject money;
     public GameObject player;
     public GameObject missionComplete;
+    public GameObject missionFailed;
     private bool missionDone;
     void Start()
     {
@@ -28,8 +29,7 @@ public class Quest : MonoBehaviour
             timerUI.SetActive(true);
         }
         
-        
-        MoneyFinder();
+        if(timerUI.activeSelf) MoneyFinder();
         
         
         // Checks if the winning condition is met
@@ -40,14 +40,24 @@ public class Quest : MonoBehaviour
             // Set a new quest up
             missionComplete.SetActive(true);
             missionDone = true;
-
         }
-
+        
+        if (timerUI.activeSelf)
+        {
+            //Debug.Log(timerUI.GetComponent<Timer>().timeLeft);
+            //if ((Timer.timeLeft == 0 || !player.GetComponent<Player>().IsAlive))
+            if (timerUI.GetComponent<Timer>().timeIsOut)
+            {
+                timerUI.SetActive(false);
+                missionFailed.SetActive(true);
+                missionDone = true;
+            }
+        }
+        
         if (missionDone)
         {
             Invoke("setMissionFalse", 3f);
         }
-        
         
         
         // Checks if the timer is zero - then announces the player as loser
@@ -102,5 +112,6 @@ public class Quest : MonoBehaviour
     void setMissionFalse()
     {
         missionComplete.SetActive(false);
+        missionFailed.SetActive(false);
     }
 }
