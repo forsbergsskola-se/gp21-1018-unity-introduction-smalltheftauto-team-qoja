@@ -22,5 +22,6 @@ public class QuestUI : MonoBehaviour
             //questText = player.GetComponent<Quest>().questContent;
             quest.text = questText;
         }
+        
     }
 }
