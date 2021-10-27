@@ -18,7 +18,7 @@ public class QuestUI : MonoBehaviour
     {
         if (player.GetComponent<Player>().Quest != null)
         {
-            questText = "Go kill!"; //Problem: need to figure out how to get the content of the quest
+            questText = "Collect 200 dollars!"; //Problem: need to figure out how to get the content of the quest
             //questText = player.GetComponent<Quest>().questContent;
             quest.text = questText;
         }
