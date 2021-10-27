@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     private GameObject quest;
     public GameObject questUI;
     private bool questIsActive;
+    public GameObject timerUI;
 
     public Player(int MaxHealth) //Player's constructor
     {
@@ -139,6 +140,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q) && questIsActive)
         {
             questUI.SetActive(false);
+            timerUI.SetActive(true);
         }
     }
 }

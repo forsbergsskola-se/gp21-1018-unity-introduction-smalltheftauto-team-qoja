@@ -8,7 +8,7 @@ public class Timer : MonoBehaviour
     private TextMeshProUGUI timer;
     private float timePassed;
     private int timeSecond;
-    private float maxTime = 10f;
+    private float maxTime = 200f;
 
     void Start()
     {
@@ -26,7 +26,8 @@ public class Timer : MonoBehaviour
         timer.text = timeInMinute + "m" + timeInSecond + "s";
         if (timeLeft == 0)
         {
-            StartCoroutine(RestartScene());
+            //StartCoroutine(RestartScene());
+            
         }
     }
 
