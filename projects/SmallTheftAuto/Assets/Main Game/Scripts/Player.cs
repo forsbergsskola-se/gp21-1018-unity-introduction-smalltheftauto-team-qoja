@@ -60,26 +60,6 @@ public class Player : MonoBehaviour
         
     }
     
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Fire"))
-        {
-            inFire = true;
-            Debug.Log("I am in fire");
-            StartCoroutine(ImInFire());
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Fire"))
-        {
-            inFire = false;
-            StopCoroutine(ImInFire());
-            Debug.Log("I left fire");
-        }
-    }
-
     //Want to move this to destructible but it fucks up UI
     private void TakeDamage(int damage)
     {
@@ -91,16 +71,7 @@ public class Player : MonoBehaviour
             OnDeath();
         }
     }
-
-    private IEnumerator ImInFire() //Takes x amount of damage every y seconds
-    {
-        //Makes bool !inFire after 10 seconds
-        while (inFire) { //&& firetimer is not out
-            TakeDamage(FireDamage);
-            yield return new WaitForSeconds(3);
-        }
-    }
-
+    
     private void OnDeath()
     {
         
