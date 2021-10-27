@@ -42,6 +42,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Fire
+    uniqueID: 1604635687
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

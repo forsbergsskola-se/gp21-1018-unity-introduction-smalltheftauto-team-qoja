@@ -92,8 +92,22 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
             Debug.Log(gameObject + "Starts burning");
             Debug.Log($"Fire should spawn on {gameObject}");
             GameObject fireClone = SpawnChild(firePrefab, fireOffset, Quaternion.identity);
+            
             if (building != null)
             {
+                // fireClone.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z -8);
+                // fireClone.transform.localScale *= 5;
+                // ParticleSystem[] particleSystems = GetComponentsInChildren<ParticleSystem>();
+                // foreach (ParticleSystem particles in particleSystems)
+                // {
+                //     
+                // }
+                // particleSystems.
+                // main.startSize = 100.0f;
+                // main.startSizeMultiplier = 10f;
+                //
+
+                //fireClone.transform.sc
                 // PARTICLE SIZE - - - - - - - 
                 // ParticleSystem[] particleSystems = GetComponentsInChildren<ParticleSystem>();
                 // foreach (ParticleSystem particles in particleSystems)
