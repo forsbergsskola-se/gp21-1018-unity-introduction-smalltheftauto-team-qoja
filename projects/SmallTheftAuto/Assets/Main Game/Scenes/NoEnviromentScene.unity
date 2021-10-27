@@ -716,8 +716,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04625673c14c54c4aa925b8cee2981c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  fireThreshold: 30
+  maxHealth: 50
+  fireThreshold: 40
   firePrefab: {fileID: 3928436555566799408, guid: 6620b82600b5580448afcc78bf7d2d71, type: 3}
 --- !u!1 &927700684
 GameObject:
@@ -1317,6 +1317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   questUI: {fileID: 0}
+  timerUI: {fileID: 0}
 --- !u!61 &1417175593
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1978,8 +1979,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04625673c14c54c4aa925b8cee2981c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 40
-  fireThreshold: 30
+  maxHealth: 60
+  fireThreshold: 50
   firePrefab: {fileID: 3928436555566799408, guid: 6620b82600b5580448afcc78bf7d2d71, type: 3}
 --- !u!114 &1879412429
 MonoBehaviour:

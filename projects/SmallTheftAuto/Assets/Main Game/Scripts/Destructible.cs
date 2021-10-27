@@ -6,13 +6,14 @@ using UnityEngine;
 
 public class Destructible : MonoBehaviour, IBurnable, IDamageable
 {
-    [SerializeField] private int maxHealth = 100;
+    [SerializeField] private int maxHealth = 1000;
     [SerializeField] private int fireThreshold = 30;
     private int health;
     public GameObject firePrefab;
     
     private bool hasBeenDestroyed = false;
     private Player player;
+    private Building building;
     
     //Fire
     private Vector3 fireOffset = new Vector3(0, 3, 0);
@@ -30,12 +31,13 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
 
     public Destructible()
     {
-        health = maxHealth;
+        Health = maxHealth;
     }
 
     private void Start()
     {
         player = GetComponent<Player>();
+        building = GetComponent<Building>();
     }
 
     private void Update()
@@ -90,6 +92,23 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
             Debug.Log(gameObject + "Starts burning");
             Debug.Log($"Fire should spawn on {gameObject}");
             GameObject fireClone = SpawnChild(firePrefab, fireOffset, Quaternion.identity);
+            if (building != null)
+            {
+                // PARTICLE SIZE - - - - - - - 
+                // ParticleSystem[] particleSystems = GetComponentsInChildren<ParticleSystem>();
+                // foreach (ParticleSystem particles in particleSystems)
+                // {
+                //     particles.transform.localScale = particles.transform.localScale * 100;
+                //    
+                //     
+                //     // //var main = particleSystem.main;
+                //     //
+                //     // main.startSize = 100.0f;
+                //     // main.startSizeMultiplier = 10f;
+                // }
+                //
+                //
+            }
             isBurning = true;
             StartCoroutine(ExtinguishFire(fireClone)); //This counts down from 10
             StartCoroutine(TakeFireDamage()); // This deals damage every 3 seconds
