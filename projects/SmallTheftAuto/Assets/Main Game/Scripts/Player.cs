@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
     public bool IsDead => !IsAlive;
     private bool inFire = false;
     private GameObject quest;
+    public GameObject questUI;
+    private bool questIsActive;
 
     public Player(int MaxHealth) //Player's constructor
     {
@@ -132,14 +134,22 @@ public class Player : MonoBehaviour
             for (int i = 0; i < quests.Length; i++)
             {
                 distances[i] = Vector3.Distance(this.transform.position, quests[i].transform.position);
+                
             }
             int index = this.GetComponent<Driver>().FindClosestCar(distances);
             if (distances[index] < 4.3)
             {
                 //Debug.Log("Go kill people!");
                 quest = quests[index].gameObject;
-                quest.SetActive(false);
+                //quest.SetActive(false);
+                questUI.SetActive(true);
+                questIsActive = true;
             }
+            
+        }
+        if (Input.GetKeyDown(KeyCode.Q) && questIsActive)
+        {
+            questUI.SetActive(false);
         }
     }
 }
