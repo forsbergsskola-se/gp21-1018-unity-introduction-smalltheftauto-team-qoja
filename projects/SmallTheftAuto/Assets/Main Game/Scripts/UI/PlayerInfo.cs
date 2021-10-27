@@ -17,7 +17,7 @@ public class PlayerInfo : MonoBehaviour
     void Update()
     {
         health = player.GetComponent<Player>().Health;
-        money = player.GetComponent<Player>().Money;
+        money = Player.Money;
         playerInfo.text = health +"<br><br>"+money;
     }
 }

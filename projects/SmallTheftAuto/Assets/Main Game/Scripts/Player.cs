@@ -8,15 +8,25 @@ public class Player : MonoBehaviour
 {
 
     [SerializeField] private int health = 100;
-    private int money = 0;
+    private static int money = 0;
     private const int FireDamage = 5;
 
-    public bool IsAlive => health > 0;
-    public bool IsDead => !IsAlive;
+    public bool IsAlive
+    {
+        get => health > 0;
+        set => throw new NotImplementedException();
+    }
+
+    public bool IsDead
+    {
+        get => !IsAlive;
+        set => throw new NotImplementedException();
+    }
+
     private bool inFire = false;
     private GameObject quest;
     public GameObject questUI;
-    private bool questIsActive;
+    public static bool questIsActive;
     public GameObject timerUI;
 
     public Player(int MaxHealth) //Player's constructor
@@ -28,12 +38,16 @@ public class Player : MonoBehaviour
     public int Health
     {
         get => health;
+        set => health = value;
     }
-    
-    public int Money
+
+    public static int Money
     {
         get => money;
+
+        set => money = value;
     }
+
     private int Score
     {
         get;
@@ -43,6 +57,7 @@ public class Player : MonoBehaviour
     public GameObject Quest
     {
         get => quest;
+        set => quest = value;
     }
 
     private void Start() {
@@ -137,10 +152,6 @@ public class Player : MonoBehaviour
             }
             
         }
-        if (Input.GetKeyDown(KeyCode.Q) && questIsActive)
-        {
-            questUI.SetActive(false);
-            timerUI.SetActive(true);
-        }
+        
     }
 }
