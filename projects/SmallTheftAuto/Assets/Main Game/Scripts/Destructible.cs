@@ -12,7 +12,7 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
     public GameObject firePrefab;
     private bool isOnFire = false;
     private bool hasBeenDestroyed = false;
-    
+    private Vector3 fireOffset = new Vector3(0, 3, 0);
 
     private int Health
     {
@@ -25,15 +25,8 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
         health = maxHealth;
     }
 
-    public void Start()
-    {
-        
-        //firePrefab = Resources.Load("Prefabs/Effects/Fire", GameObject) as GameObject;
-    }
-
     private void Update()
     {
-        
         if (Health <= fireThreshold)
         {
             if (Health <= 0 && !hasBeenDestroyed)
@@ -46,24 +39,31 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
             {
                OnFire(); 
             }
-            
         }
-        
     }
 
-    public void OnFire() {
-        
+    public void OnFire()
+    {
         Debug.Log(gameObject + "on fire");
-        (Instantiate (firePrefab, transform.position, transform.rotation) as GameObject).transform.parent = gameObject.transform;
-        //Fire dies after a certain time
+        SpawnChild(firePrefab, fireOffset, Quaternion.identity);
+
         isOnFire = true;
-
-
-        //Trigger fire animation
         
+        //Trigger fire animation
     }
 
-    public void TakeDamage(int damage) {
+
+    private void SpawnChild(GameObject prefab, Vector3 relativePosition, Quaternion relativeRotation)
+    {
+        GameObject childObj = Instantiate(prefab, transform, true);
+        childObj.transform.localPosition = relativePosition;
+        childObj.transform.localRotation = relativeRotation;
+        childObj.transform.localScale = Vector3.one;
+    }
+
+
+    public void TakeDamage(int damage)
+    {
         Debug.Log("TakeDamage called for " + damage + "Damage. Health is " + Health);
         Health -= damage;
         Debug.Log("Health is now " + Health);
@@ -84,15 +84,12 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
 
     public void OnDeath()
     {
-        
         Explosion explosion = GetComponent<Explosion>(); //Checks if the object has the Explosions script and then calls that script if it does have it.
-        
         if (explosion != null)
         {
             explosion.Explode();
         }
-
-
+        
         hasBeenDestroyed = true;
     }
 }
