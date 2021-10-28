@@ -7,6 +7,9 @@ public class Explosion : MonoBehaviour
 {
     [SerializeField] private float explosionRadius = 20.0f;
     [SerializeField] private int explosionDamage = 50;
+    [SerializeField] private GameObject explosionEffect;
+    [SerializeField] private Material burnedMaterial;
+    private Vector3 explosionAnimationOffset = new Vector3(0, 3, 0);
 
     protected void Start()
     {
@@ -14,30 +17,16 @@ public class Explosion : MonoBehaviour
     }
 
     public void Explode() {
-        //Stores colliders that are in explosion radius in an array
+        SpawnExplosion(explosionEffect, explosionAnimationOffset, Quaternion.identity);
+        Debug.Log(explosionEffect + "spawned");
+        
         Collider2D[] nearbyColliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
         Debug.Log(nearbyColliders);
         
         //Goes through the array and check if the gameobject of the collider has a burnable script component
         foreach (Collider2D collider in nearbyColliders) {
-            
             IBurnable burnable = collider.gameObject.GetComponent<IBurnable>();
             burnable?.OnFire();
-            
-            //*****Added this so we can reference TakeDamage in destructable aswell, could also just replace the Iburnable check too in that case, but we'll talk about it tomorrow. Does not fully work right now tho*****
-            //**//
-            /*Destructible destructible = collider.gameObject.GetComponentInParent<Destructible>();
-            if (destructible != null)
-            {
-                Debug.Log("I will deal" + explosionDamage + "Damage" );
-                destructible.TakeDamage(explosionDamage);
-                Debug.Log("I am supposed to have dealt" + explosionDamage + "Damage" );
-            }
-            else if (destructible == null)
-            {
-                Debug.Log("This message should not be seen");
-            }
-            //**/
 
             Rigidbody2D rigidbody = collider.gameObject.GetComponent<Rigidbody2D>();
             if (rigidbody != null) {
@@ -45,6 +34,19 @@ public class Explosion : MonoBehaviour
             }
         }
 
-        gameObject.SetActive(false); //instead of doing this, later we can just change the model into a charred version of the same model.
+        if (burnedMaterial != null) {
+            gameObject.GetComponent<MeshRenderer>().material = burnedMaterial;
+        }
+    }
+    
+    //I know this is copy paste code we might have to figure out how to put this in another script later so it can be used in all scripts
+    //Currently throwing non-static error when calling from another script but "transform" can't be used in static method
+    public GameObject SpawnExplosion(GameObject prefab, Vector3 relativePosition, Quaternion relativeRotation)
+    {
+        GameObject childObj = Instantiate(prefab, transform, true);
+        childObj.transform.localPosition = relativePosition;
+        childObj.transform.localRotation = relativeRotation;
+        childObj.transform.localScale = Vector3.one;
+        return childObj;
     }
 }

@@ -12,13 +12,12 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
     [SerializeField] private int maxHealth = 1000;
     [SerializeField] private int fireThreshold = 30;
     private int health;
-    public GameObject firePrefab;
-    
     private bool hasBeenDestroyed = false;
     private Player player;
     private Building building;
     
     //Fire
+    public GameObject firePrefab;
     private Vector3 fireOffset = new Vector3(0, 3, 0);
     private bool isBurning = false;
     private bool hasBurned;
@@ -131,7 +130,7 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
     }
 
 
-    private GameObject SpawnChild(GameObject prefab, Vector3 relativePosition, Quaternion relativeRotation)
+    public GameObject SpawnChild(GameObject prefab, Vector3 relativePosition, Quaternion relativeRotation)
     {
         GameObject childObj = Instantiate(prefab, transform, true);
         childObj.transform.localPosition = relativePosition;
@@ -139,7 +138,6 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
         childObj.transform.localScale = Vector3.one;
         return childObj;
     }
-
 
     public void TakeDamage(int damage)
     {
@@ -162,7 +160,7 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
 
     public void OnDeath()
     {
-        Explosion explosion = GetComponent<Explosion>(); //Checks if the object has the Explosions script and then calls that script if it does have it.
+        Explosion explosion = GetComponent<Explosion>();
         if (explosion != null) {
             Debug.Log($"{gameObject} is exploding");
             explosion.Explode();
