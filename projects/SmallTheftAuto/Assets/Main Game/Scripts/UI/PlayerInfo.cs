@@ -6,6 +6,7 @@ public class PlayerInfo : MonoBehaviour
     private TextMeshProUGUI playerInfo;
     private int health;
     private int money;
+    private int score;
     public GameObject player;
 
     void Start()
@@ -18,6 +19,7 @@ public class PlayerInfo : MonoBehaviour
     {
         health = player.GetComponent<Player>().Health;
         money = Player.Money;
-        playerInfo.text = health +"<br><br>"+money;
+        score = player.GetComponent<Player>().Score;
+        playerInfo.text = health +"<br><br>"+money+"<br><br>"+score;
     }
 }
