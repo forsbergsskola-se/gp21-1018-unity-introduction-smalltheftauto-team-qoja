@@ -26,7 +26,6 @@ public class Player : MonoBehaviour, IHaveHealth
     public Player(int MaxHealth) //Player's constructor
     {
         health = MaxHealth;
-
     }
 
     public int Health
@@ -58,6 +57,11 @@ public class Player : MonoBehaviour, IHaveHealth
     {
         get => score;
         set => score = value;
+    }
+
+    public GameObject Quest {
+        get => quest;
+        set => quest = value;
     }
 
     private void Start() {

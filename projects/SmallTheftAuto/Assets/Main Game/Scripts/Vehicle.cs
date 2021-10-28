@@ -9,6 +9,7 @@ public class Vehicle : MonoBehaviour, IHurtOnCrash, IHaveHealth {
     private Vector3 playerOffset = new Vector3(3, 0, 0);
     private int buildingDamage = 10;
     private Explosion explosion;
+    private VehicleMovement _vehicleMovement;
     public int DamageOnCrash => 5;
     
     public int Health
@@ -17,8 +18,12 @@ public class Vehicle : MonoBehaviour, IHurtOnCrash, IHaveHealth {
         set => health = Mathf.Clamp(value, 0, maxHealth);
     }
     
-    private void Awake()
-    {
+    private void Awake() {
+        _vehicleMovement = GetComponent<VehicleMovement>();
+        if (_vehicleMovement != null) {
+            _vehicleMovement.enabled = false;
+        }
+        
         GetComponent<VehicleMovement>().enabled = false;
         GetComponentInChildren<Radio>().enabled = false;
         explosion = GetComponent<Explosion>();
@@ -47,16 +52,12 @@ public class Vehicle : MonoBehaviour, IHurtOnCrash, IHaveHealth {
     }
 
     public void ExitCar(Vector3 playerOffset) {
-        Debug.Log("I'm in exit method");
         driver.transform.parent = null;
         driver.transform.position = transform.position + playerOffset;
         driver.SetActive(true);
-        Debug.Log("I exited");
         driver = null;
         GetComponent<VehicleMovement>().enabled = false;
         GetComponentInChildren<Radio>().enabled = false;
     }
-
-
 } 
 
