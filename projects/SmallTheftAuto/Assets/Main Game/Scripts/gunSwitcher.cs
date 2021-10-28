@@ -31,7 +31,7 @@ public class gunSwitcher : MonoBehaviour
     void Update()
     {
         // Next Weapon
-        if (Input.GetKeyDown(KeyCode.O))
+        if (Input.GetAxis("Mouse ScrollWheel") > 0)
         {
             if (currentWeaponIndex < totalWeapons-1)
             {
@@ -42,7 +42,7 @@ public class gunSwitcher : MonoBehaviour
             
         }
         
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetAxis("Mouse ScrollWheel") < 0)
         {
             if (currentWeaponIndex > 0)
             {
