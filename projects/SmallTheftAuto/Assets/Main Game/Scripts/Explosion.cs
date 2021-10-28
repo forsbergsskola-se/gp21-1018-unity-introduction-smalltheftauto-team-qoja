@@ -33,7 +33,9 @@ public class Explosion : MonoBehaviour
                 // Add a force to the rigidbody away from the explosion
             }
         }
-
+        
+        gameObject.SetActive(false); //instead of doing this, later we can just change the model into a charred version of the same model.
+        
         if (burnedMaterial != null) {
             gameObject.GetComponent<MeshRenderer>().material = burnedMaterial;
         }
@@ -48,5 +50,6 @@ public class Explosion : MonoBehaviour
         childObj.transform.localRotation = relativeRotation;
         childObj.transform.localScale = Vector3.one;
         return childObj;
+
     }
 }

@@ -22,7 +22,7 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
     private bool isBurning = false;
     private bool hasBurned;
     private int fireDamage = 5;
-    private int fireDamageInterval = 3;
+    private int fireDamageInterval = 1;
     private int fireMaxDuration = 10;
     
     private int Health
@@ -59,7 +59,7 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
                OnFire(); 
             }
         }
-        
+
         //If gameobject is player and isInfire (set from bool in ontriggerenter, call ImInFire rename takeFireDamage
         //Edit so car can take also use takeFireDamage
         //FireDamage stops after 10 sec but car can still explode if it reaches 0
@@ -74,7 +74,7 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
            StartCoroutine(TakeFireDamage());
            
        }
-       
+
 
     }
 
@@ -144,6 +144,7 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
         Debug.Log($"TakeDamage is called on {gameObject} for {damage} damage");
         Health -= damage;
         Debug.Log($"Health of {gameObject} is now {Health}");
+        
     }
 
     public void OnCollisionEnter2D(Collision2D other)
@@ -160,10 +161,20 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
 
     public void OnDeath()
     {
-        Explosion explosion = GetComponent<Explosion>();
+        Player player = GetComponent<Player>();
+        if (player != null)
+        {
+            GameManager.instance.RestartGame();
+        }
+        Explosion explosion = GetComponent<Explosion>(); //Checks if the object has the Explosions script and then calls that script if it does have it.
         if (explosion != null) {
             Debug.Log($"{gameObject} is exploding");
             explosion.Explode();
+            Player playerIsInCar = GetComponentInChildren<Player>();
+            if (playerIsInCar != null)
+            {
+                playerIsInCar.Health = 0;
+            }
         }
         
         hasBeenDestroyed = true;

@@ -6,10 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
+    public static GameManager instance;
+
+    public bool playerDied;
     
-    private static int money = 0;
-    public static int Money
+    private int money = 0;
+    public int Money
     {
         get => money;
 
@@ -22,16 +24,30 @@ public class GameManager : MonoBehaviour
         set;
     }
 
+    private void MakeSingleton()
+    {
+        if (instance != null) //This checks if we have a copy of the GameManager and if so, it destroys it
+        {
+            Destroy(gameObject);
+            
+        }
+        else //If there's no copy, set the instance to this
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+
     void Awake()
     {
-        Instance = this;
+        MakeSingleton();
     }
     
 
     public void LoadScene() //This is called on player death
     {
         SceneManager.LoadScene("MainGameScene"); 
-        DontDestroyOnLoad(Instance);
+        //DontDestroyOnLoad(instance);
     }
 
     public void Save() //This is called on save points
@@ -48,7 +64,7 @@ public class GameManager : MonoBehaviour
         // here we want to remove the first menu
     }
     
-    public void Restart()
+    public void RestartGame()
     {
         SceneManager.LoadScene("MainGameScene");
     }
