@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Quest : MonoBehaviour
 {
@@ -40,6 +41,8 @@ public class Quest : MonoBehaviour
             // Set a new quest up
             missionComplete.SetActive(true);
             missionDone = true;
+
+            player.GetComponent<Player>().Score += 20;
         }
         
         if (timerUI.activeSelf)
