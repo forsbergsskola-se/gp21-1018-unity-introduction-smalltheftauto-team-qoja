@@ -43,7 +43,8 @@ public class Weapon : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            bulletNumber = maxBullet;
+            Invoke("Reload", 1.5f);
+            
         }
     }
 
@@ -51,5 +52,10 @@ public class Weapon : MonoBehaviour
     {
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         bulletNumber--;
+    }
+    
+    void Reload()
+    {
+        bulletNumber = maxBullet;
     }
 }
