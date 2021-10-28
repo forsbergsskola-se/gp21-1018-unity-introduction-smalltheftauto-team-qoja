@@ -46,5 +46,6 @@ public class Explosion : MonoBehaviour
         }
 
         gameObject.SetActive(false); //instead of doing this, later we can just change the model into a charred version of the same model.
+        
     }
 }

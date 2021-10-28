@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Player : MonoBehaviour, IDamageable
+public class Player : MonoBehaviour//, IDamageable
 {
 
     [SerializeField] private int health = 100;
@@ -68,33 +68,30 @@ public class Player : MonoBehaviour, IDamageable
 
     private void Update()
     {
-        
-        if (inFire)
-        {
-            
-        }
         QuestFinder();
         HealthFinder();
         
     }
     
     //Want to move this to destructible but it fucks up UI
-    public void TakeDamage(int damage)
-    {
-        Debug.Log("Damage value is " + damage);
-        Health -= damage;
-        Debug.Log("My health is " + Health);
-        if(IsDead)
-        {
-            OnDeath();
-        }
-    }
+    // public void TakeDamage(int damage)
+    // {
+    //     Debug.Log("Damage value is " + damage);
+    //     Health -= damage;
+    //     Debug.Log("My health is " + Health);
+    //     if (Health <= 0)
+    //     {
+    //         IsDead = true;
+    //     }
+    //     if(IsDead)
+    //     {
+    //         OnDeath();
+    //     }
+    // }
     
     private void OnDeath()
     {
-        
-        //Do stuff first
-        
+        GameManager.instance.RestartGame();
         //RestartScene()  - Call this method from GameManager
     }
 
