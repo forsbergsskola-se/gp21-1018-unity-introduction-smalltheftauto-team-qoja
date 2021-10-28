@@ -6,7 +6,8 @@ using UnityEngine;
 
 public class Destructible : MonoBehaviour, IBurnable, IDamageable
 {
-    
+    //This means everything we want to be able to destroy, also can burn.
+    //Everything that we want to just burn, will also get damaged. But not destroyed
     
     [SerializeField] private int maxHealth = 1000;
     [SerializeField] private int fireThreshold = 30;
