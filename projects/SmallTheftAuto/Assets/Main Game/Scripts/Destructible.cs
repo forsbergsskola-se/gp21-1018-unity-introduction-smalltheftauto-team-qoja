@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class Destructible : MonoBehaviour, IBurnable, IDamageable
 {
+    
+    
     [SerializeField] private int maxHealth = 1000;
     [SerializeField] private int fireThreshold = 30;
     private int health;
