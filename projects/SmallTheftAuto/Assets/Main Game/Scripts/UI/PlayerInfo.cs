@@ -16,18 +16,15 @@ public class PlayerInfo : MonoBehaviour
         playerInfo = GetComponent<TextMeshProUGUI>();
         playerInfo.enableAutoSizing = true;
         FindObjectOfType<GameManager>();
-
     }
 
     void Update()
     {
         health = player.GetComponent<Player>().Health;
-
         // money = GameManager.instance.Money;
         // score = GameManager.instance.Score;
-        //score = GameManager.instance.Score;
-         money = Player.Money;
-         score = player.GetComponent<Player>().Score;
+        money = Player.Money;
+        score = player.GetComponent<Player>().Score;
         playerInfo.text = health +"<br><br>"+money+"<br><br>"+score;
     }
 }

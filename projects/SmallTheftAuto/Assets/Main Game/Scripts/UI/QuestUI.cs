@@ -16,12 +16,17 @@ public class QuestUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.GetComponent<Player>().Quest != null)
+        if(Player.questIsActive && Quest.missionIndex==0)
+        //if (player.GetComponent<Player>().Quest != null)
         {
             questText = "Collect 200 dollars!"; //Problem: need to figure out how to get the content of the quest
             //questText = player.GetComponent<Quest>().questContent;
             quest.text = questText;
         }
-        
+        if(Player.questIsActive && Quest.missionIndex==1)
+        {
+            questText = "Collect 300 dollars!";
+            quest.text = questText;
+        }
     }
 }
