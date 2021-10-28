@@ -28,7 +28,6 @@ public class Player : MonoBehaviour, IHaveHealth
     public Player(int MaxHealth) //Player's constructor
     {
         health = MaxHealth;
-
     }
 
     public int Health
@@ -66,10 +65,6 @@ public class Player : MonoBehaviour, IHaveHealth
     {
         get => quest;
         set => quest = value;
-    }
-
-    private void Start() {
-        Debug.Log("My health is " + health);
     }
 
     private void Update()

@@ -4,7 +4,6 @@ public class Driver : MonoBehaviour {
     void Update() {
         if (Input.GetButtonDown("Interact-Vehicle")) {
             EnterClosestVehicle();
-            Debug.Log("I entered!");
         }
     }
 
