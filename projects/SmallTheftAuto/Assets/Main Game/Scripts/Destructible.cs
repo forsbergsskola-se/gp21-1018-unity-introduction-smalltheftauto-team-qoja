@@ -73,7 +73,6 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
 
     public void OnFire()
     {
-        Debug.Log($"{gameObject} health is {healthInterface.Health} & {fireThreshold} is firethresh");
         if (player == null)
         {
             GameObject fireClone = SpawnChild(firePrefab, fireOffset, Quaternion.identity);
@@ -98,6 +97,7 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
     {
         while (isBurning)
         {
+            Debug.Log($"{gameObject} Will take {fireDamage} damage");
             TakeDamage(fireDamage);
             yield return new WaitForSeconds(fireDamageInterval);
         }
@@ -115,7 +115,10 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
 
     public void TakeDamage(int damage)
     {
+        Debug.Log($"TakeDamage is called on {gameObject} for {damage} damage");
         health -= damage;
+        //Debug.Log($"health of {gameObject} is now {health}");
+        
     }
 
     public void OnCollisionEnter2D(Collision2D other)
