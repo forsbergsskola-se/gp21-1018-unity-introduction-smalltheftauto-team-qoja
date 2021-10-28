@@ -1685,7 +1685,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04625673c14c54c4aa925b8cee2981c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
   fireThreshold: 60
   firePrefab: {fileID: 3928436555566799408, guid: 6620b82600b5580448afcc78bf7d2d71, type: 3}
 --- !u!114 &408733185
@@ -1700,6 +1699,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7b7e72206aae4ad58841a0543b862b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 400
 --- !u!114 &408733186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1712,6 +1712,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7b7e72206aae4ad58841a0543b862b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 400
 --- !u!4 &423722842 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: d0bc8e03b82fbe74096bbfc49ff53ac1, type: 3}
@@ -2125,7 +2126,7 @@ Camera:
   m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 0
+  m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!4 &519420032
@@ -2375,6 +2376,7 @@ GameObject:
   - component: {fileID: 587127217}
   - component: {fileID: 587127216}
   - component: {fileID: 587127220}
+  - component: {fileID: 587127221}
   m_Layer: 0
   m_Name: BaseWater
   m_TagString: Untagged
@@ -2474,6 +2476,102 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b927abef14b6c5740b781661b51e45d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &587127221
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 587127215}
+  m_Enabled: 0
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: d0012e893893b324c9cb46971a8caa5e, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.092
+  m_Pitch: 0.05
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 10
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &593745879 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3507519755500383597, guid: 70ed566919f23de4fb0f5e47592c5512, type: 3}
@@ -2496,6 +2594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7b7e72206aae4ad58841a0543b862b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 400
 --- !u!4 &602711814 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8413436139187139603, guid: 3e53f9514e887d84b843f7c47f5c7f5f, type: 3}
@@ -2694,6 +2793,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7b7e72206aae4ad58841a0543b862b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 400
 --- !u!4 &657407610 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3507519755500383597, guid: 70ed566919f23de4fb0f5e47592c5512, type: 3}
@@ -3073,6 +3173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7b7e72206aae4ad58841a0543b862b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 400
 --- !u!1001 &812818007
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3139,6 +3240,10 @@ PrefabInstance:
     - target: {fileID: 3928436555566799408, guid: 6620b82600b5580448afcc78bf7d2d71, type: 3}
       propertyPath: m_Name
       value: Fire
+      objectReference: {fileID: 0}
+    - target: {fileID: 3928436555566799408, guid: 6620b82600b5580448afcc78bf7d2d71, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6620b82600b5580448afcc78bf7d2d71, type: 3}
@@ -3329,6 +3434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7b7e72206aae4ad58841a0543b862b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 400
 --- !u!1001 &869964696
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3403,6 +3509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7b7e72206aae4ad58841a0543b862b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 400
 --- !u!1 &884732483 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5347117932112241734, guid: c260732853d21d24894963a5a6a26c80, type: 3}
@@ -3420,6 +3527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7b7e72206aae4ad58841a0543b862b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 400
 --- !u!1001 &906821490
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3507,6 +3615,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.42
       objectReference: {fileID: 0}
+    - target: {fileID: 7548472177825160357, guid: abe84504be82bbf4bb0885eccb05aec0, type: 3}
+      propertyPath: burnedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 7236ac261991a46e7b27cb89c266b617, type: 2}
+    - target: {fileID: 7548472177825160357, guid: abe84504be82bbf4bb0885eccb05aec0, type: 3}
+      propertyPath: explosionEffect
+      value: 
+      objectReference: {fileID: 4695443525243243622, guid: 7a5945518f2cc468da83a27e78c90a67, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abe84504be82bbf4bb0885eccb05aec0, type: 3}
 --- !u!4 &928316220 stripped
@@ -4047,7 +4163,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04625673c14c54c4aa925b8cee2981c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
   fireThreshold: 60
   firePrefab: {fileID: 3928436555566799408, guid: 6620b82600b5580448afcc78bf7d2d71, type: 3}
 --- !u!114 &985241535
@@ -4062,6 +4177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7b7e72206aae4ad58841a0543b862b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 400
 --- !u!1001 &987024749
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4566,7 +4682,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7500830ce554a174aaa1c9cd91a1ae52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  maxHealth: 0
   questUI: {fileID: 393652552}
   timerUI: {fileID: 2000654424}
 --- !u!1001 &1191811246
@@ -5780,7 +5896,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04625673c14c54c4aa925b8cee2981c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
   fireThreshold: 60
   firePrefab: {fileID: 3928436555566799408, guid: 6620b82600b5580448afcc78bf7d2d71, type: 3}
 --- !u!114 &1387525209
@@ -5795,6 +5910,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7b7e72206aae4ad58841a0543b862b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 400
 --- !u!114 &1387525210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5807,6 +5923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7b7e72206aae4ad58841a0543b862b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 400
 --- !u!1 &1417698086
 GameObject:
   m_ObjectHideFlags: 0
@@ -5855,6 +5972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7b7e72206aae4ad58841a0543b862b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 400
 --- !u!1001 &1438641082
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6588,6 +6706,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7b7e72206aae4ad58841a0543b862b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 400
 --- !u!1 &1607259483
 GameObject:
   m_ObjectHideFlags: 0
@@ -6854,6 +6973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7b7e72206aae4ad58841a0543b862b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 400
 --- !u!1001 &1639903578
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7083,6 +7203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7b7e72206aae4ad58841a0543b862b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 400
 --- !u!4 &1708275245 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7192281583615519659, guid: d831013a484a8f849b3b2254b7f1c00b, type: 3}
@@ -7168,7 +7289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 2120045343}
-  bulletPrefab: {fileID: 8241137594960322160, guid: f23a556892149fb48bed6dc5daf2ecb5, type: 3}
+  bulletPrefab: {fileID: 8241137594960322160, guid: 5f5ec7c307faf7d49b3013cb4b56aee9, type: 3}
   bulletNumber: 30
   maxBullet: 30
 --- !u!114 &1728449944
@@ -7517,6 +7638,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7b7e72206aae4ad58841a0543b862b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 400
 --- !u!4 &1837564060 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7103815170101456472, guid: e225cdc944265e24fa41a9852a338562, type: 3}
@@ -7931,6 +8053,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7b7e72206aae4ad58841a0543b862b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 400
 --- !u!1 &2000654424
 GameObject:
   m_ObjectHideFlags: 0
@@ -8250,6 +8373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7b7e72206aae4ad58841a0543b862b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 400
 --- !u!1001 &2055762321
 PrefabInstance:
   m_ObjectHideFlags: 0

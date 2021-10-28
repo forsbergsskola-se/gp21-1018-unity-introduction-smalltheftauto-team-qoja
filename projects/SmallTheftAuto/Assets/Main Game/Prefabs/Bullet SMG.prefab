@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8005887441385336805}
   - component: {fileID: 3998216399080631754}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: Bullet SMG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -149,7 +149,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 96434fb9d0ba9d14292e6d36365b6105, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 53990bee665500c4885f87700ac19277, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
