@@ -25,28 +25,26 @@ public class Player : MonoBehaviour, IHaveHealth
         health = maxHealth;
     }
 
-    public Player(int MaxHealth) //Player's constructor is it needed??
+    public Player(int maxHealth) //Player's constructor is it needed??
     {
-        health = MaxHealth;
+        health = maxHealth;
 
     }
 
     public int Health
     {
         get => health;
-        set => health = Mathf.Clamp(health, 0, maxHealth);
+        set => health = Mathf.Clamp(value, 0, maxHealth);
     }
     
     public bool IsAlive
     {
         get => health > 0;
-        set => throw new NotImplementedException();
     }
 
     public bool IsDead
     {
         get => !IsAlive;
-        set => throw new NotImplementedException();
     }
 
     public static int Money
