@@ -97,7 +97,7 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
             Debug.Log($"Fire should spawn on {gameObject}");
             GameObject fireClone = SpawnChild(firePrefab, fireOffset, Quaternion.identity);
             isBurning = true;
-           // StartCoroutine(ExtinguishFire(fireClone)); //This counts down from 10
+            StartCoroutine(ExtinguishFire(fireClone)); //This counts down from 10
             StartCoroutine(TakeFireDamage()); // This deals damage every 3 seconds
             
         }
