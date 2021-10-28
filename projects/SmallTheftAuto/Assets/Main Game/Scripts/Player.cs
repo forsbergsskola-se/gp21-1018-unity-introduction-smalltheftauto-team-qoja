@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamageable
 {
 
     [SerializeField] private int health = 100;
@@ -79,11 +79,11 @@ public class Player : MonoBehaviour
     }
     
     //Want to move this to destructible but it fucks up UI
-    private void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         Debug.Log("Damage value is " + damage);
-        health -= damage;
-        Debug.Log("My health is " + health);
+        Health -= damage;
+        Debug.Log("My health is " + Health);
         if(IsDead)
         {
             OnDeath();
