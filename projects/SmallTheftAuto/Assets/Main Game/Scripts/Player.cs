@@ -66,10 +66,6 @@ public class Player : MonoBehaviour, IHaveHealth
         set => quest = value;
     }
 
-    private void Start() {
-        Debug.Log("My health is " + health);
-    }
-
     private void Update()
     {
         QuestFinder();

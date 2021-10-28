@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
-    [SerializeField] private float explosionRadius = 20.0f;
+    [SerializeField] private float explosionRadius = 5.0f;
     [SerializeField] private int explosionDamage = 50;
     [SerializeField] private GameObject explosionEffect;
     [SerializeField] private Material burnedMaterial;
@@ -18,17 +18,15 @@ public class Explosion : MonoBehaviour
 
     public void Explode() {
         SpawnExplosion(explosionEffect, explosionAnimationOffset, Quaternion.identity);
-        Debug.Log(explosionEffect + "spawned");
-        
+
         //Goes through the array and check if the gameobject of the collider has a burnable script component
         Collider2D[] nearbyColliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
-        Debug.Log(nearbyColliders);
-        
+
         foreach (Collider2D collider in nearbyColliders) {
-            IBurnable burnable = collider.gameObject.GetComponent<IBurnable>();
-            if (burnable != null) {
+            Destructible destructible = collider.gameObject.GetComponent<Destructible>();
+            if (destructible != null) {
                 Debug.Log($"I'm burnable {gameObject}");
-                burnable.OnFire();
+                destructible.OnFire();
             } else {
                 Debug.Log($"{gameObject} is not burnable");
             }

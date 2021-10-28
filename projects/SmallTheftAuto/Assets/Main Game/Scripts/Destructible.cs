@@ -93,9 +93,8 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
 
     private IEnumerator TakeFireDamage()
     {
-        while (isBurning)
+        while (isBurning && healthInterface.Health != 0)
         {
-            Debug.Log($"{gameObject} Will take {fireDamage} damage");
             TakeDamage(fireDamage);
             yield return new WaitForSeconds(fireDamageInterval);
         }
@@ -113,10 +112,7 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
 
     public void TakeDamage(int damage)
     {
-        Debug.Log($"TakeDamage is called on {gameObject} for {damage} damage");
         healthInterface.Health -= damage;
-        Debug.Log($"health of {gameObject} is now {healthInterface.Health}");
-        
     }
 
     public void OnCollisionEnter2D(Collision2D other)
@@ -125,7 +121,6 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
         if (hurtOnCrash != null)
         {
             TakeDamage(hurtOnCrash.DamageOnCrash);
-            //Debug.Log($"{gameObject} have taken {hurtOnCrash.DamageOnCrash} damage from colliding with {other}");
         }
     }
 
