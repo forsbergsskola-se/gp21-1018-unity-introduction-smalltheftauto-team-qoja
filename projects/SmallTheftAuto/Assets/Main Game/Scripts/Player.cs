@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] private int health = 100;
     private static int money = 0;
     private const int FireDamage = 5;
+    private int score;
 
     public bool IsAlive
     {
@@ -48,10 +49,10 @@ public class Player : MonoBehaviour
         set => money = value;
     }
 
-    private int Score
+    public int Score
     {
-        get;
-        set;
+        get => score;
+        set => score = value;
     }
 
     public GameObject Quest
