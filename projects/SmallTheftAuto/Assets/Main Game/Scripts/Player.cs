@@ -11,6 +11,7 @@ public class Player : MonoBehaviour, IDamageable
     private static int money = 0;
     private const int FireDamage = 5;
     private int score;
+    private int nextHealth = 100;
 
     public bool IsAlive
     {
@@ -75,7 +76,12 @@ public class Player : MonoBehaviour, IDamageable
         }
         QuestFinder();
         HealthFinder();
+        if (IsDead)
+        {
+            StartCoroutine("OnDeath"); //Has to be checked
+        }
         
+
     }
     
     //Want to move this to destructible but it fucks up UI
@@ -94,7 +100,11 @@ public class Player : MonoBehaviour, IDamageable
     {
         
         //Do stuff first
-        
+        Health = nextHealth;
+        Money = Money / 2;
+        transform.position = new Vector3(-13f, -20f, 1.63f);
+
+
         //RestartScene()  - Call this method from GameManager
     }
 
