@@ -15,7 +15,8 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
     private Player player;
     private Building building;
     private IHaveHealth healthInterface;
-
+    private int health;
+    
     //Fire
     public GameObject firePrefab;
     private Vector3 fireOffset = new Vector3(0, 3, 0);
@@ -29,7 +30,6 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
     {
         player = GetComponent<Player>();
         building = GetComponent<Building>();
-        healthInterface = GetComponent<IHaveHealth>();
         HasHealth();
     }
 
@@ -37,12 +37,12 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
     {
         //Update so even if the object don't have health it can be set on fire
 
-        if (healthInterface.Health <= 0 && !hasBeenDestroyed) {
+        if (health <= 0 && !hasBeenDestroyed) {
             OnDeath();
             return;
         }
 
-        if (healthInterface.Health <= fireThreshold) {
+        if (health <= fireThreshold) {
             if (!isBurning && !hasBurned)
             {
                 OnFire(); 
@@ -51,7 +51,9 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
     }
 
     private bool HasHealth() {
+        healthInterface = GetComponent<IHaveHealth>();
         if (healthInterface != null) {
+            health = healthInterface.Health;
             return true;
         }
 
@@ -93,8 +95,9 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
 
     private IEnumerator TakeFireDamage()
     {
-        while (isBurning && healthInterface.Health != 0)
+        while (isBurning)
         {
+            Debug.Log($"{gameObject} Will take {fireDamage} damage");
             TakeDamage(fireDamage);
             yield return new WaitForSeconds(fireDamageInterval);
         }
@@ -112,7 +115,10 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
 
     public void TakeDamage(int damage)
     {
-        healthInterface.Health -= damage;
+        Debug.Log($"TakeDamage is called on {gameObject} for {damage} damage");
+        health -= damage;
+        Debug.Log($"health of {gameObject} is now {health}");
+        
     }
 
     public void OnCollisionEnter2D(Collision2D other)
@@ -121,6 +127,7 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
         if (hurtOnCrash != null)
         {
             TakeDamage(hurtOnCrash.DamageOnCrash);
+            //Debug.Log($"{gameObject} have taken {hurtOnCrash.DamageOnCrash} damage from colliding with {other}");
         }
     }
 
@@ -138,7 +145,7 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
             Player playerIsInCar = GetComponentInChildren<Player>();
             if (playerIsInCar != null)
             {
-                healthInterface.Health = 0;
+                health = 0;
             }
         }
         

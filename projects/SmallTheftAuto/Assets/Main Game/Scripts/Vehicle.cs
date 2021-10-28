@@ -43,8 +43,7 @@ public class Vehicle : MonoBehaviour, IHurtOnCrash, IHaveHealth {
         GetComponent<VehicleMovement>().enabled = true;
     }
 
-    public void ExitCar(Vector3 playerOffset)
-    {
+    public void ExitCar(Vector3 playerOffset) {
         Debug.Log("I'm in exit method");
         driver.transform.parent = null;
         driver.transform.position = transform.position + playerOffset;
@@ -53,5 +52,7 @@ public class Vehicle : MonoBehaviour, IHurtOnCrash, IHaveHealth {
         driver = null;
         GetComponent<VehicleMovement>().enabled = false;
     }
+
+
 } 
 
