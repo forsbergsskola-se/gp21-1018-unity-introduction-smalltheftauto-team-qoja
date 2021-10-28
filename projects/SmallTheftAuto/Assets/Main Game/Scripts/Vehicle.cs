@@ -20,6 +20,7 @@ public class Vehicle : MonoBehaviour, IHurtOnCrash, IHaveHealth {
     private void Awake()
     {
         GetComponent<VehicleMovement>().enabled = false;
+        GetComponentInChildren<Radio>().enabled = false;
         explosion = GetComponent<Explosion>();
         explosion.enabled = false;
         health = maxHealth;
@@ -41,6 +42,8 @@ public class Vehicle : MonoBehaviour, IHurtOnCrash, IHaveHealth {
         driver = player;
         player.SetActive(false);
         GetComponent<VehicleMovement>().enabled = true;
+        GetComponentInChildren<Radio>().enabled = true;
+        
     }
 
     public void ExitCar(Vector3 playerOffset) {
@@ -51,6 +54,7 @@ public class Vehicle : MonoBehaviour, IHurtOnCrash, IHaveHealth {
         Debug.Log("I exited");
         driver = null;
         GetComponent<VehicleMovement>().enabled = false;
+        GetComponentInChildren<Radio>().enabled = false;
     }
 
 

@@ -36,7 +36,19 @@ public class VehicleMovement : MonoBehaviour
       
         speed = Mathf.Clamp((Input.GetAxis ("Vertical") * accelerationPower), -MAXSpeed/2, MAXSpeed);
         direction = Mathf.Sign(Vector2.Dot (rb.velocity, rb.GetRelativeVector(Vector2.up)));
-        rb.rotation += steeringAmount * steeringPower * rb.velocity.magnitude * direction;
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            steeringPower = 0.4f;
+            accelerationPower = 15000f;
+        }
+        else
+        {
+            steeringPower = 0.2f;
+            accelerationPower = 30000f;
+        }
+        rb.rotation += steeringAmount * steeringPower * rb.velocity.magnitude * direction; 
+        
+        
 
         rb.AddRelativeForce (Vector2.up * speed); //Ask teacher how this works
 

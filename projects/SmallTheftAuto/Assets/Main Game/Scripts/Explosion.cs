@@ -26,12 +26,7 @@ public class Explosion : MonoBehaviour
         
         foreach (Collider2D collider in nearbyColliders) {
             IBurnable burnable = collider.gameObject.GetComponent<IBurnable>();
-            if (burnable != null) {
-                Debug.Log($"I'm burnable {gameObject}");
-                burnable.OnFire();
-            } else {
-                Debug.Log($"{gameObject} is not burnable");
-            }
+            burnable?.OnFire();
 
             Rigidbody2D rigidbody = collider.gameObject.GetComponent<Rigidbody2D>();
             if (rigidbody != null) {
