@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     public GameObject questUI;
     public static bool questIsActive;
     public GameObject timerUI;
+    private GameObject firstAidKit;
 
     public Player(int MaxHealth) //Player's constructor
     {
@@ -73,7 +74,7 @@ public class Player : MonoBehaviour
             
         }
         QuestFinder();
-        
+        HealthFinder();
         
     }
     
@@ -121,6 +122,32 @@ public class Player : MonoBehaviour
                 //quest.SetActive(false);
                 questUI.SetActive(true);
                 questIsActive = true;
+            }
+            
+        }
+        
+    }
+    
+    void HealthFinder()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            FirstAidKit[] firstAidKits = FindObjectsOfType<FirstAidKit>();
+            float[] distances = new float[firstAidKits.Length];
+            for (int i = 0; i < firstAidKits.Length; i++)
+            {
+                distances[i] = Vector3.Distance(this.transform.position, firstAidKits[i].transform.position);
+                
+            }
+            int index = this.GetComponent<Driver>().FindClosestCar(distances);
+            if (distances[index] < 4.3)
+            {
+                
+                firstAidKit = firstAidKits[index].gameObject;
+                //quest.SetActive(false);
+                firstAidKit.SetActive(false);
+                Health += 10;
+
             }
             
         }
