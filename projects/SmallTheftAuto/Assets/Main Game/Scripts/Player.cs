@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamageable
 {
 
     [SerializeField] private int health = 100;
     private static int money = 0;
     private const int FireDamage = 5;
     private int score;
+    private int nextHealth = 100;
 
     public bool IsAlive
     {
@@ -75,15 +76,20 @@ public class Player : MonoBehaviour
         }
         QuestFinder();
         HealthFinder();
+        if (IsDead)
+        {
+            StartCoroutine("OnDeath"); //Has to be checked
+        }
         
+
     }
     
     //Want to move this to destructible but it fucks up UI
-    private void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         Debug.Log("Damage value is " + damage);
-        health -= damage;
-        Debug.Log("My health is " + health);
+        Health -= damage;
+        Debug.Log("My health is " + Health);
         if(IsDead)
         {
             OnDeath();
@@ -94,7 +100,11 @@ public class Player : MonoBehaviour
     {
         
         //Do stuff first
-        
+        Health = nextHealth;
+        Money = Money / 2;
+        transform.position = new Vector3(-13f, -20f, 1.63f);
+
+
         //RestartScene()  - Call this method from GameManager
     }
 
