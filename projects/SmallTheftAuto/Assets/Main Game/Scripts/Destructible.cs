@@ -117,7 +117,7 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
     {
         Debug.Log($"TakeDamage is called on {gameObject} for {damage} damage");
         health -= damage;
-        Debug.Log($"health of {gameObject} is now {health}");
+        //Debug.Log($"health of {gameObject} is now {health}");
         
     }
 

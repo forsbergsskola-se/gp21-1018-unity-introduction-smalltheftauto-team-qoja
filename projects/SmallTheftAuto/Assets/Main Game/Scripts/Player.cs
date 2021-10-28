@@ -61,7 +61,7 @@ public class Player : MonoBehaviour, IHaveHealth
     }
 
     private void Start() {
-        Debug.Log("My health is " + health);
+        //Debug.Log("My health is " + health);
     }
 
     private void Update()

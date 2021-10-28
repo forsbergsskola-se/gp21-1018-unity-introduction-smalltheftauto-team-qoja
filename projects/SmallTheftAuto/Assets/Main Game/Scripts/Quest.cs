@@ -23,7 +23,7 @@ public class Quest : MonoBehaviour
         if(!Player.questIsActive) originalMoney = Player.Money;
         if (missionIndex == 0)
         {
-            QuestTimer(10);
+            QuestTimer(100);
             if(timerUI.activeSelf) MoneyFinder();
 
             // Checks if the winning condition is met
@@ -81,9 +81,10 @@ public class Quest : MonoBehaviour
                 Invoke("setMissionFalse", 3f);
                 missionIndex++;
                 timerUI.SetActive(false);
+                Timer.timeIsOut = false;
+                Player.questIsActive = false;
             }
         }
-
     }
 
     private void QuestTimer(float maximumTime)
@@ -102,20 +103,21 @@ public class Quest : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && Player.questIsActive)
         {
             Money[] moneys = FindObjectsOfType<Money>();
-            //Debug.Log(moneys.Length);
-            float[] distances = new float[moneys.Length];
-            for (int i = 0; i < moneys.Length; i++)
+            if (moneys.Length != 0)
             {
-                distances[i] = Vector3.Distance(player.transform.position, moneys[i].transform.position);
-                
-            }
-            int index = FindMin(distances);
-            Debug.Log(distances[index]);
-            if (distances[index] < 3)
-            {
-                money = moneys[index].gameObject;
-                money.SetActive(false);
-                Player.Money += 100;
+                float[] distances = new float[moneys.Length];
+                for (int i = 0; i < moneys.Length; i++)
+                {
+                    distances[i] = Vector3.Distance(player.transform.position, moneys[i].transform.position);
+            
+                }
+                int index = FindMin(distances);
+                if (distances[index] < 3)
+                {
+                    money = moneys[index].gameObject;
+                    money.SetActive(false);
+                    Player.Money += 100;
+                }
             }
         }
     }

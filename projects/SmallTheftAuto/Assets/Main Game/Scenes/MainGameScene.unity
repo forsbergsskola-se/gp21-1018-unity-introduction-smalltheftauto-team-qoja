@@ -169,6 +169,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Money (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2464988732922791739, guid: 0bb3763a445b5de4eb87236307133810, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 2464988732922791742, guid: 0bb3763a445b5de4eb87236307133810, type: 3}
       propertyPath: m_RootOrder
       value: 17
@@ -1218,7 +1222,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3935b0c7c3d0b1743b7945a2d4e38d56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questContent: Go kill people!
   questUI: {fileID: 393652552}
   timerUI: {fileID: 2000654424}
   money: {fileID: 0}
@@ -1361,7 +1364,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3935b0c7c3d0b1743b7945a2d4e38d56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questContent: Go kill people!
   questUI: {fileID: 1607259483}
   timerUI: {fileID: 0}
   money: {fileID: 0}
@@ -1570,7 +1572,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 864, y: -630}
+  m_AnchoredPosition: {x: 862, y: -424}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &393652554
@@ -1854,7 +1856,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3919029966072624850, guid: abe84504be82bbf4bb0885eccb05aec0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -19.33
+      value: -12.3
       objectReference: {fileID: 0}
     - target: {fileID: 3919029966072624850, guid: abe84504be82bbf4bb0885eccb05aec0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1862,7 +1864,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3919029966072624850, guid: abe84504be82bbf4bb0885eccb05aec0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.47
+      value: -2.9
       objectReference: {fileID: 0}
     - target: {fileID: 3919029966072624850, guid: abe84504be82bbf4bb0885eccb05aec0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4684,7 +4686,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 0
   questUI: {fileID: 393652552}
-  timerUI: {fileID: 2000654424}
 --- !u!1001 &1191811246
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6985,6 +6986,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Money
       objectReference: {fileID: 0}
+    - target: {fileID: 2464988732922791739, guid: 0bb3763a445b5de4eb87236307133810, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 2464988732922791742, guid: 0bb3763a445b5de4eb87236307133810, type: 3}
       propertyPath: m_RootOrder
       value: 15
@@ -8105,8 +8110,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7e7e89decab5ae49b05f4b068e843bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLeft: 0
-  timeIsOut: 0
 --- !u!114 &2000654427
 MonoBehaviour:
   m_ObjectHideFlags: 0
