@@ -13,11 +13,20 @@ public class Bullet : MonoBehaviour, IHurtOnCrash
     void Start()
     {
         bulletRb.velocity = transform.right * bulletSpeed;
+        
     }
 
-    private void OnTriggerEnter2D(Collider2D hitInfo)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(hitInfo.name);
+        Debug.Log(other);
+        Destructible destructible = other.gameObject.GetComponentInParent<Destructible>();
+        if (destructible != null)
+        {
+           destructible.TakeDamage(DamageOnCrash); 
+        }
+        
+        
+        
         Destroy(gameObject);
     }
 

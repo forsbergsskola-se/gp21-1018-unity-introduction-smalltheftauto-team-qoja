@@ -72,6 +72,7 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
            StartCoroutine(TakeFireDamage());
            
        }
+       
 
     }
 
