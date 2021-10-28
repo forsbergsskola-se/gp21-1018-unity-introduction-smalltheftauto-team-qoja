@@ -25,7 +25,7 @@ public class Player : MonoBehaviour, IHaveHealth
         health = maxHealth;
     }
 
-    public Player(int MaxHealth) //Player's constructor
+    public Player(int MaxHealth) //Player's constructor is it needed??
     {
         health = MaxHealth;
 
@@ -34,7 +34,7 @@ public class Player : MonoBehaviour, IHaveHealth
     public int Health
     {
         get => health;
-        set => health = Mathf.Clamp(value, 0, maxHealth);
+        set => health = Mathf.Clamp(health, 0, maxHealth);
     }
     
     public bool IsAlive

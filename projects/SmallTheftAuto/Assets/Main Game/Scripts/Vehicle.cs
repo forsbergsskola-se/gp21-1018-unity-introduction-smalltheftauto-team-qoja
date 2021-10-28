@@ -14,7 +14,7 @@ public class Vehicle : MonoBehaviour, IHurtOnCrash, IHaveHealth {
     public int Health
     {
         get => health;
-        set => health = Mathf.Clamp(value, 0, maxHealth);
+        set => health = Mathf.Clamp(health, 0, maxHealth);
     }
     
     private void Awake()
