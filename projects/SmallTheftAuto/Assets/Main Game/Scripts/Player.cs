@@ -9,16 +9,14 @@ public class Player : MonoBehaviour, IHaveHealth
 
     [SerializeField] private int maxHealth = 100;
     private int health;
-    private static int money = 0;
+    private static int money;
     private const int FireDamage = 5;
     private int score;
     private int nextHealth = 100;
-
     private bool inFire = false;
     private GameObject quest;
     public GameObject questUI;
     public static bool questIsActive;
-    public GameObject timerUI;
     private GameObject firstAidKit;
 
     private void Awake() {
@@ -61,10 +59,13 @@ public class Player : MonoBehaviour, IHaveHealth
         set => score = value;
     }
 
-    public GameObject Quest
-    {
+    public GameObject Quest {
         get => quest;
         set => quest = value;
+    }
+
+    private void Start() {
+        Debug.Log("My health is " + health);
     }
 
     private void Update()
@@ -89,7 +90,8 @@ public class Player : MonoBehaviour, IHaveHealth
     
     void QuestFinder()
     {
-        if (Input.GetKeyDown(KeyCode.E) && this.quest==null)
+        if (Input.GetKeyDown(KeyCode.E) && !questIsActive)
+        //if (Input.GetKeyDown(KeyCode.E) && this.quest==null)
         {
             Quest[] quests = FindObjectsOfType<Quest>();
             float[] distances = new float[quests.Length];
@@ -101,9 +103,7 @@ public class Player : MonoBehaviour, IHaveHealth
             int index = this.GetComponent<Driver>().FindClosestCar(distances);
             if (distances[index] < 4.3)
             {
-                //Debug.Log("Go kill people!");
                 quest = quests[index].gameObject;
-                //quest.SetActive(false);
                 questUI.SetActive(true);
                 questIsActive = true;
             }
