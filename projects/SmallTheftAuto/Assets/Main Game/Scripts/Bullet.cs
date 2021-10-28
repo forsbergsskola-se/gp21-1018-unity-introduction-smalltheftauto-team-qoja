@@ -30,5 +30,13 @@ public class Bullet : MonoBehaviour, IHurtOnCrash
         Destroy(gameObject);
     }
 
+    void Update()
+    {
+        Invoke("DestroyBullet", 2f);
+    }
     
+    void DestroyBullet()
+    {
+        Destroy(gameObject);
+    }
 }
