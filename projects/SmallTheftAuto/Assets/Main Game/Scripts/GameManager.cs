@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public bool playerDied;
     
     private int money = 0;
+    private int score = 0;
     public int Money
     {
         get => money;
@@ -18,10 +19,11 @@ public class GameManager : MonoBehaviour
         set => money = value;
     }
 
-    private int Score
+    public int Score
     {
-        get;
-        set;
+        get => score;
+
+        set => score = value;
     }
 
     private void MakeSingleton()
