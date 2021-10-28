@@ -41,6 +41,7 @@ public class Vehicle : MonoBehaviour, IHurtOnCrash, IHaveHealth {
         driver = player;
         player.SetActive(false);
         GetComponent<VehicleMovement>().enabled = true;
+        GetComponent<Radio>().enabled = true;
     }
 
     public void ExitCar(Vector3 playerOffset) {
@@ -51,6 +52,7 @@ public class Vehicle : MonoBehaviour, IHurtOnCrash, IHaveHealth {
         Debug.Log("I exited");
         driver = null;
         GetComponent<VehicleMovement>().enabled = false;
+        GetComponent<Radio>().enabled = false;
     }
 
 
