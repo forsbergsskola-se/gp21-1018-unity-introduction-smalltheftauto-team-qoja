@@ -4,15 +4,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Player : MonoBehaviour//, IDamageable
+public class Player : MonoBehaviour, IHaveHealth
 {
 
-    [SerializeField] private int health = 100;
+    [SerializeField] private int maxHealth = 100;
+    private int health;
     private static int money = 0;
     private const int FireDamage = 5;
     private int score;
     private int nextHealth = 100;
 
+    private bool inFire = false;
+    private GameObject quest;
+    public GameObject questUI;
+    public static bool questIsActive;
+    public GameObject timerUI;
+    private GameObject firstAidKit;
+
+    private void Awake() {
+        health = maxHealth;
+    }
+
+    public Player(int MaxHealth) //Player's constructor
+    {
+        health = MaxHealth;
+
+    }
+
+    public int Health
+    {
+        get => health;
+        set => health = Mathf.Clamp(value, 0, maxHealth);
+    }
+    
     public bool IsAlive
     {
         get => health > 0;
@@ -23,25 +47,6 @@ public class Player : MonoBehaviour//, IDamageable
     {
         get => !IsAlive;
         set => throw new NotImplementedException();
-    }
-
-    private bool inFire = false;
-    private GameObject quest;
-    public GameObject questUI;
-    public static bool questIsActive;
-    public GameObject timerUI;
-    private GameObject firstAidKit;
-
-    public Player(int MaxHealth) //Player's constructor
-    {
-        this.health = MaxHealth;
-
-    }
-
-    public int Health
-    {
-        get => health;
-        set => health = value;
     }
 
     public static int Money
@@ -71,30 +76,8 @@ public class Player : MonoBehaviour//, IDamageable
     {
         QuestFinder();
         HealthFinder();
-        if (IsDead)
-        {
-            StartCoroutine("OnDeath"); //Has to be checked
-        }
-        
-
     }
-    
-    //Want to move this to destructible but it fucks up UI
-    // public void TakeDamage(int damage)
-    // {
-    //     Debug.Log("Damage value is " + damage);
-    //     Health -= damage;
-    //     Debug.Log("My health is " + Health);
-    //     if (Health <= 0)
-    //     {
-    //         IsDead = true;
-    //     }
-    //     if(IsDead)
-    //     {
-    //         OnDeath();
-    //     }
-    // }
-    
+
     private void OnDeath()
     {
         GameManager.instance.RestartGame();
@@ -108,12 +91,7 @@ public class Player : MonoBehaviour//, IDamageable
         
         //RestartScene()  - Call this method from GameManager
     }
-
-    public void EquipWeapon()
-    {
-        
-    }
-
+    
     void QuestFinder()
     {
         if (Input.GetKeyDown(KeyCode.E) && this.quest==null)
@@ -139,6 +117,7 @@ public class Player : MonoBehaviour//, IDamageable
         
     }
     
+    //Needs to be redone and edited for better readability
     void HealthFinder()
     {
         if (Input.GetKeyDown(KeyCode.E))
@@ -160,8 +139,6 @@ public class Player : MonoBehaviour//, IDamageable
                 Health += 10;
 
             }
-            
         }
-        
     }
 }

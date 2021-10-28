@@ -3,11 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Building : MonoBehaviour, IHurtOnCrash
-{
-    //Brinner och slutar brinna efter ett tag
-    //Triggas av exploderande bilar
-    //Kan sedan ta damage
-    //Exploderar threshold
+public class Building : MonoBehaviour, IHurtOnCrash, IHaveHealth {
+    [SerializeField] private int maxHealth = 400;
+    private int health;
+
+    private void Awake() {
+        health = maxHealth;
+    }
+
     public int DamageOnCrash => 10;
+
+    public int Health
+    {
+        get => health;
+        set => health = Mathf.Clamp(value, 0, maxHealth);
+    }
 }

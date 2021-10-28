@@ -20,10 +20,10 @@ public class Explosion : MonoBehaviour
         SpawnExplosion(explosionEffect, explosionAnimationOffset, Quaternion.identity);
         Debug.Log(explosionEffect + "spawned");
         
+        //Goes through the array and check if the gameobject of the collider has a burnable script component
         Collider2D[] nearbyColliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
         Debug.Log(nearbyColliders);
         
-        //Goes through the array and check if the gameobject of the collider has a burnable script component
         foreach (Collider2D collider in nearbyColliders) {
             IBurnable burnable = collider.gameObject.GetComponent<IBurnable>();
             burnable?.OnFire();
@@ -34,7 +34,7 @@ public class Explosion : MonoBehaviour
             }
         }
         
-        gameObject.SetActive(false); //instead of doing this, later we can just change the model into a charred version of the same model.
+        //gameObject.SetActive(false);
         
         if (burnedMaterial != null) {
             gameObject.GetComponent<MeshRenderer>().material = burnedMaterial;
