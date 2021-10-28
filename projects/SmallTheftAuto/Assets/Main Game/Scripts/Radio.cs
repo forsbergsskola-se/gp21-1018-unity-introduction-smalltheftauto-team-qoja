@@ -11,6 +11,8 @@ public class Radio : MonoBehaviour
     [SerializeField] public AudioClip audioClip1;
     [SerializeField] public AudioClip audioClip2;
     [SerializeField] public AudioClip audioClip3;
+    [SerializeField] private AudioClip audioClip4;
+    
     private AudioSource audioSource;
 
     private void Start()
@@ -55,6 +57,11 @@ public class Radio : MonoBehaviour
         {
             RadioManager(audioClip3,1f);
         }
+        else if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            RadioManager(audioClip4,1f);
+        }
+        
     }
     void VolumeControl()
     {
