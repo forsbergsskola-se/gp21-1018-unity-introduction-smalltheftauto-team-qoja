@@ -8,7 +8,9 @@ public class Bullet : MonoBehaviour, IHurtOnCrash
 
     public float bulletSpeed = 100000f;
     public Rigidbody2D bulletRb;
-    public int DamageOnCrash => 5; //Added this, but currently not doing damage anyhows.
+
+    public int bulletDamage = 10;
+    public int DamageOnCrash => bulletDamage; //Added this, but currently not doing damage anyhows.
     // Start is called before the first frame update
     void Start()
     {
