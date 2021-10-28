@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float rotationSpeed = 100.0f;
     [SerializeField] private float runSpeed = 20.0f;
     [SerializeField] float walkSpeed = 10.0f;
+    
 
     void Update()
     {
@@ -20,7 +21,10 @@ public class PlayerMovement : MonoBehaviour
         }
         else speed = walkSpeed;
         
+        
          transform.Translate(0f, speed * Time.deltaTime * Input.GetAxis("Vertical"), 0f);
         transform.Rotate(0f, 0f, -rotationSpeed * Time.deltaTime * Input.GetAxis("Horizontal"));
+        
+        
     }
 }
