@@ -102,7 +102,7 @@ public class Quest : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && Player.questIsActive)
         {
-            Money[] moneys = FindObjectsOfType<Money>();
+            Money[] moneys = FindObjectsOfType<Money>();     
             if (moneys.Length != 0)
             {
                 float[] distances = new float[moneys.Length];
@@ -111,7 +111,7 @@ public class Quest : MonoBehaviour
                     distances[i] = Vector3.Distance(player.transform.position, moneys[i].transform.position);
             
                 }
-                int index = FindMin(distances);
+                int index = FindObject.FindIndexOfClosestObject(distances);
                 if (distances[index] < 3)
                 {
                     money = moneys[index].gameObject;
@@ -121,27 +121,11 @@ public class Quest : MonoBehaviour
             }
         }
     }
-    
-    public int FindMin(float[] distancesToMoney)
-    {
-        int indexOfClosestMoney = 0;
-        float closestPosition = 1000f;
-        
-        for(int i = 0; i < distancesToMoney.Length; i++)
-        {
-            if (distancesToMoney[i] < closestPosition)
-            {
-                closestPosition = distancesToMoney[i];
-                indexOfClosestMoney = i;
-            }
-        }
-        
-        return indexOfClosestMoney;
-    }
 
     void setMissionFalse()
     {
         missionComplete.SetActive(false);
         missionFailed.SetActive(false);
     }
+    
 }
