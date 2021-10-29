@@ -154,10 +154,13 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
         Explosion explosion = GetComponent<Explosion>(); //Checks if the object has the Explosions script and then calls that script if it does have it.
         if (explosion != null) {
             explosion.Explode();
-            Player playerIsInCar = GetComponentInChildren<Player>();
+           Player playerIsInCar = GetComponentInChildren<Player>();
+           Debug.Log("Checking if player is in car");
             if (playerIsInCar != null)
             {
-                healthInterface.Health = 0;
+                Debug.Log("Player was found in car");
+                player.Health = 0;
+                Debug.Log("Player health should be 0");
             }
         }
         
