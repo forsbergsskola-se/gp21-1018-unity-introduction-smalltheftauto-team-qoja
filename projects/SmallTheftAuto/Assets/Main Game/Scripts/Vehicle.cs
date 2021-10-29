@@ -25,7 +25,7 @@ public class Vehicle : MonoBehaviour, IHurtOnCrash, IHaveHealth {
         }
         
         GetComponent<VehicleMovement>().enabled = false;
-        //GetComponentInChildren<Radio>().enabled = false;
+        GetComponentInChildren<Radio>().enabled = false;
         explosion = GetComponent<Explosion>();
         explosion.enabled = false;
         health = maxHealth;
@@ -47,7 +47,7 @@ public class Vehicle : MonoBehaviour, IHurtOnCrash, IHaveHealth {
         driver = player;
         player.SetActive(false);
         GetComponent<VehicleMovement>().enabled = true;
-        //GetComponentInChildren<Radio>().enabled = true;
+        GetComponentInChildren<Radio>().enabled = true;
         
     }
 
@@ -56,8 +56,8 @@ public class Vehicle : MonoBehaviour, IHurtOnCrash, IHaveHealth {
         driver.transform.position = transform.position + playerOffset;
         driver.SetActive(true);
         driver = null;
-        //GetComponent<VehicleMovement>().enabled = false;
-        //GetComponentInChildren<Radio>().enabled = false;
+        GetComponent<VehicleMovement>().enabled = false;
+        GetComponentInChildren<Radio>().enabled = false;
     }
 } 
 
