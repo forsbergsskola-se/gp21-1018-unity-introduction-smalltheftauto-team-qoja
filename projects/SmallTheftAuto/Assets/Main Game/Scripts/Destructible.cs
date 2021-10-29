@@ -61,6 +61,9 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
         return false;
     }
     
+    //Damagearea script should be implemented instead of tag-checking
+    //Will continue working on it soon!
+    
     private void OnTriggerEnter2D(Collider2D other) {
         if (!other.gameObject.CompareTag("Fire")) return;
         isBurning = true;
@@ -96,6 +99,15 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
     }
 
     private IEnumerator TakeFireDamage()
+    {
+        while (isBurning && healthInterface.Health != 0)
+        {
+            TakeDamage(fireDamage);
+            yield return new WaitForSeconds(fireDamageInterval);
+        }
+    }
+    
+    private IEnumerator TakeWaterDamage()
     {
         while (isBurning && healthInterface.Health != 0)
         {
