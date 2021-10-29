@@ -14,7 +14,7 @@ public class FollowTarget : MonoBehaviour
         player = FindObjectOfType<Player>();
     }
 
-    protected void Update() {
+    protected void LateUpdate() {
         Vector3 targetPosition = player.transform.position + offset;
         Vector3 movement = (targetPosition - transform.position) * Time.deltaTime / tweenTime;
         transform.Translate(movement);
