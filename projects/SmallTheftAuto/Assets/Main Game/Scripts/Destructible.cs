@@ -15,8 +15,7 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
     private Player player;
     private Building building;
     private IHaveHealth healthInterface;
-    private int health;
-    
+
     //Fire
     public GameObject firePrefab;
     private Vector3 fireOffset = new Vector3(0, 3, 0);
@@ -30,6 +29,7 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
     {
         player = GetComponent<Player>();
         building = GetComponent<Building>();
+        healthInterface = GetComponent<IHaveHealth>();
         HasHealth();
     }
 
@@ -37,12 +37,12 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
     {
         //Update so even if the object don't have health it can be set on fire
 
-        if (health <= 0 && !hasBeenDestroyed) {
+        if (healthInterface.Health <= 0 && !hasBeenDestroyed) {
             OnDeath();
             return;
         }
 
-        if (health <= fireThreshold) {
+        if (healthInterface.Health <= fireThreshold) {
             if (!isBurning && !hasBurned)
             {
                 OnFire(); 
@@ -51,14 +51,13 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
     }
 
     private bool HasHealth() {
-        healthInterface = GetComponent<IHaveHealth>();
         if (healthInterface != null) {
-            health = healthInterface.Health;
             return true;
         }
 
         return false;
     }
+    
     private void OnTriggerEnter2D(Collider2D other) {
         if (!other.gameObject.CompareTag("Fire")) return;
         isBurning = true;
@@ -73,7 +72,6 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
 
     public void OnFire()
     {
-        Debug.Log($"{gameObject} health is {healthInterface.Health} & {fireThreshold} is firethresh");
         if (player == null)
         {
             GameObject fireClone = SpawnChild(firePrefab, fireOffset, Quaternion.identity);
@@ -97,12 +95,13 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
     private IEnumerator TakeFireDamage()
     {
         while (isBurning)
-        {
-            TakeDamage(fireDamage);
-            yield return new WaitForSeconds(fireDamageInterval);
-        }
+            while (isBurning && healthInterface.Health != 0)
+            {
+                Debug.Log($"{gameObject} Will take {fireDamage} damage");
+                TakeDamage(fireDamage);
+                yield return new WaitForSeconds(fireDamageInterval);
+            }
     }
-
 
     public GameObject SpawnChild(GameObject prefab, Vector3 relativePosition, Quaternion relativeRotation)
     {
@@ -115,7 +114,10 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
 
     public void TakeDamage(int damage)
     {
-        health -= damage;
+        Debug.Log($"TakeDamage is called on {gameObject} for {damage} damage");
+        healthInterface.Health -= damage;
+        Debug.Log($"health of {gameObject} is now {healthInterface.Health}");
+        
     }
 
     public void OnCollisionEnter2D(Collision2D other)
@@ -142,7 +144,7 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
             Player playerIsInCar = GetComponentInChildren<Player>();
             if (playerIsInCar != null)
             {
-                health = 0;
+                healthInterface.Health = 0;
             }
         }
         
