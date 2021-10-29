@@ -96,7 +96,6 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
     {
         while (isBurning && healthInterface.Health != 0)
         {
-            Debug.Log($"{gameObject} Will take {fireDamage} damage");
             TakeDamage(fireDamage);
             yield return new WaitForSeconds(fireDamageInterval);
         }
