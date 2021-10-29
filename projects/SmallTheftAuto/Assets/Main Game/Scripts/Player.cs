@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -108,25 +106,21 @@ public class Player : MonoBehaviour, IHaveHealth
     void QuestFinder()
     {
         if (Input.GetKeyDown(KeyCode.E) && !questIsActive)
-        //if (Input.GetKeyDown(KeyCode.E) && this.quest==null)
         {
             Quest[] quests = FindObjectsOfType<Quest>();
             float[] distances = new float[quests.Length];
             for (int i = 0; i < quests.Length; i++)
             {
                 distances[i] = Vector3.Distance(this.transform.position, quests[i].transform.position);
-                
             }
-            int index = this.GetComponent<Driver>().FindClosestCar(distances);
+            int index = FindObject.FindIndexOfClosestObject(distances);
             if (distances[index] < 4.3)
             {
                 quest = quests[index].gameObject;
                 questUI.SetActive(true);
                 questIsActive = true;
             }
-            
         }
-        
     }
     
     //Needs to be redone and edited for better readability
@@ -135,21 +129,20 @@ public class Player : MonoBehaviour, IHaveHealth
         if (Input.GetKeyDown(KeyCode.E))
         {
             FirstAidKit[] firstAidKits = FindObjectsOfType<FirstAidKit>();
-            float[] distances = new float[firstAidKits.Length];
-            for (int i = 0; i < firstAidKits.Length; i++)
+            if (firstAidKits.Length != 0)
             {
-                distances[i] = Vector3.Distance(this.transform.position, firstAidKits[i].transform.position);
-                
-            }
-            int index = this.GetComponent<Driver>().FindClosestCar(distances);
-            if (distances[index] < 4.3)
-            {
-                
-                firstAidKit = firstAidKits[index].gameObject;
-                //quest.SetActive(false);
-                firstAidKit.SetActive(false);
-                Health += 10;
-
+                float[] distances = new float[firstAidKits.Length];
+                for (int i = 0; i < firstAidKits.Length; i++)
+                {
+                    distances[i] = Vector3.Distance(this.transform.position, firstAidKits[i].transform.position);
+                }
+                int index = FindObject.FindIndexOfClosestObject(distances);
+                if (distances[index] < 4.3)
+                {
+                    firstAidKit = firstAidKits[index].gameObject;
+                    firstAidKit.SetActive(false);
+                    Health += 10;
+                }
             }
         }
     }
