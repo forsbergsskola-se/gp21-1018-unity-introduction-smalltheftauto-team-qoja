@@ -13,25 +13,26 @@ public class Quest : MonoBehaviour
     private bool missionDone;
     public static int missionIndex;
     private int originalMoney;
+    public GameManager gameManager;
     void Start()
     {
-        
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     void Update()
     {
-        if(!Player.questIsActive) originalMoney = Player.Money;
+        if(!Player.questIsActive) originalMoney = gameManager.Money;
         if (missionIndex == 0)
         {
             QuestTimer(100);
             if(timerUI.activeSelf) MoneyFinder();
 
             // Checks if the winning condition is met
-            if (Player.Money - originalMoney >= 200 && missionDone!=true)
+            if (gameManager.Money - originalMoney >= 200 && missionDone!=true)
             {
                 missionComplete.SetActive(true);
                 missionDone = true;
-                player.GetComponent<Player>().Score += 20;
+                gameManager.Score += 20;
             }
         
             if (timerUI.activeSelf)
@@ -62,11 +63,11 @@ public class Quest : MonoBehaviour
                 QuestTimer(5);
             }
             if(timerUI.activeSelf) MoneyFinder();
-            if (Player.Money - originalMoney >= 300 && missionDone!=true)
+            if (gameManager.Money - originalMoney >= 300 && missionDone!=true)
             {
                 missionComplete.SetActive(true);
                 missionDone = true;
-                player.GetComponent<Player>().Score += 20;
+                gameManager.Score += 20;
             }
             if (timerUI.activeSelf)
             {
@@ -116,7 +117,7 @@ public class Quest : MonoBehaviour
                 {
                     money = moneys[index].gameObject;
                     money.SetActive(false);
-                    Player.Money += 100;
+                    gameManager.Money += 100;
                 }
             }
         }
