@@ -1553,6 +1553,7 @@ MonoBehaviour:
   missionComplete: {fileID: 145459401}
   missionFailed: {fileID: 207530513}
   gameManager: {fileID: 0}
+  respawn: {fileID: 0}
 --- !u!70 &330282397
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1696,6 +1697,7 @@ MonoBehaviour:
   missionComplete: {fileID: 0}
   missionFailed: {fileID: 0}
   gameManager: {fileID: 0}
+  respawn: {fileID: 0}
 --- !u!70 &347984525
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2541,7 +2543,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 0, z: -10}
-  tweenTime: 0.4
+  tweenTime: 0.3
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -3308,6 +3310,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  health: 0
+  score: 0
+  money: 0
 --- !u!4 &672425358 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3919029966072624850, guid: abe84504be82bbf4bb0885eccb05aec0, type: 3}

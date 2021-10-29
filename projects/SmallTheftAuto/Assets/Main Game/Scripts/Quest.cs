@@ -14,9 +14,11 @@ public class Quest : MonoBehaviour
     public static int missionIndex;
     private int originalMoney;
     public GameManager gameManager;
+    public Respawn respawn;
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
+        respawn = FindObjectOfType<Respawn>();
     }
 
     void Update()
@@ -33,6 +35,9 @@ public class Quest : MonoBehaviour
                 missionComplete.SetActive(true);
                 missionDone = true;
                 gameManager.Score += 20;
+                respawn.gameObject.transform.position = this.player.transform.position;
+                respawn.SaveData();
+
             }
         
             if (timerUI.activeSelf)
