@@ -7,23 +7,35 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    //[SerializeField] private GameObject player;
+    private IHaveHealth playerHealth;
+    public Player player;
+    
 
     public bool playerDied;
     
-    private int money = 10;
-    private int score = 10;
+    // private int money = 10;
+    // private int score = 10;
+    // private int health = 100;
+
+    public int Health
+    {
+        get => player.Health;
+        set => player.Health = value;
+
+    }
     public int Money
     {
-        get => money;
+        get => player.Money;
 
-        set => money = value;
+        set => player.Money = value;
     }
 
     public int Score
     {
-        get => score;
+        get => player.Score;
 
-        set => score = value;
+        set => player.Score = value;
     }
 
     private void MakeSingleton()
@@ -42,6 +54,8 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        player = FindObjectOfType<Player>();
+
         MakeSingleton();
     }
     

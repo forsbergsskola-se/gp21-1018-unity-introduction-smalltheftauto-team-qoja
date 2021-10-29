@@ -18,6 +18,9 @@ public class Player : MonoBehaviour, IHaveHealth
     public GameObject questUI;
     public static bool questIsActive;
     private GameObject firstAidKit;
+    public GameManager gameManager;
+    
+    
 
     private void Awake() {
         health = maxHealth;
@@ -32,6 +35,18 @@ public class Player : MonoBehaviour, IHaveHealth
     {
         get => health;
         set => health = Mathf.Clamp(value, 0, maxHealth);
+    }
+    public int Money
+    {
+        get => money;
+
+        set => money = value;
+    }
+    public int Score
+    {
+        get => score;
+
+        set => score = value;
     }
     
     public bool IsAlive
@@ -65,6 +80,9 @@ public class Player : MonoBehaviour, IHaveHealth
     }
 
     private void Start() {
+        gameManager = FindObjectOfType<GameManager>();
+        
+        
         //Debug.Log("My health is " + health);
     }
 
