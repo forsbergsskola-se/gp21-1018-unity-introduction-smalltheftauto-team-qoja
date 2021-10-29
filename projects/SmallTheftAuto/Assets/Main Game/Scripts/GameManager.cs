@@ -78,7 +78,11 @@ public class GameManager : MonoBehaviour
 
     public void Respawn()
     {
+        player.Health = respawn.health;
+        player.Money = respawn.money;
+        player.Score = respawn.score;
         respawn.RespawnPoint();
+        //respawn.LoadData();
     }
 
     public void StartGame() //This is called after button press on first menu, and when unpausing
