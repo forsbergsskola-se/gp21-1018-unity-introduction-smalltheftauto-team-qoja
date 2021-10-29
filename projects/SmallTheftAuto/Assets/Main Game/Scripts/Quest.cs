@@ -29,7 +29,7 @@ public class Quest : MonoBehaviour
             if(timerUI.activeSelf) MoneyFinder();
 
             // Checks if the winning condition is met
-            if (gameManager.Money - originalMoney >= 200 && missionDone!=true)
+            if (gameManager.Money - originalMoney >= 200 && !missionDone)
             {
                 missionComplete.SetActive(true);
                 missionDone = true;
@@ -66,7 +66,7 @@ public class Quest : MonoBehaviour
                 QuestTimer(5);
             }
             if(timerUI.activeSelf) MoneyFinder();
-            if (gameManager.Money - originalMoney >= 300 && missionDone!=true)
+            if (gameManager.Money - originalMoney >= 300 && !missionDone)
             {
                 missionComplete.SetActive(true);
                 missionDone = true;
