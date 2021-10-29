@@ -6,7 +6,6 @@ public class Quest : MonoBehaviour
 {
     public GameObject questUI;
     public GameObject timerUI;
-    public GameObject money;
     public GameObject player;
     public GameObject missionComplete;
     public GameObject missionFailed;
@@ -37,7 +36,6 @@ public class Quest : MonoBehaviour
         
             if (timerUI.activeSelf)
             {
-                //Debug.Log(timerUI.GetComponent<Timer>().timeLeft);
                 if(Timer.timeIsOut)
                 {
                     missionFailed.SetActive(true);
@@ -79,7 +77,7 @@ public class Quest : MonoBehaviour
             }
             if (missionDone)
             {
-                Invoke("setMissionFalse", 3f);
+                Invoke("SetMissionFalse", 3f);
                 missionIndex++;
                 timerUI.SetActive(false);
                 Timer.timeIsOut = false;
@@ -115,7 +113,7 @@ public class Quest : MonoBehaviour
                 int index = FindObject.FindIndexOfClosestObject(distances);
                 if (distances[index] < 3)
                 {
-                    money = moneys[index].gameObject;
+                    GameObject money = moneys[index].gameObject;
                     money.SetActive(false);
                     gameManager.Money += 100;
                 }
@@ -123,7 +121,7 @@ public class Quest : MonoBehaviour
         }
     }
 
-    void setMissionFalse()
+    void SetMissionFalse()
     {
         missionComplete.SetActive(false);
         missionFailed.SetActive(false);
