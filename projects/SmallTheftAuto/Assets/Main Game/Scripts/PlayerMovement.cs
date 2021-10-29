@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float walkSpeed = 10.0f;
     
 
-    void Update()
+    void FixedUpdate()
     {
 
         if (Input.GetAxis("Run-Button") != 0)
