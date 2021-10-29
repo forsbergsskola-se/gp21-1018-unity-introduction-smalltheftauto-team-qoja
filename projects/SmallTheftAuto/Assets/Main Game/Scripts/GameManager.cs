@@ -83,14 +83,16 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene("MainGameScene");
+        player.Health = player.maxHealth;
     }
     
 
     public void Pause() //This is called when we press a pause button
     {
+        Time.timeScale = 0; //This pauses time, but sound does not stop.
         //We want everything to stop moving, dealing damage, animating
         //We possibly want a pause menu to appear
-        
+
         //Something time.stop related
     }
 

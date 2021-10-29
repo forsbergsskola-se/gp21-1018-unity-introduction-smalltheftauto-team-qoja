@@ -16,6 +16,8 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
     private Building building;
     private IHaveHealth healthInterface;
 
+    private GameManager gameManager;
+
     //Fire
     public GameObject firePrefab;
     private Vector3 fireOffset = new Vector3(0, 3, 0);
@@ -27,6 +29,7 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
 
     private void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         player = GetComponent<Player>();
         building = GetComponent<Building>();
         healthInterface = GetComponent<IHaveHealth>();
@@ -130,7 +133,8 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
         Player player = GetComponent<Player>();
         if (player != null)
         {
-            //GameManager.instance.RestartGame(); - gives a null reference
+            //gameManager.Pause();
+             gameManager.RestartGame(); //We probably want to call another method here
         }
         
         Explosion explosion = GetComponent<Explosion>(); //Checks if the object has the Explosions script and then calls that script if it does have it.

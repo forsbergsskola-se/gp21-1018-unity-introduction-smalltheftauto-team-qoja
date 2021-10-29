@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour, IHaveHealth
 {
 
-    [SerializeField] private int maxHealth = 100;
+    [SerializeField] public int maxHealth = 100;
     private int health;
     private static int money;
     private const int FireDamage = 5;
@@ -94,16 +94,15 @@ public class Player : MonoBehaviour, IHaveHealth
 
     private void OnDeath()
     {
-        GameManager.instance.RestartGame();
+        gameManager.RestartGame();
 
         
         //Do stuff first
         Health = nextHealth;
-        //Money = Money / 2;
+        Money = Money / 2;
         transform.position = new Vector3(-13f, -20f, 1.63f);
 
         
-        //RestartScene()  - Call this method from GameManager
     }
     
     void QuestFinder()
