@@ -9,20 +9,20 @@ public class PlayerInfo : MonoBehaviour
     private int score;
     public GameObject player;
    // public GameManager gameManager;
-    // public GameObject gameManager;
+    public GameManager gameManager;
 
     void Awake()
     {
         playerInfo = GetComponent<TextMeshProUGUI>();
         playerInfo.enableAutoSizing = true;
-        FindObjectOfType<GameManager>();
+       gameManager = FindObjectOfType<GameManager>();
     }
 
     void Update()
     {
         health = player.GetComponent<Player>().Health;
-        // money = GameManager.instance.Money;
-        // score = GameManager.instance.Score;
+         money = gameManager.Money;
+         score = gameManager.Score;
         money = Player.Money;
         score = player.GetComponent<Player>().Score;
         playerInfo.text = health +"<br><br>"+money+"<br><br>"+score;

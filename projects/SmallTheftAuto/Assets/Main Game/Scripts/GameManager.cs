@@ -10,8 +10,8 @@ public class GameManager : MonoBehaviour
 
     public bool playerDied;
     
-    private int money = 0;
-    private int score = 0;
+    private int money = 10;
+    private int score = 10;
     public int Money
     {
         get => money;
