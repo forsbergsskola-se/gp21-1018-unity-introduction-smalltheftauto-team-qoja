@@ -2539,7 +2539,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 0, z: -10}
-  tweenTime: 0.3
+  tweenTime: 0.4
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
