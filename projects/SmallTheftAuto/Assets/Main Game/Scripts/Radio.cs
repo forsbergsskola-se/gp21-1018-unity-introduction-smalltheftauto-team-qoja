@@ -67,11 +67,11 @@ public class Radio : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.KeypadPlus) || Input.GetKeyDown(KeyCode.Plus))
         {
-            audioSource.volume += 0.1f;
+            audioSource.volume += 0.05f;
         }
         else if (Input.GetKeyDown(KeyCode.KeypadMinus) || Input.GetKeyDown(KeyCode.Minus))
         {
-            audioSource.volume -= 0.1f;
+            audioSource.volume -= 0.05f;
         }
     }
 }
