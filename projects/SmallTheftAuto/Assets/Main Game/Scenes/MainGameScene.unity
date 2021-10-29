@@ -1552,6 +1552,7 @@ MonoBehaviour:
   player: {fileID: 1191147844}
   missionComplete: {fileID: 145459401}
   missionFailed: {fileID: 207530513}
+  gameManager: {fileID: 0}
 --- !u!70 &330282397
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1694,6 +1695,7 @@ MonoBehaviour:
   player: {fileID: 0}
   missionComplete: {fileID: 0}
   missionFailed: {fileID: 0}
+  gameManager: {fileID: 0}
 --- !u!70 &347984525
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -5230,6 +5232,7 @@ GameObject:
   - component: {fileID: 1191147846}
   - component: {fileID: 1191147849}
   - component: {fileID: 1191147850}
+  - component: {fileID: 1191147851}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -5341,8 +5344,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7500830ce554a174aaa1c9cd91a1ae52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
+  maxHealth: 100
   questUI: {fileID: 393652552}
+  gameManager: {fileID: 0}
+--- !u!114 &1191147851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1191147844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04625673c14c54c4aa925b8cee2981c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireThreshold: 30
+  firePrefab: {fileID: 0}
 --- !u!1001 &1191811246
 PrefabInstance:
   m_ObjectHideFlags: 0
