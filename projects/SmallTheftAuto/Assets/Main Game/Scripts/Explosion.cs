@@ -19,7 +19,7 @@ public class Explosion : MonoBehaviour {
         Collider2D[] nearbyColliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
 
         foreach (Collider2D colliderFound in nearbyColliders) {
-            Destructible destructible = colliderFound.gameObject.GetComponent<Destructible>();
+            Destructible destructible = colliderFound.gameObject.GetComponentInParent<Destructible>();
             
             if (destructible != null) {
                 destructible.OnFire();

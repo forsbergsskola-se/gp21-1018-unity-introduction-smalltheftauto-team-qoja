@@ -35,17 +35,17 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
 
     private void Update()
     {
-        //Update so even if the object don't have health it can be set on fire
+        if (HasHealth()) {
+            if (healthInterface.Health <= 0 && !hasBeenDestroyed) {
+                OnDeath();
+                return;
+            }
 
-        if (healthInterface.Health <= 0 && !hasBeenDestroyed) {
-            OnDeath();
-            return;
-        }
-
-        if (healthInterface.Health <= fireThreshold) {
-            if (!isBurning && !hasBurned)
-            {
-                OnFire(); 
+            if (healthInterface.Health <= fireThreshold) {
+                if (!isBurning && !hasBurned)
+                {
+                    OnFire(); 
+                }
             }
         }
     }
