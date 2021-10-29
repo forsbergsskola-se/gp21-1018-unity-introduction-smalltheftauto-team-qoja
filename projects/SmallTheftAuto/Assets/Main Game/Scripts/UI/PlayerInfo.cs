@@ -20,7 +20,8 @@ public class PlayerInfo : MonoBehaviour
 
     void Update()
     {
-        health = player.GetComponent<Player>().Health;
+       // health = player.GetComponent<Player>().Health;
+        health = gameManager.Health;
          money = gameManager.Money;
          score = gameManager.Score;
         // money = Player.Money;

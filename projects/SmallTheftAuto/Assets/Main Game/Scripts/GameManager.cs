@@ -7,23 +7,35 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    //[SerializeField] private GameObject player;
+    public Player player;
+    public Respawn respawn;
+    
 
     public bool playerDied;
     
-    private int money = 10;
-    private int score = 10;
+    // private int money = 10;
+    // private int score = 10;
+    // private int health = 100;
+
+    public int Health
+    {
+        get => player.Health;
+        set => player.Health = value;
+
+    }
     public int Money
     {
-        get => money;
+        get => player.Money;
 
-        set => money = value;
+        set => player.Money = value;
     }
 
     public int Score
     {
-        get => score;
+        get => player.Score;
 
-        set => score = value;
+        set => player.Score = value;
     }
 
     private void MakeSingleton()
@@ -42,13 +54,16 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        player = FindObjectOfType<Player>();
+        respawn = FindObjectOfType<Respawn>();
         MakeSingleton();
     }
     
 
     public void LoadScene() //This is called on player death
     {
-        SceneManager.LoadScene("MainGameScene"); 
+        SceneManager.LoadScene("MainGameScene");
+        Time.timeScale = 1;
         //DontDestroyOnLoad(instance);
     }
 
@@ -61,6 +76,11 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public void Respawn()
+    {
+        respawn.RespawnPoint();
+    }
+
     public void StartGame() //This is called after button press on first menu, and when unpausing
     {
         // here we want to remove the first menu
@@ -69,19 +89,22 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene("MainGameScene");
+        player.Health = player.maxHealth;
     }
     
 
     public void Pause() //This is called when we press a pause button
     {
+        Time.timeScale = 0; //This pauses time, but sound does not stop.
         //We want everything to stop moving, dealing damage, animating
         //We possibly want a pause menu to appear
-        
+
         //Something time.stop related
     }
 
     public void Unpause() // Called when pressing Unpause button
     {
+        Time.timeScale = 1;
         //We want time to resume.
         //If we have a pause menu, remove it
     }
