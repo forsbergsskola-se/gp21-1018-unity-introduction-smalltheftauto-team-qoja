@@ -23,8 +23,8 @@ public class PlayerInfo : MonoBehaviour
         health = player.GetComponent<Player>().Health;
          money = gameManager.Money;
          score = gameManager.Score;
-        money = Player.Money;
-        score = player.GetComponent<Player>().Score;
+        // money = Player.Money;
+        // score = player.GetComponent<Player>().Score;
         playerInfo.text = health +"<br><br>"+money+"<br><br>"+score;
     }
 }

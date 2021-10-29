@@ -46,18 +46,18 @@ public class Player : MonoBehaviour, IHaveHealth
         set => throw new NotImplementedException();
     }
 
-    public static int Money
-    {
-        get => money;
+    // public static int Money
+    // {
+    //     get => money;
+    //
+    //     set => money = value;
+    // }
 
-        set => money = value;
-    }
-
-    public int Score
-    {
-        get => score;
-        set => score = value;
-    }
+    // public int Score
+    // {
+    //     get => score;
+    //     set => score = value;
+    // }
 
     public GameObject Quest {
         get => quest;
@@ -81,7 +81,7 @@ public class Player : MonoBehaviour, IHaveHealth
         
         //Do stuff first
         Health = nextHealth;
-        Money = Money / 2;
+        //Money = Money / 2;
         transform.position = new Vector3(-13f, -20f, 1.63f);
 
         
