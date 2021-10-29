@@ -8,8 +8,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     //[SerializeField] private GameObject player;
-    private IHaveHealth playerHealth;
     public Player player;
+    public Respawn respawn;
     
 
     public bool playerDied;
@@ -55,14 +55,15 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         player = FindObjectOfType<Player>();
-
+        respawn = FindObjectOfType<Respawn>();
         MakeSingleton();
     }
     
 
     public void LoadScene() //This is called on player death
     {
-        SceneManager.LoadScene("MainGameScene"); 
+        SceneManager.LoadScene("MainGameScene");
+        Time.timeScale = 1;
         //DontDestroyOnLoad(instance);
     }
 
@@ -73,6 +74,11 @@ public class GameManager : MonoBehaviour
         //We also want to save our score
         
         
+    }
+
+    public void Respawn()
+    {
+        respawn.RespawnPoint();
     }
 
     public void StartGame() //This is called after button press on first menu, and when unpausing
@@ -98,6 +104,7 @@ public class GameManager : MonoBehaviour
 
     public void Unpause() // Called when pressing Unpause button
     {
+        Time.timeScale = 1;
         //We want time to resume.
         //If we have a pause menu, remove it
     }
