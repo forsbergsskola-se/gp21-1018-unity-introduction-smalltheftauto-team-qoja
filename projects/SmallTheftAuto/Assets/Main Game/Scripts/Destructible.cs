@@ -16,6 +16,8 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
     private Building building;
     private IHaveHealth healthInterface;
 
+    private GameManager gameManager;
+
     //Fire
     public GameObject firePrefab;
     private Vector3 fireOffset = new Vector3(0, 3, 0);
@@ -27,6 +29,7 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
 
     private void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         player = GetComponent<Player>();
         building = GetComponent<Building>();
         healthInterface = GetComponent<IHaveHealth>();
@@ -35,17 +38,17 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
 
     private void Update()
     {
-        //Update so even if the object don't have health it can be set on fire
+        if (HasHealth()) {
+            if (healthInterface.Health <= 0 && !hasBeenDestroyed) {
+                OnDeath();
+                return;
+            }
 
-        if (healthInterface.Health <= 0 && !hasBeenDestroyed) {
-            OnDeath();
-            return;
-        }
-
-        if (healthInterface.Health <= fireThreshold) {
-            if (!isBurning && !hasBurned)
-            {
-                OnFire(); 
+            if (healthInterface.Health <= fireThreshold) {
+                if (!isBurning && !hasBurned)
+                {
+                    OnFire(); 
+                }
             }
         }
     }
@@ -57,6 +60,9 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
 
         return false;
     }
+    
+    //Damagearea script should be implemented instead of tag-checking
+    //Will continue working on it soon!
     
     private void OnTriggerEnter2D(Collider2D other) {
         if (!other.gameObject.CompareTag("Fire")) return;
@@ -96,7 +102,15 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
     {
         while (isBurning && healthInterface.Health != 0)
         {
-            Debug.Log($"{gameObject} Will take {fireDamage} damage");
+            TakeDamage(fireDamage);
+            yield return new WaitForSeconds(fireDamageInterval);
+        }
+    }
+    
+    private IEnumerator TakeWaterDamage()
+    {
+        while (isBurning && healthInterface.Health != 0)
+        {
             TakeDamage(fireDamage);
             yield return new WaitForSeconds(fireDamageInterval);
         }
@@ -131,7 +145,10 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
         Player player = GetComponent<Player>();
         if (player != null)
         {
-            //GameManager.instance.RestartGame(); - gives a null reference
+            gameManager.Respawn();
+            //gameManager.Pause();
+            //Time.timeScale = 0.3f; //Slows down time
+            //gameManager.RestartGame(); //We probably want to call another method here
         }
         
         Explosion explosion = GetComponent<Explosion>(); //Checks if the object has the Explosions script and then calls that script if it does have it.

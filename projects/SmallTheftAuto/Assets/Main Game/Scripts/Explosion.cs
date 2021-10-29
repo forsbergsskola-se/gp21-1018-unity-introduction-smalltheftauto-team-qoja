@@ -16,19 +16,22 @@ public class Explosion : MonoBehaviour {
 
     public void Explode() {
         SpawnExplosion(explosionEffect, explosionAnimationOffset, Quaternion.identity);
+        
         Collider2D[] nearbyColliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
 
         foreach (Collider2D colliderFound in nearbyColliders) {
-            Destructible destructible = colliderFound.gameObject.GetComponent<Destructible>();
+            Destructible destructible = colliderFound.gameObject.GetComponentInParent<Destructible>();
             
             if (destructible != null) {
                 destructible.OnFire();
             }
-
-            if (burnedMaterial != null) {
-                gameObject.GetComponent<MeshRenderer>().material = burnedMaterial;
-            }
         }
+        
+        if (burnedMaterial != null) {
+            gameObject.GetComponent<MeshRenderer>().material = burnedMaterial;
+        }
+        
+        DisableAfterExplosion();
     }
 
     //I know this is copy paste code we might have to figure out how to put this in another script later so it can be used in all scripts
@@ -39,5 +42,13 @@ public class Explosion : MonoBehaviour {
         childObj.transform.localRotation = relativeRotation;
         childObj.transform.localScale = Vector3.one;
         return childObj;
+    }
+
+    public void DisableAfterExplosion() {
+        MonoBehaviour[] scripts = gameObject.GetComponents<MonoBehaviour>();
+        foreach(MonoBehaviour script in scripts)
+        {
+            script.enabled = false;
+        }
     }
 }

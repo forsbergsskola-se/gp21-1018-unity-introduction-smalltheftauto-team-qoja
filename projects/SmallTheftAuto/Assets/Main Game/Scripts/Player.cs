@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour, IHaveHealth
 {
 
-    [SerializeField] private int maxHealth = 100;
+    [SerializeField] public int maxHealth = 100;
     private int health;
     private static int money;
     private const int FireDamage = 5;
@@ -18,6 +18,9 @@ public class Player : MonoBehaviour, IHaveHealth
     public GameObject questUI;
     public static bool questIsActive;
     private GameObject firstAidKit;
+    public GameManager gameManager;
+    
+    
 
     private void Awake() {
         health = maxHealth;
@@ -33,6 +36,18 @@ public class Player : MonoBehaviour, IHaveHealth
         get => health;
         set => health = Mathf.Clamp(value, 0, maxHealth);
     }
+    public int Money
+    {
+        get => money;
+
+        set => money = value;
+    }
+    public int Score
+    {
+        get => score;
+
+        set => score = value;
+    }
     
     public bool IsAlive
     {
@@ -46,18 +61,18 @@ public class Player : MonoBehaviour, IHaveHealth
         set => throw new NotImplementedException();
     }
 
-    public static int Money
-    {
-        get => money;
+    // public static int Money
+    // {
+    //     get => money;
+    //
+    //     set => money = value;
+    // }
 
-        set => money = value;
-    }
-
-    public int Score
-    {
-        get => score;
-        set => score = value;
-    }
+    // public int Score
+    // {
+    //     get => score;
+    //     set => score = value;
+    // }
 
     public GameObject Quest {
         get => quest;
@@ -65,6 +80,9 @@ public class Player : MonoBehaviour, IHaveHealth
     }
 
     private void Start() {
+        gameManager = FindObjectOfType<GameManager>();
+        
+        
         //Debug.Log("My health is " + health);
     }
 
@@ -76,7 +94,7 @@ public class Player : MonoBehaviour, IHaveHealth
 
     private void OnDeath()
     {
-        GameManager.instance.RestartGame();
+        gameManager.RestartGame();
 
         
         //Do stuff first
@@ -85,7 +103,6 @@ public class Player : MonoBehaviour, IHaveHealth
         transform.position = new Vector3(-13f, -20f, 1.63f);
 
         
-        //RestartScene()  - Call this method from GameManager
     }
     
     void QuestFinder()
