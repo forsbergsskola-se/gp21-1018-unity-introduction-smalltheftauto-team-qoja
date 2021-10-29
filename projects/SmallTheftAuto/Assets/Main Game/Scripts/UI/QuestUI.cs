@@ -25,7 +25,7 @@ public class QuestUI : MonoBehaviour
         }
         if(Player.questIsActive && Quest.missionIndex==1)
         {
-            questText = "Collect 300 dollars!";
+            questText = "Collect 100 dollars!";
             quest.text = questText;
         }
     }
