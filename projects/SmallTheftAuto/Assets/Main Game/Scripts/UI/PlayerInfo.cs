@@ -7,23 +7,23 @@ public class PlayerInfo : MonoBehaviour
     private int health;
     private int money;
     private int score;
-    public GameObject player;
-   // public GameManager gameManager;
-    public GameManager gameManager;
+   //public GameObject player;
+   //public GameManager gameManager;
+    private GameManager gameManager;
 
     void Awake()
     {
         playerInfo = GetComponent<TextMeshProUGUI>();
         playerInfo.enableAutoSizing = true;
-       gameManager = FindObjectOfType<GameManager>();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     void Update()
     {
        // health = player.GetComponent<Player>().Health;
         health = gameManager.Health;
-         money = gameManager.Money;
-         score = gameManager.Score;
+        money = gameManager.Money;
+        score = gameManager.Score;
         // money = Player.Money;
         // score = player.GetComponent<Player>().Score;
         playerInfo.text = health +"<br><br>"+money+"<br><br>"+score;

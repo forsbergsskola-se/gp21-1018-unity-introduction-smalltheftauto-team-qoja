@@ -9,11 +9,12 @@ public class Quest : MonoBehaviour
     public GameObject player;
     public GameObject missionComplete;
     public GameObject missionFailed;
-    private bool missionDone;
+    private bool missionIsOver;
     public static int missionIndex;
     private int originalMoney;
     public GameManager gameManager;
     public Respawn respawn;
+    public static string[] quests = {"Collect 200 dollars", "Collect 100 dollars"};
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
@@ -23,71 +24,65 @@ public class Quest : MonoBehaviour
     void Update()
     {
         if(!Player.questIsActive) originalMoney = gameManager.Money;
+        
         if (missionIndex == 0)
         {
             QuestTimer(100);
             if(timerUI.activeSelf) MoneyFinder();
-
-            // Checks if the winning condition is met
-            if (gameManager.Money - originalMoney >= 200 && !missionDone)
+            if (gameManager.Money - originalMoney >= 200 && !missionIsOver)
             {
-                missionComplete.SetActive(true);
-                missionDone = true;
-                gameManager.Score += 20;
-                respawn.gameObject.transform.position = this.player.transform.position;
-                respawn.SaveData();
-
+                MissionComplete(20, 100);
             }
-        
-            if (timerUI.activeSelf)
-            {
-                if(Timer.timeIsOut)
-                {
-                    missionFailed.SetActive(true);
-                    missionDone = true;
-                }
-            }
-        
-            if (missionDone)
-            {
-                Invoke("setMissionFalse", 3f);
-                missionIndex++;
-                Player.questIsActive = false;
-                timerUI.SetActive(false);
-                Timer.timeIsOut = false;
-            }
+            MissionFailed();
+            MissionOver();
+            if(missionIsOver) originalMoney = gameManager.Money;
         }
         
         if (missionIndex == 1)
         {
-            missionDone = false;
-            if (Input.GetKeyDown(KeyCode.Q) && Player.questIsActive)
-            {
-                QuestTimer(5);
-            }
+            missionIsOver = false;
+            QuestTimer(5);
             if(timerUI.activeSelf) MoneyFinder();
-            if (gameManager.Money - originalMoney >= 300 && !missionDone)
+            if (gameManager.Money - originalMoney >= 100 && !missionIsOver)
             {
-                missionComplete.SetActive(true);
-                missionDone = true;
-                gameManager.Score += 20;
+                MissionComplete(20,100);
             }
-            if (timerUI.activeSelf)
+            MissionFailed();
+            MissionOver();
+        }
+    }
+
+    private void MissionComplete(int addScore, int addMoney)
+    {
+        missionComplete.SetActive(true);
+        missionIsOver = true;
+        gameManager.Score += addScore;
+        gameManager.Money += addMoney;
+        respawn.gameObject.transform.position = this.player.transform.position;
+        respawn.SaveData();
+    }
+
+    private void MissionFailed()
+    {
+        if (timerUI.activeSelf)
+        {
+            if (Timer.timeIsOut)
             {
-                if (Timer.timeIsOut)
-                {
-                    missionFailed.SetActive(true);
-                    missionDone = true;
-                }
+                missionFailed.SetActive(true);
+                missionIsOver = true;
             }
-            if (missionDone)
-            {
-                Invoke("SetMissionFalse", 3f);
-                missionIndex++;
-                timerUI.SetActive(false);
-                Timer.timeIsOut = false;
-                Player.questIsActive = false;
-            }
+        }
+    }
+
+    private void MissionOver()
+    {
+        if (missionIsOver)
+        {
+            Invoke("SetMissionFalse", 3f);
+            missionIndex++;
+            Player.questIsActive = false;
+            timerUI.SetActive(false);
+            Timer.timeIsOut = false;
         }
     }
 
