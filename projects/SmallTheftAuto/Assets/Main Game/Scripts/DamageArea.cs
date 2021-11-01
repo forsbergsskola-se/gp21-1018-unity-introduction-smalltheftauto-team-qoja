@@ -6,7 +6,7 @@ public class DamageArea : MonoBehaviour {
     private Destructible _destructible;
     public DamageAreas typeOfArea = new DamageAreas();
     private IEnumerator damageCoroutine;
-    private bool inArea;
+    
     public enum DamageAreas {
         Fire,
         Water
