@@ -36,18 +36,20 @@ public class Respawn : MonoBehaviour
         player.transform.position = this.gameObject.transform.position;
     }
 
-    // public void SetRespawnPoint()
-    // {
-    //     respawn.gameObject.transform.position = this.transform.position;
-    // }
+    public void SetRespawnPoint()
+    {
+       gameObject.transform.position = player.transform.position;
+    }
 
     public void Start()
     {
         player = FindObjectOfType<Player>();
+        SaveData();
     }
 
     public void SaveData()
     {
+        SetRespawnPoint();
         Health = player.Health;
         Score = player.Score;
         Money = player.Money;

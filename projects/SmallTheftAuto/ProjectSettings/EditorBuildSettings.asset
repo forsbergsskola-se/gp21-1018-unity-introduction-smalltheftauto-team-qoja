@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/JO/Scenes/GameJO.unity
     guid: dede615fd6ca9e949836460e78a4f779
-  - enabled: 1
+  - enabled: 0
     path: Assets/QL/Scenes/GameQL.unity
     guid: defc2b0d3d5bf1648ad50396c1fba862
   m_configObjects: {}
