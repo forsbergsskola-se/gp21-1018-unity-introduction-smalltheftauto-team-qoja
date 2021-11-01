@@ -52,7 +52,7 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable //Should remov
         healthInterface.Health -= damage;
     }
 
-    public IEnumerator TakeDamageOverTime(int damage, int interval)
+    public IEnumerator TakeDamageOverTime(int damage, float interval)
     {
         while (healthInterface.Health > 0)
         {
@@ -64,7 +64,7 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable //Should remov
     public void OnFire()
     {
         int fireDamage = 5;
-        int fireDamageInterval = 1;
+        float fireDamageInterval = 1;
         Vector3 fireOffset = new Vector3(0, 3, 0);
         
         if (player == null)

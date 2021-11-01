@@ -23,12 +23,12 @@ public class DamageArea : MonoBehaviour {
         }
     }
 
-    int DamageInterval(DamageAreas dArea) {
+    float DamageInterval(DamageAreas dArea) {
         switch (dArea) {
             case DamageAreas.Fire:
-                return 2;
+                return 0.15f;
             case DamageAreas.Water:
-                return 3;
+                return 0.3f;
             default:
                 throw new ArgumentOutOfRangeException(nameof(dArea), dArea, null);
         }
