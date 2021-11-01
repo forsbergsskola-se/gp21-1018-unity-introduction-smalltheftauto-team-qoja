@@ -3517,6 +3517,7 @@ GameObject:
   - component: {fileID: 587127216}
   - component: {fileID: 587127220}
   - component: {fileID: 587127221}
+  - component: {fileID: 587127222}
   m_Layer: 0
   m_Name: BaseWater
   m_TagString: Untagged
@@ -3713,6 +3714,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &587127222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 587127215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eeac1f486d8645548aee449f37e2c4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typeOfArea: 1
 --- !u!4 &593745879 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3507519755500383597, guid: 70ed566919f23de4fb0f5e47592c5512, type: 3}
@@ -6676,7 +6690,6 @@ GameObject:
   - component: {fileID: 1271789941}
   - component: {fileID: 1271789940}
   - component: {fileID: 1271789939}
-  - component: {fileID: 1271789942}
   m_Layer: 0
   m_Name: Water
   m_TagString: Untagged
@@ -6748,19 +6761,6 @@ Transform:
   m_Father: {fileID: 587127219}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &1271789942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1271789938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0eeac1f486d8645548aee449f37e2c4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  typeOfArea: 1
 --- !u!4 &1277449439 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7192281583615519659, guid: d831013a484a8f849b3b2254b7f1c00b, type: 3}
