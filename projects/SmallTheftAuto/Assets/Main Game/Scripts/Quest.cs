@@ -48,8 +48,11 @@ public class Quest : MonoBehaviour
             QuestTimer(200);
             if(ParkingSpot.GetComponent<ParkingSpot>().parked && !missionIsOver)
             {
-                if(player.activeInHierarchy)
+                if (player.activeInHierarchy)
+                {
                     MissionComplete(20,100);
+                    missionIndex++;
+                }
             }
             MissionFailed();
             MissionOver();
@@ -82,7 +85,6 @@ public class Quest : MonoBehaviour
         if (missionIsOver)
         {
             Invoke("SetMissionFalse", 3f);
-            missionIndex++;
             Player.questIsActive = false;
             timerUI.SetActive(false);
             Timer.timeIsOut = false;
