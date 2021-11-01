@@ -31,7 +31,7 @@ public class DamageArea : MonoBehaviour
     float DamageInterval(DamageAreas dArea) {
         switch (dArea) {
             case DamageAreas.Fire:
-                return 0.15f;
+                return 0.25f;
             case DamageAreas.Water:
                 return 0.3f;
             default:
