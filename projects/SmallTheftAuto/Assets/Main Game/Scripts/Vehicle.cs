@@ -19,7 +19,9 @@ public class Vehicle : MonoBehaviour, IHurtOnCrash, IHaveHealth {
     }
     
     private void Awake() {
+        health = maxHealth;
         _vehicleMovement = GetComponent<VehicleMovement>();
+        
         if (_vehicleMovement != null) {
             _vehicleMovement.enabled = false;
         }
@@ -28,7 +30,6 @@ public class Vehicle : MonoBehaviour, IHurtOnCrash, IHaveHealth {
         GetComponentInChildren<Radio>().enabled = false;
         explosion = GetComponent<Explosion>();
         explosion.enabled = false;
-        health = maxHealth;
     }
 
     void Update()

@@ -17,17 +17,15 @@ public class Player : MonoBehaviour, IHaveHealth
     public static bool questIsActive;
     private GameObject firstAidKit;
     public GameManager gameManager;
-    
-    
 
     private void Awake() {
         health = maxHealth;
     }
 
-    public Player(int MaxHealth) //Player's constructor
+   /* public Player(int MaxHealth) //Player's constructor
     {
         health = MaxHealth;
-    }
+    }*/
 
     public int Health
     {
