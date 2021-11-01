@@ -90,18 +90,18 @@ public class Player : MonoBehaviour, IHaveHealth
         HealthFinder();
     }
 
-    private void OnDeath()
-    {
-        gameManager.RestartGame();
-
-        
-        //Do stuff first
-        Health = nextHealth;
-        Money = Money / 2;
-        transform.position = new Vector3(-13f, -20f, 1.63f);
-
-        
-    }
+    // private void OnDeath()
+    // {
+    //     gameManager.RestartGame();
+    //
+    //     
+    //     //Do stuff first
+    //     Health = nextHealth;
+    //     Money = Money / 2;
+    //     transform.position = new Vector3(-13f, -20f, 1.63f);
+    //
+    //     
+    // }
     
     void QuestFinder()
     {

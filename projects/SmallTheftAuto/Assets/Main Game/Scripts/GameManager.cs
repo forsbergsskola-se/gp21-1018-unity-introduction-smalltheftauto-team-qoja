@@ -89,9 +89,10 @@ public class GameManager : MonoBehaviour
     
         player.Health = respawn.health;
         //player.Money = respawn.money / 2;
-        player.Money = player.Money / 2;
+        player.Money = respawn.money / 2;
         player.Score = respawn.score;
         respawn.RespawnPoint();
+        respawn.SaveData();
         //respawn.LoadData();
     }
 
