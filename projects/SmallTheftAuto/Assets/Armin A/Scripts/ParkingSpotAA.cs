@@ -13,6 +13,7 @@ public class ParkingSpotAA : MonoBehaviour
             GameObject instance = Instantiate(carPrefab);
             //Instantiate(instance, transform.position, Quaternion.Euler(0, 0, 0));
             instance.transform.position = gameObject.transform.position;
+            hasCar = false;
         }
     }
 
