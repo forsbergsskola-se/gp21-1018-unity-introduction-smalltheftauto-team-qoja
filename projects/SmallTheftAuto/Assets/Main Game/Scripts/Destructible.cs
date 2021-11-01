@@ -142,15 +142,6 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
 
     public void OnDeath()
     {
-        Player player = GetComponent<Player>();
-        if (player != null)
-        {
-            gameManager.Respawn();
-            //gameManager.Pause();
-            //Time.timeScale = 0.3f; //Slows down time
-            //gameManager.RestartGame(); //We probably want to call another method here
-        }
-        
         Explosion explosion = GetComponent<Explosion>(); //Checks if the object has the Explosions script and then calls that script if it does have it.
         if (explosion != null) {
             explosion.Explode();
