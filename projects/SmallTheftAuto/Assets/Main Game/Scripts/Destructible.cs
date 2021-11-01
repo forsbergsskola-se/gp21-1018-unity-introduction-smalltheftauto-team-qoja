@@ -1,45 +1,31 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Destructible : MonoBehaviour, IBurnable, IDamageable
+public class Destructible : MonoBehaviour, IBurnable, IDamageable //Should remove those two interfaces because they are of no use
 {
-    //This means everything we want to be able to destroy, also can burn.
-    //Everything that we want to just burn, will also get damaged. But not destroyed
-    //Should remove those two interfaces because they are of no use
-    
     [SerializeField] private int fireThreshold = 30;
-    private bool hasBeenDestroyed = false;
+    [SerializeField] GameObject firePrefab;
+    
     private Player player;
-    private Building building;
     private IHaveHealth healthInterface;
-
-    private GameManager gameManager;
-
-    //Fire
-    public GameObject firePrefab;
-    private Vector3 fireOffset = new Vector3(0, 3, 0);
-    private bool isBurning = false;
+    private Explosion explosion;
+    
+    private bool hasDied;
+    private bool isBurning;
     private bool hasBurned;
-    private int fireDamage = 5;
-    private int fireDamageInterval = 1;
-    private int fireMaxDuration = 10;
 
     private void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();
         player = GetComponent<Player>();
-        building = GetComponent<Building>();
         healthInterface = GetComponent<IHaveHealth>();
-        HasHealth();
+        explosion = GetComponent<Explosion>();
     }
 
     private void Update()
     {
         if (HasHealth()) {
-            if (healthInterface.Health <= 0 && !hasBeenDestroyed) {
+            if (healthInterface.Health <= 0 && !hasDied) {
                 OnDeath();
                 return;
             }
@@ -61,59 +47,49 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
         return false;
     }
     
-    //Damagearea script should be implemented instead of tag-checking
-    //Will continue working on it soon!
-    
-    private void OnTriggerEnter2D(Collider2D other) {
-        if (!other.gameObject.CompareTag("Fire")) return;
-        isBurning = true;
-        StartCoroutine(TakeFireDamage());
+    public void TakeDamage(int damage)
+    {
+        healthInterface.Health -= damage;
     }
 
-    private void OnTriggerExit2D(Collider2D other) {
-        if (!other.gameObject.CompareTag("Fire")) return;
-        isBurning = false;
-        StopCoroutine(TakeFireDamage());
+    public IEnumerator TakeDamageOverTime(int damage, float interval)
+    {
+        while (healthInterface.Health > 0)
+        {
+            TakeDamage(damage);
+            yield return new WaitForSeconds(interval);
+        }
     }
 
     public void OnFire()
     {
+        int fireDamage = 5;
+        float fireDamageInterval = 1;
+        Vector3 fireOffset = new Vector3(0, 3, 0);
+        
         if (player == null)
         {
             GameObject fireClone = SpawnChild(firePrefab, fireOffset, Quaternion.identity);
             isBurning = true;
-            StartCoroutine(ExtinguishFire(fireClone)); //This counts down from 10
+            StartCoroutine(ExtinguishFire(fireClone));
+            
             if (HasHealth())
             {
-                StartCoroutine(TakeFireDamage()); // This deals damage every 3 seconds
+                if (isBurning)
+                {
+                    StartCoroutine(TakeDamageOverTime(fireDamage, fireDamageInterval));
+                }
             }
         }
     }
 
     private IEnumerator ExtinguishFire(GameObject fireClone)
     {
+        int fireMaxDuration = 10;
         yield return new WaitForSeconds(fireMaxDuration);
         Destroy(fireClone);
         isBurning = false;
         hasBurned = true;
-    }
-
-    private IEnumerator TakeFireDamage()
-    {
-        while (isBurning && healthInterface.Health != 0)
-        {
-            TakeDamage(fireDamage);
-            yield return new WaitForSeconds(fireDamageInterval);
-        }
-    }
-    
-    private IEnumerator TakeWaterDamage()
-    {
-        while (isBurning && healthInterface.Health != 0)
-        {
-            TakeDamage(fireDamage);
-            yield return new WaitForSeconds(fireDamageInterval);
-        }
     }
 
     public GameObject SpawnChild(GameObject prefab, Vector3 relativePosition, Quaternion relativeRotation)
@@ -125,36 +101,42 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable
         return childObj;
     }
 
-    public void TakeDamage(int damage)
-    {
-        healthInterface.Health -= damage;
-    }
-
     public void OnCollisionEnter2D(Collision2D other)
     {
-        IHurtOnCrash hurtOnCrash = other.gameObject.GetComponent<IHurtOnCrash>();
-        if (hurtOnCrash != null)
-        {
-            TakeDamage(hurtOnCrash.DamageOnCrash);
-            //Debug.Log($"{gameObject} have taken {hurtOnCrash.DamageOnCrash} damage from colliding with {other}");
+        if (player == null) {
+            IHurtOnCrash hurtOnCrash = other.gameObject.GetComponent<IHurtOnCrash>();
+            if (hurtOnCrash != null)
+            {
+                TakeDamage(hurtOnCrash.DamageOnCrash);
+            }
         }
     }
 
     public void OnDeath()
     {
-        Explosion explosion = GetComponent<Explosion>(); //Checks if the object has the Explosions script and then calls that script if it does have it.
         if (explosion != null) {
             explosion.Explode();
-           Player playerIsInCar = GetComponentInChildren<Player>();
-           Debug.Log("Checking if player is in car");
-            if (playerIsInCar != null)
-            {
-                Debug.Log("Player was found in car");
-                player.Health = 0;
-                Debug.Log("Player health should be 0");
-            }
+            KillPlayerInExplosion();
+            explosion.DisableAfterExplosion();
         }
         
-        hasBeenDestroyed = true;
+        hasDied = true;
+    }
+
+    private void KillPlayerInExplosion()
+    {
+        Player[] allChildren = transform.GetComponentsInChildren<Player>(true);
+        for (int i = 0; i < allChildren.Length; i++)
+        {
+            if (allChildren[i] != null)
+            {
+                KillPlayer(allChildren[i]);
+            }
+        }
+    }
+
+    private void KillPlayer(Player playerInCar)
+    {
+        playerInCar.Health = 0;
     }
 }

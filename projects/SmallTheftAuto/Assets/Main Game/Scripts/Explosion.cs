@@ -10,10 +10,6 @@ public class Explosion : MonoBehaviour {
     [SerializeField] private Material burnedMaterial;
     private Vector3 explosionAnimationOffset = new Vector3(0, 3, 0);
 
-    protected void Start() {
-        Explode();
-    }
-
     public void Explode() {
         SpawnExplosion(explosionEffect, explosionAnimationOffset, Quaternion.identity);
         
@@ -23,6 +19,7 @@ public class Explosion : MonoBehaviour {
             Destructible destructible = colliderFound.gameObject.GetComponentInParent<Destructible>();
             
             if (destructible != null) {
+                destructible.TakeDamage(explosionDamage);
                 destructible.OnFire();
             }
         }
@@ -30,18 +27,15 @@ public class Explosion : MonoBehaviour {
         if (burnedMaterial != null) {
             gameObject.GetComponent<MeshRenderer>().material = burnedMaterial;
         }
-        
-        DisableAfterExplosion();
     }
 
     //I know this is copy paste code we might have to figure out how to put this in another script later so it can be used in all scripts
     //Currently throwing non-static error when calling from another script but "transform" can't be used in static method
-    public GameObject SpawnExplosion(GameObject prefab, Vector3 relativePosition, Quaternion relativeRotation) {
+    public void SpawnExplosion(GameObject prefab, Vector3 relativePosition, Quaternion relativeRotation) {
         GameObject childObj = Instantiate(prefab, transform, true);
         childObj.transform.localPosition = relativePosition;
         childObj.transform.localRotation = relativeRotation;
         childObj.transform.localScale = Vector3.one;
-        return childObj;
     }
 
     public void DisableAfterExplosion() {
