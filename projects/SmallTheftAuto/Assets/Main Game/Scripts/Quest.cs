@@ -59,7 +59,6 @@ public class Quest : MonoBehaviour
         missionIsOver = true;
         gameManager.Score += addScore;
         gameManager.Money += addMoney;
-        respawn.gameObject.transform.position = this.player.transform.position;
         respawn.SaveData();
     }
 
