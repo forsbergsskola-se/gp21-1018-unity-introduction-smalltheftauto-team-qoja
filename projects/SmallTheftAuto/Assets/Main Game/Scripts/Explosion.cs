@@ -19,6 +19,7 @@ public class Explosion : MonoBehaviour {
             Destructible destructible = colliderFound.gameObject.GetComponentInParent<Destructible>();
             
             if (destructible != null) {
+                destructible.TakeDamage(explosionDamage);
                 destructible.OnFire();
             }
         }
