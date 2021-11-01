@@ -9,6 +9,7 @@ public class Quest : MonoBehaviour
     public GameObject player;
     public GameObject missionComplete;
     public GameObject missionFailed;
+    public GameObject money;
     private bool missionIsOver;
     public static int missionIndex;
     private int originalMoney;
@@ -92,8 +93,10 @@ public class Quest : MonoBehaviour
         {
             questUI.SetActive(false);
             timerUI.SetActive(true);
+            money.SetActive(true);
             Timer.maxTime = maximumTime;
             Timer.timePassed = 0;
+            
         }
     }
 
