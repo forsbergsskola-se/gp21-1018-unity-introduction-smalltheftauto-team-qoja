@@ -15,9 +15,12 @@ public class Quest : MonoBehaviour
     private int originalMoney;
     public GameManager gameManager;
     public Respawn respawn;
-    public static string[] quests = {"Collect 200 dollars", "Collect 100 dollars"};
+    public static string[] quests = {"Collect 200 dollars", "Park a car and get off the car"};
+    public GameObject ParkingSpot;
+    
     void Start()
     {
+        //player = GetComponent<Player>();
         gameManager = FindObjectOfType<GameManager>();
         respawn = FindObjectOfType<Respawn>();
     }
@@ -42,11 +45,11 @@ public class Quest : MonoBehaviour
         if (missionIndex == 1)
         {
             missionIsOver = false;
-            QuestTimer(5);
-            if(timerUI.activeInHierarchy) MoneyFinder();
-            if (gameManager.Money - originalMoney >= 100 && !missionIsOver)
+            QuestTimer(200);
+            if(ParkingSpot.GetComponent<ParkingSpot>().parked && !missionIsOver)
             {
-                MissionComplete(20,100);
+                if(player.activeInHierarchy)
+                    MissionComplete(20,100);
             }
             MissionFailed();
             MissionOver();
@@ -66,7 +69,7 @@ public class Quest : MonoBehaviour
     {
         if (timerUI.activeInHierarchy)
         {
-            if (Timer.timeIsOut)
+            if (Timer.timeIsOut || player.GetComponent<Player>().IsDead)
             {
                 missionFailed.SetActive(true);
                 missionIsOver = true;
