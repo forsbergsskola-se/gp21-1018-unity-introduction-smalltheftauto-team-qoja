@@ -909,6 +909,7 @@ GameObject:
   - component: {fileID: 208082831}
   - component: {fileID: 208082830}
   - component: {fileID: 208082829}
+  - component: {fileID: 208082832}
   m_Layer: 5
   m_Name: Restart
   m_TagString: Untagged
@@ -980,9 +981,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 729bd327bb7619342a11e44f4c981ba8, type: 3}
-        m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
-        m_MethodName: 
+      - m_Target: {fileID: 208082832}
+        m_TargetAssemblyTypeName: RestartGameAA, Assembly-CSharp
+        m_MethodName: LoadGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1030,6 +1031,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 208082827}
   m_CullTransparentMesh: 1
+--- !u!114 &208082832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 208082827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd6ed5de4f53743419c63a299627d158, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &208605653 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8413436139187139603, guid: 3e53f9514e887d84b843f7c47f5c7f5f, type: 3}
