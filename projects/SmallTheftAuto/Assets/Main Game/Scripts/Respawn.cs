@@ -44,6 +44,7 @@ public class Respawn : MonoBehaviour
     public void Start()
     {
         player = FindObjectOfType<Player>();
+        SaveData();
     }
 
     public void SaveData()
