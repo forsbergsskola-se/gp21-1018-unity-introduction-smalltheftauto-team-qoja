@@ -61,9 +61,8 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (player.Health <= 0)
+        if (player.IsDead)
         {
-            playerDied = true;
             Respawn();
         }
     }
