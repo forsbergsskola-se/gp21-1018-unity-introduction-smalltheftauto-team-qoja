@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 3928436555566302736}
   - component: {fileID: 3928436555547951952}
   - component: {fileID: 3928436555548064496}
-  - component: {fileID: 1396115425508464371}
   - component: {fileID: 415547731134609900}
   - component: {fileID: 6509635466616935116}
+  - component: {fileID: 1513856108358632085}
   m_Layer: 0
   m_Name: Fire
   m_TagString: Fire
@@ -4716,32 +4716,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!61 &1396115425508464371
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3928436555566799408}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.08, y: 0.99}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 7, y: 7}
-  m_EdgeRadius: 0
 --- !u!82 &415547731134609900
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4851,3 +4825,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typeOfArea: 0
+--- !u!58 &1513856108358632085
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3928436555566799408}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.17223644, y: 0.9903569}
+  serializedVersion: 2
+  m_Radius: 2.3304472
