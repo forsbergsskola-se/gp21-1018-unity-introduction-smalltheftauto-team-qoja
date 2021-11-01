@@ -111,10 +111,10 @@ public class Player : MonoBehaviour, IHaveHealth
             float[] distances = new float[quests.Length];
             for (int i = 0; i < quests.Length; i++)
             {
-                distances[i] = Vector3.Distance(this.transform.position, quests[i].transform.position);
+                distances[i] = Vector2.Distance(this.transform.position, quests[i].transform.position);
             }
             int index = FindObject.FindIndexOfClosestObject(distances);
-            if (distances[index] < 4.3)
+            if (distances[index] < 4)
             {
                 quest = quests[index].gameObject;
                 questUI.SetActive(true);
@@ -134,10 +134,10 @@ public class Player : MonoBehaviour, IHaveHealth
                 float[] distances = new float[firstAidKits.Length];
                 for (int i = 0; i < firstAidKits.Length; i++)
                 {
-                    distances[i] = Vector3.Distance(this.transform.position, firstAidKits[i].transform.position);
+                    distances[i] = Vector2.Distance(this.transform.position, firstAidKits[i].transform.position);
                 }
                 int index = FindObject.FindIndexOfClosestObject(distances);
-                if (distances[index] < 4.3)
+                if (distances[index] < 3)
                 {
                     firstAidKit = firstAidKits[index].gameObject;
                     firstAidKit.SetActive(false);
