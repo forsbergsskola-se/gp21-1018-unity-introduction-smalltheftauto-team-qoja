@@ -58,7 +58,15 @@ public class GameManager : MonoBehaviour
         respawn = FindObjectOfType<Respawn>();
         MakeSingleton();
     }
-    
+
+    private void Update()
+    {
+        if (player.IsDead)
+        {
+            Respawn();
+        }
+    }
+
 
     public void LoadScene() //This is called on player death
     {
@@ -78,10 +86,13 @@ public class GameManager : MonoBehaviour
 
     public void Respawn()
     {
+    
         player.Health = respawn.health;
+        //player.Money = respawn.money / 2;
         player.Money = respawn.money / 2;
         player.Score = respawn.score;
         respawn.RespawnPoint();
+        respawn.SaveData();
         //respawn.LoadData();
     }
 

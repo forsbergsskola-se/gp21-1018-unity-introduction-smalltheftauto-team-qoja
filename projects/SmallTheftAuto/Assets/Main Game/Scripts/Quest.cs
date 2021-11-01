@@ -9,6 +9,7 @@ public class Quest : MonoBehaviour
     public GameObject player;
     public GameObject missionComplete;
     public GameObject missionFailed;
+    public GameObject money;
     private bool missionIsOver;
     public static int missionIndex;
     private int originalMoney;
@@ -28,7 +29,7 @@ public class Quest : MonoBehaviour
         if (missionIndex == 0)
         {
             QuestTimer(100);
-            if(timerUI.activeSelf) MoneyFinder();
+            if (timerUI.activeInHierarchy) MoneyFinder();
             if (gameManager.Money - originalMoney >= 200 && !missionIsOver)
             {
                 MissionComplete(20, 100);
@@ -42,7 +43,7 @@ public class Quest : MonoBehaviour
         {
             missionIsOver = false;
             QuestTimer(5);
-            if(timerUI.activeSelf) MoneyFinder();
+            if(timerUI.activeInHierarchy) MoneyFinder();
             if (gameManager.Money - originalMoney >= 100 && !missionIsOver)
             {
                 MissionComplete(20,100);
@@ -58,13 +59,12 @@ public class Quest : MonoBehaviour
         missionIsOver = true;
         gameManager.Score += addScore;
         gameManager.Money += addMoney;
-        respawn.gameObject.transform.position = this.player.transform.position;
         respawn.SaveData();
     }
 
     private void MissionFailed()
     {
-        if (timerUI.activeSelf)
+        if (timerUI.activeInHierarchy)
         {
             if (Timer.timeIsOut)
             {
@@ -92,8 +92,10 @@ public class Quest : MonoBehaviour
         {
             questUI.SetActive(false);
             timerUI.SetActive(true);
+            money.SetActive(true);
             Timer.maxTime = maximumTime;
             Timer.timePassed = 0;
+            
         }
     }
 
@@ -107,7 +109,7 @@ public class Quest : MonoBehaviour
                 float[] distances = new float[moneys.Length];
                 for (int i = 0; i < moneys.Length; i++)
                 {
-                    distances[i] = Vector3.Distance(player.transform.position, moneys[i].transform.position);
+                    distances[i] = Vector2.Distance(player.transform.position, moneys[i].transform.position);
             
                 }
                 int index = FindObject.FindIndexOfClosestObject(distances);
