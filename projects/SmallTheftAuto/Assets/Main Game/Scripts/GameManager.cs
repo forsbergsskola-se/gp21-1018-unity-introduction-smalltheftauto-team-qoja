@@ -96,7 +96,15 @@ public class GameManager : MonoBehaviour
         respawn.SaveData();
         //respawn.LoadData();
         wasted.SetActive(true);
+        Invoke("DestroyGameObject", 3);
         
+        
+        
+    }
+    
+    void DestroyGameObject()
+    {
+        Destroy(wasted);
     }
 
     public void StartGame() //This is called after button press on first menu, and when unpausing
@@ -133,3 +141,5 @@ public enum GameState
     //Here we want to have all the different gamestates, like Control screen
     
 }
+
+
