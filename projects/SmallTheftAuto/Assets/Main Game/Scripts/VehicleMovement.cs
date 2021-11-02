@@ -9,15 +9,14 @@ using UnityEngine;
 public class VehicleMovement : MonoBehaviour
 {
     Rigidbody2D rb;
-
+    
+    private float accelerationPower = 30000f;
     [SerializeField]
-    float accelerationPower = 30000f;
-    [SerializeField]
-    float steeringPower = 0.2f; //Has to be between 0-1
+    float steeringPower = 0.15f; //Has to be between 0-1
     float steeringAmount, speed, direction;
     [SerializeField] private float maxSpeed = 30000;
 
-    private float MAXSpeed
+    public float MAXSpeed
     {
         get => maxSpeed;
         set => maxSpeed = (value* 10);
@@ -38,12 +37,12 @@ public class VehicleMovement : MonoBehaviour
         direction = Mathf.Sign(Vector2.Dot (rb.velocity, rb.GetRelativeVector(Vector2.up)));
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            steeringPower = 0.4f;
+            steeringPower = 0.35f;
             accelerationPower = 15000f;
         }
         else
         {
-            steeringPower = 0.2f;
+            steeringPower = 0.15f;
             accelerationPower = 30000f;
         }
         rb.rotation += steeringAmount * steeringPower * rb.velocity.magnitude * direction; 

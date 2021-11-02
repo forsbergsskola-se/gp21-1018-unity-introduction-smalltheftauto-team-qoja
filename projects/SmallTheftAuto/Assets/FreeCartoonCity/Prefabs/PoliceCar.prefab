@@ -165,6 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 200
+  playerOffset: {x: 3, y: 0, z: 0}
 --- !u!114 &-8340617204693385116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,8 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbd8cdf978ef7084f9270717f8dca871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  accelerationPower: 30000
-  steeringPower: 0.2
+  steeringPower: 0.15
   maxSpeed: 30000
 --- !u!50 &-4787811298094134596
 Rigidbody2D:
