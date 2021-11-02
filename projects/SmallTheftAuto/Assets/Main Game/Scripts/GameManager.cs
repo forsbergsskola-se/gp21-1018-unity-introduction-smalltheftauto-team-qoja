@@ -96,15 +96,15 @@ public class GameManager : MonoBehaviour
         respawn.SaveData();
         //respawn.LoadData();
         wasted.SetActive(true);
-        Invoke("DestroyGameObject", 3);
+        Invoke("DisableGameObject", 3);
         
         
         
     }
     
-    void DestroyGameObject()
+    void DisableGameObject()
     {
-        Destroy(wasted);
+        wasted.SetActive(false);
     }
 
     public void StartGame() //This is called after button press on first menu, and when unpausing
