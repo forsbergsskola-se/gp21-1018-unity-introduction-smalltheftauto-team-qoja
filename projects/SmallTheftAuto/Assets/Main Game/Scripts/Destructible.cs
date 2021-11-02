@@ -15,6 +15,8 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable //Should remov
     private bool isBurning;
     private bool hasBurned;
 
+    
+
     private void Start()
     {
         player = GetComponent<Player>();
