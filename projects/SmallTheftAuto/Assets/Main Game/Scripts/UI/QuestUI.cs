@@ -6,8 +6,8 @@ public class QuestUI : MonoBehaviour
 {
     private TextMeshProUGUI quest;
     private String questText;
-    public GameObject QuestKeyInfo;
-    public GameObject QuestKeyInfo1;
+    public GameObject questKeyInfo;
+    public GameObject questKeyInfo1;
     void Start()
     {
         quest = GetComponent<TextMeshProUGUI>();
@@ -21,20 +21,20 @@ public class QuestUI : MonoBehaviour
         {
             questText = Quest.quests[0];
             quest.text = questText;
-            QuestKeyInfo.SetActive(true);
+            questKeyInfo.SetActive(true);
         }
         if(Player.questIsActive && Quest.missionIndex==1)
         {
             questText = Quest.quests[1];
             quest.text = questText;
-            QuestKeyInfo.SetActive(true);
+            questKeyInfo.SetActive(true);
         }
         if(Quest.missionIndex==2)
         {
-            QuestKeyInfo.SetActive(false);
+            questKeyInfo.SetActive(false);
             questText = Quest.quests[2];
             quest.text = questText;
-            QuestKeyInfo1.SetActive(true);
+            questKeyInfo1.SetActive(true);
         }
     }
 }

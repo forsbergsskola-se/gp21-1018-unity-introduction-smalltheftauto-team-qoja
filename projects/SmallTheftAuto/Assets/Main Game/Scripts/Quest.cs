@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class Quest : MonoBehaviour
 {
@@ -27,8 +25,7 @@ public class Quest : MonoBehaviour
     void Update()
     {
         if(!Player.questIsActive) originalMoney = gameManager.Money;
-        
-        if (missionIndex == 0 && Player.questIsActive)
+        if (missionIndex == 0)
         {
             missionIsOver = false;
             QuestTimer(100);
@@ -41,8 +38,7 @@ public class Quest : MonoBehaviour
             MissionFailed();
             MissionOver();
         }
-        
-        if (missionIndex == 1 && Player.questIsActive)
+        if (missionIndex == 1)
         {
             missionIsOver = false;
             QuestTimer(200);
