@@ -58,6 +58,11 @@ public class Quest : MonoBehaviour
             MissionOver();
             
         }
+
+        if (missionIndex > 1)
+        {
+            Debug.Log("No more Quests");
+        }
     }
 
     private void MissionComplete(int addScore, int addMoney)
