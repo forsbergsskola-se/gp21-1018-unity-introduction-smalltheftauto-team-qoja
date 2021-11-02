@@ -9,15 +9,14 @@ using UnityEngine;
 public class VehicleMovement : MonoBehaviour
 {
     Rigidbody2D rb;
-
-    [SerializeField]
-    float accelerationPower = 30000f;
+    
+    private float accelerationPower = 30000f;
     [SerializeField]
     float steeringPower = 0.2f; //Has to be between 0-1
     float steeringAmount, speed, direction;
     [SerializeField] private float maxSpeed = 30000;
 
-    private float MAXSpeed
+    public float MAXSpeed
     {
         get => maxSpeed;
         set => maxSpeed = (value* 10);

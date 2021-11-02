@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DamageArea : MonoBehaviour
@@ -12,6 +13,7 @@ public class DamageArea : MonoBehaviour
     private IEnumerator damageCoroutine;
     private bool coroutineDamageStarted;
     private bool coroutineDisableCarStarted;
+    private float vehicleMaxSpeed;
     
     public enum DamageAreaType {
         Fire,
@@ -31,7 +33,10 @@ public class DamageArea : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        _destructible = other.gameObject.GetComponent<Destructible>();
+       // _destructible = other.gameObject.GetComponent<Destructible>();
+        _destructible = other.gameObject.GetComponentInParent<Destructible>();
+        _vehicleMovement = other.gameObject.GetComponentInParent<VehicleMovement>();
+        vehicleMaxSpeed = _vehicleMovement.MAXSpeed;
         if (_destructible != null)
         {
             damageCoroutine = _destructible.TakeDamageOverTime(damage, interval);
@@ -41,10 +46,13 @@ public class DamageArea : MonoBehaviour
 
         if (InWater(areaType)) {
             Debug.Log("Recognised water as true");
-            _vehicleMovement = other.gameObject.GetComponentInParent<VehicleMovement>();
+             
+             //_destructible = other.gameObject.GetComponentInParent<Destructible>();
+            // _vehicle = other.gameObject.GetComponentInParent<Vehicle>();
             if (_vehicleMovement != null) {
-                StartCoroutine(DisableCar(_vehicleMovement));
                 coroutineDisableCarStarted = true;
+                StartCoroutine(DisableCar(_vehicleMovement));
+                
             } else {
                 Debug.Log("Vehiclemov is null");
             }
@@ -60,12 +68,16 @@ public class DamageArea : MonoBehaviour
 
         if (coroutineDisableCarStarted) {
             StopCoroutine(DisableCar(_vehicleMovement));
+            _vehicleMovement.MAXSpeed = vehicleMaxSpeed;
         }
     }
     
     private IEnumerator DisableCar(VehicleMovement vehicleMovement) {
         Debug.Log("In Disable car");
              yield return new WaitForSeconds(5);
-             vehicleMovement.enabled = false;
+             vehicleMovement.MAXSpeed = 0;
+             _destructible.enabled = false;
+             // _vehicle.enabled = false;
+
     }
 }
