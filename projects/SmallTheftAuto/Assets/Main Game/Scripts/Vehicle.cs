@@ -55,9 +55,9 @@ public class Vehicle : MonoBehaviour, IHurtOnCrash, IHaveHealth {
         driver.transform.parent = null;
         driver.transform.position = transform.position + playerOffset;
         driver.SetActive(true);
-        Rigidbody2D driverBody = driver.GetComponent<Rigidbody2D>();
-        driverBody.velocity = Vector2.zero;
-        driverBody.angularVelocity = 0.0f;
+       // Rigidbody2D driverBody = driver.GetComponent<Rigidbody2D>();
+        //driverBody.velocity = Vector2.zero;
+        //driverBody.angularVelocity = 0.0f;
         driver = null;
         GetComponent<VehicleMovement>().enabled = false;
         GetComponentInChildren<Radio>().enabled = false;
