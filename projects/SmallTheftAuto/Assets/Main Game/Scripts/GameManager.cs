@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     //[SerializeField] private GameObject player;
     public Player player;
     public Respawn respawn;
+    public GameObject wasted;
     
 
     public bool playerDied;
@@ -94,6 +95,16 @@ public class GameManager : MonoBehaviour
         respawn.RespawnPoint();
         respawn.SaveData();
         //respawn.LoadData();
+        wasted.SetActive(true);
+        Invoke("DisableGameObject", 3);
+        
+        
+        
+    }
+    
+    void DisableGameObject()
+    {
+        wasted.SetActive(false);
     }
 
     public void StartGame() //This is called after button press on first menu, and when unpausing
@@ -130,3 +141,5 @@ public enum GameState
     //Here we want to have all the different gamestates, like Control screen
     
 }
+
+
