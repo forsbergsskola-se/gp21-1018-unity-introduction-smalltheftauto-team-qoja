@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Quest : MonoBehaviour
@@ -8,14 +9,15 @@ public class Quest : MonoBehaviour
     public GameObject missionComplete;
     public GameObject missionFailed;
     public GameObject money;
-    private bool missionIsOver;
     public static int missionIndex;
     private int originalMoney;
     public GameManager gameManager;
     public Respawn respawn;
     public static string[] quests = {"Collect 200 dollars", "Park a car in parking spot No.2 and get off the car", "Good job! No more quest!"};
     public GameObject parkingSpot;
+    private bool missionIsOver;
     private bool moneyReset;
+    
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
@@ -41,12 +43,18 @@ public class Quest : MonoBehaviour
                 missionIndex++;
             }
             IfMissionFailed();
+            if(missionIsOver) money.SetActive(false);
             MissionOver();
         }
         if (missionIndex == 1)
         {
             missionIsOver = false;
             QuestTimer(200);
+            if (timerUI.activeInHierarchy)
+            {
+                parkingSpot.GetComponent<ParkingSpot>().enabled = true;
+                parkingSpot.transform.GetChild(0).gameObject.SetActive(true);
+            }
             if(parkingSpot.GetComponent<ParkingSpot>().parked && !missionIsOver)
             {
                 if (player.activeInHierarchy)
@@ -55,6 +63,7 @@ public class Quest : MonoBehaviour
                     missionIndex++;
                 }
             }
+            if(missionIsOver) parkingSpot.transform.GetChild(0).gameObject.SetActive(false);
             IfMissionFailed();
             MissionOver();
         }
