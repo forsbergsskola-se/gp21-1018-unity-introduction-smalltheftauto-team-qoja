@@ -15,7 +15,7 @@ public class Quest : MonoBehaviour
     public Respawn respawn;
     public static string[] quests = {"Collect 200 dollars", "Park a car in the left parking spot and get off the car", "No more quest"};
     public GameObject ParkingSpot;
-    
+    private bool moneyReset;
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
@@ -29,7 +29,12 @@ public class Quest : MonoBehaviour
         {
             missionIsOver = false;
             QuestTimer(100);
-            if (timerUI.activeInHierarchy) MoneyFinder();
+            
+            if (timerUI.activeInHierarchy)
+            {
+                money.SetActive(true);
+                MoneyFinder();
+            }
             if (gameManager.Money - originalMoney >= 200 && !missionIsOver)
             {
                 MissionComplete(20, 100);
@@ -83,6 +88,7 @@ public class Quest : MonoBehaviour
             {
                 missionFailed.SetActive(true);
                 missionIsOver = true;
+                moneyReset = false;
             }
         }
     }
@@ -104,7 +110,6 @@ public class Quest : MonoBehaviour
         {
             questUI.SetActive(false);
             timerUI.SetActive(true);
-            money.SetActive(true);
             Timer.maxTime = maximumTime;
             Timer.timePassed = 0;
         }
@@ -112,6 +117,14 @@ public class Quest : MonoBehaviour
 
     void MoneyFinder()
     {
+        if (!moneyReset)
+        {
+            for (int i = 0; i < money.transform.childCount; i++)
+            {
+                money.transform.GetChild(i).gameObject.SetActive(true);
+            }
+            moneyReset = true;
+        }
         if (Input.GetKeyDown(KeyCode.E) && Player.questIsActive)
         {
             Money[] moneys = FindObjectsOfType<Money>();     
