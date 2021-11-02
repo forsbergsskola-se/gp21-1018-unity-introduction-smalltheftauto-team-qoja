@@ -6,7 +6,7 @@ public class Vehicle : MonoBehaviour, IHurtOnCrash, IHaveHealth {
     [SerializeField] private int maxHealth = 200;
     private int health;
     private GameObject driver;
-    private Vector3 playerOffset = new Vector3(3, 0, 0);
+    public Vector3 playerOffset = new Vector3(3, 0, 0);
     private int buildingDamage = 10;
     private Explosion explosion;
     private VehicleMovement _vehicleMovement;

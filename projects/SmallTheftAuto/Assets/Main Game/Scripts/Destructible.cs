@@ -137,6 +137,10 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable //Should remov
 
     private void KillPlayer(Player playerInCar)
     {
+        Vehicle vehicle =  playerInCar.GetComponentInParent<Vehicle>();
         playerInCar.Health = 0;
+        if (vehicle != null) {
+            vehicle.ExitCar(vehicle.playerOffset);
+        }
     }
 }
