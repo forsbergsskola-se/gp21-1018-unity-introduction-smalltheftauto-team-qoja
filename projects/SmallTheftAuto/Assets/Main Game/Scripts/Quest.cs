@@ -20,7 +20,6 @@ public class Quest : MonoBehaviour
     
     void Start()
     {
-        //player = GetComponent<Player>();
         gameManager = FindObjectOfType<GameManager>();
         respawn = FindObjectOfType<Respawn>();
     }
@@ -57,12 +56,17 @@ public class Quest : MonoBehaviour
             }
             MissionFailed();
             MissionOver();
-            
         }
-
         if (missionIndex > 1)
         {
-            Debug.Log("No more Quests");
+            missionIsOver = false;
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                missionIsOver = true;
+                questUI.SetActive(false);
+                MissionOver();
+            }
+            
         }
     }
 
