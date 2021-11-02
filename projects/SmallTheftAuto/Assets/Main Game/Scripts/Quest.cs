@@ -31,6 +31,7 @@ public class Quest : MonoBehaviour
         
         if (missionIndex == 0 && Player.questIsActive)
         {
+            missionIsOver = false;
             QuestTimer(100);
             if (timerUI.activeInHierarchy) MoneyFinder();
             if (gameManager.Money - originalMoney >= 200 && !missionIsOver)
@@ -101,7 +102,6 @@ public class Quest : MonoBehaviour
             money.SetActive(true);
             Timer.maxTime = maximumTime;
             Timer.timePassed = 0;
-            
         }
     }
 
