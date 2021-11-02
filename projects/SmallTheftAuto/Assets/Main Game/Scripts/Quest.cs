@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class Quest : MonoBehaviour
 {
@@ -15,12 +13,11 @@ public class Quest : MonoBehaviour
     private int originalMoney;
     public GameManager gameManager;
     public Respawn respawn;
-    public static string[] quests = {"Collect 200 dollars", "Park a car in the left parking spot and get off the car"};
+    public static string[] quests = {"Collect 200 dollars", "Park a car in the left parking spot and get off the car", "No more quest"};
     public GameObject ParkingSpot;
     
     void Start()
     {
-        //player = GetComponent<Player>();
         gameManager = FindObjectOfType<GameManager>();
         respawn = FindObjectOfType<Respawn>();
     }
@@ -28,9 +25,9 @@ public class Quest : MonoBehaviour
     void Update()
     {
         if(!Player.questIsActive) originalMoney = gameManager.Money;
-        
-        if (missionIndex == 0 && Player.questIsActive)
+        if (missionIndex == 0)
         {
+            missionIsOver = false;
             QuestTimer(100);
             if (timerUI.activeInHierarchy) MoneyFinder();
             if (gameManager.Money - originalMoney >= 200 && !missionIsOver)
@@ -41,8 +38,7 @@ public class Quest : MonoBehaviour
             MissionFailed();
             MissionOver();
         }
-        
-        if (missionIndex == 1 && Player.questIsActive)
+        if (missionIndex == 1)
         {
             missionIsOver = false;
             QuestTimer(200);
@@ -56,12 +52,17 @@ public class Quest : MonoBehaviour
             }
             MissionFailed();
             MissionOver();
-            
         }
-
         if (missionIndex > 1)
         {
-            Debug.Log("No more Quests");
+            missionIsOver = false;
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                missionIsOver = true;
+                questUI.SetActive(false);
+                MissionOver();
+            }
+            
         }
     }
 
@@ -106,7 +107,6 @@ public class Quest : MonoBehaviour
             money.SetActive(true);
             Timer.maxTime = maximumTime;
             Timer.timePassed = 0;
-            
         }
     }
 

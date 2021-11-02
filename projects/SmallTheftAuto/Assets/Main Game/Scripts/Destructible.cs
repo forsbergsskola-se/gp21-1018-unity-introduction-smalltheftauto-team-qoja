@@ -8,10 +8,10 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable //Should remov
     [SerializeField] GameObject firePrefab;
     
     private Player player;
-    private IHaveHealth healthInterface;
+    protected IHaveHealth healthInterface;
     private Explosion explosion;
     
-    private bool hasDied;
+    protected bool hasDied;
     private bool isBurning;
     private bool hasBurned;
 
@@ -22,7 +22,7 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable //Should remov
         explosion = GetComponent<Explosion>();
     }
 
-    private void Update()
+    public virtual void Update()
     {
         if (HasHealth()) {
             if (healthInterface.Health <= 0 && !hasDied) {
@@ -39,7 +39,7 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable //Should remov
         }
     }
 
-    private bool HasHealth() {
+    protected bool HasHealth() {
         if (healthInterface != null) {
             return true;
         }
@@ -112,7 +112,7 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable //Should remov
         }
     }
 
-    public void OnDeath()
+    public virtual void OnDeath()
     {
         if (explosion != null) {
             explosion.Explode();

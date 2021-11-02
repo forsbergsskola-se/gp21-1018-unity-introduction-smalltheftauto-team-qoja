@@ -36,16 +36,13 @@ public class ParkingSpot : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         parking = true;
-        Debug.Log("Trigger enter");
     }
     private void OnTriggerStay2D(Collider2D other)
     {
         parking = true;
-        Debug.Log("Trigger stay");
     }
     private void OnTriggerExit2D(Collider2D other)
     {
         parking = false;
-        Debug.Log("Trigger exit");
     }
 }
