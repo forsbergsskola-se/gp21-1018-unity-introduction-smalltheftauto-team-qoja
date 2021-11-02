@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public Player player;
     public Respawn respawn;
     public GameObject wasted;
+    public PlayerMovement playerMovement;
     
 
     public bool playerDied;
@@ -56,6 +57,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         player = FindObjectOfType<Player>();
+        playerMovement = player.GetComponent<PlayerMovement>();
         respawn = FindObjectOfType<Respawn>();
         MakeSingleton();
     }
@@ -85,9 +87,9 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void Respawn()
+    public void RespawnData() //This manages all the respawn variables
     {
-    
+        playerMovement.enabled = true;
         player.Health = respawn.health;
         //player.Money = respawn.money / 2;
         player.Money = respawn.money / 2;
@@ -95,14 +97,21 @@ public class GameManager : MonoBehaviour
         respawn.RespawnPoint();
         respawn.SaveData();
         //respawn.LoadData();
-        wasted.SetActive(true);
-        Invoke("DisableGameObject", 3);
+        
         
         
         
     }
+
+    public void Respawn() //This calls the respawndata function after 3 seconds
+    {
+        wasted.SetActive(true);
+        Invoke("DisableWasted", 3);
+        playerMovement.enabled = false;
+        Invoke("RespawnData", 3);
+    }
     
-    void DisableGameObject()
+    void DisableWasted()
     {
         wasted.SetActive(false);
     }
