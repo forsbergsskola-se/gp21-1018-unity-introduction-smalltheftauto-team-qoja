@@ -137,6 +137,10 @@ public class Destructible : MonoBehaviour, IBurnable, IDamageable //Should remov
 
     private void KillPlayer(Player playerInCar)
     {
+        //Here we want to exit the car first, so player is not child of it
+        Vehicle vehicle =  playerInCar.GetComponentInParent<Vehicle>();
         playerInCar.Health = 0;
+        vehicle.ExitCar(vehicle.playerOffset);
+        
     }
 }
