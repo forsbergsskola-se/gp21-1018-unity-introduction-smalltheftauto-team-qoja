@@ -8784,8 +8784,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64039d09dbac3ea4792cbab17918aa92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  QuestKeyInfo: {fileID: 947320633}
-  QuestKeyInfo1: {fileID: 1347036730}
+  questKeyInfo: {fileID: 947320633}
+  questKeyInfo1: {fileID: 1347036730}
 --- !u!1001 &1616527588
 PrefabInstance:
   m_ObjectHideFlags: 0
