@@ -18,6 +18,7 @@ public class Radio : MonoBehaviour
     private void Start()
     {
         audioSource = gameObject.GetComponent<AudioSource>();
+        ToggleRadio(false);
     }
 
     public void Update()
@@ -29,6 +30,7 @@ public class Radio : MonoBehaviour
     private void OnDisable()
     {
         RadioManager(null, 1f);
+        ToggleRadio(false);
     }
 
     void RadioManager(AudioClip audioClip, float pitch)
@@ -73,5 +75,10 @@ public class Radio : MonoBehaviour
         {
             audioSource.volume -= 0.05f;
         }
+    }
+
+    public void ToggleRadio(bool toggle)
+    {
+        this.enabled = toggle;
     }
 }

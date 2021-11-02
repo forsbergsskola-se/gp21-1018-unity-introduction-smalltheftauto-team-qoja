@@ -10,6 +10,8 @@ public class Vehicle : MonoBehaviour, IHurtOnCrash, IHaveHealth {
     private int buildingDamage = 10;
     private Explosion explosion;
     private VehicleMovement _vehicleMovement;
+    private Radio radio;
+    private Driver _driver;
     public int DamageOnCrash => 5;
     
     public int Health
@@ -27,7 +29,9 @@ public class Vehicle : MonoBehaviour, IHurtOnCrash, IHaveHealth {
         }
         
         GetComponent<VehicleMovement>().enabled = false;
-        GetComponentInChildren<Radio>().enabled = false;
+        //GetComponentInChildren<Radio>().enabled = false;
+        
+        radio = gameObject.GetComponentInChildren<Radio>();
         explosion = GetComponent<Explosion>();
         explosion.enabled = false;
     }
@@ -47,8 +51,15 @@ public class Vehicle : MonoBehaviour, IHurtOnCrash, IHaveHealth {
     {
         driver = player;
         driver.SetActive(false);
-        GetComponent<VehicleMovement>().enabled = true;
-        GetComponentInChildren<Radio>().enabled = true;
+        if (_vehicleMovement != null)
+        {
+            _vehicleMovement.enabled = true;
+        }
+        
+        if (radio != null)
+        {
+            radio.ToggleRadio(true);
+        }
     }
 
     public void ExitCar(Vector3 playerOffset) {
@@ -59,8 +70,17 @@ public class Vehicle : MonoBehaviour, IHurtOnCrash, IHaveHealth {
         //driverBody.velocity = Vector2.zero;
         //driverBody.angularVelocity = 0.0f;
         driver = null;
-        GetComponent<VehicleMovement>().enabled = false;
-        GetComponentInChildren<Radio>().enabled = false;
+        if (_vehicleMovement != null)
+        {
+            _vehicleMovement.enabled = false;
+        }
+        
+        if (radio != null)
+        {
+            radio.ToggleRadio(false);
+        }
+       
+       // GetComponentInChildren<Radio>().enabled = false;
     }
 } 
 
