@@ -1948,9 +1948,9 @@ MonoBehaviour:
   player: {fileID: 1191147844}
   missionComplete: {fileID: 145459401}
   missionFailed: {fileID: 207530513}
-  money: {fileID: 389932668}
   gameManager: {fileID: 0}
   respawn: {fileID: 0}
+  money: {fileID: 389932668}
   parkingSpot: {fileID: 919212283}
 --- !u!70 &330282397
 CapsuleCollider2D:

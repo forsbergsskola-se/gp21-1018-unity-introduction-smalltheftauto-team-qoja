@@ -8,15 +8,19 @@ public class Quest : MonoBehaviour
     public GameObject player;
     public GameObject missionComplete;
     public GameObject missionFailed;
-    public GameObject money;
-    public static int missionIndex;
-    private int originalMoney;
     public GameManager gameManager;
     public Respawn respawn;
     public static string[] quests = {"Collect 200 dollars", "Park a car in parking spot No.2 and get off the car", "Good job! No more quest!"};
+    public GameObject money;
     public GameObject parkingSpot;
+    public static int missionIndex;
+    
+    private int originalMoney;
     private bool missionIsOver;
     private bool moneyReset;
+
+    private int maximumTime;
+    private bool completionCritera;
     
     void Start()
     {
@@ -26,48 +30,85 @@ public class Quest : MonoBehaviour
 
     void Update()
     {
-        if(!Player.questIsActive) originalMoney = gameManager.Money;
+        // if(!Player.questIsActive) originalMoney = gameManager.Money;
+        // if (missionIndex == 0)
+        // {
+        //     missionIsOver = false;
+        //     QuestTimer(100);
+        //     
+        //     if (timerUI.activeInHierarchy)
+        //     {
+        //         money.SetActive(true);
+        //         MoneyFinder();
+        //     }
+        //     if (gameManager.Money - originalMoney >= 200 && !missionIsOver && timerUI.activeInHierarchy)
+        //     {
+        //         MissionComplete(20, 100);
+        //         missionIndex++;
+        //     }
+        //     IfMissionFailed();
+        //     if(missionIsOver) money.SetActive(false);
+        //     MissionOver();
+        // }
+        // if (missionIndex == 1)
+        // {
+        //     missionIsOver = false;
+        //     QuestTimer(200);
+        //     if (timerUI.activeInHierarchy)
+        //     {
+        //         parkingSpot.GetComponent<ParkingSpot>().enabled = true;
+        //         parkingSpot.transform.GetChild(0).gameObject.SetActive(true);
+        //     }
+        //     if(parkingSpot.GetComponent<ParkingSpot>().parked && !missionIsOver && timerUI.activeInHierarchy)
+        //     {
+        //         if (player.activeInHierarchy)
+        //         {
+        //             MissionComplete(20,100);
+        //             missionIndex++;
+        //         }
+        //     }
+        //     if(missionIsOver) parkingSpot.transform.GetChild(0).gameObject.SetActive(false);
+        //     IfMissionFailed();
+        //     MissionOver();
+        // }
+        
         if (missionIndex == 0)
         {
-            missionIsOver = false;
-            QuestTimer(100);
-            
+            maximumTime = 100;
+            completionCritera = gameManager.Money - originalMoney >= 200;
             if (timerUI.activeInHierarchy)
             {
                 money.SetActive(true);
                 MoneyFinder();
             }
-            if (gameManager.Money - originalMoney >= 200 && !missionIsOver)
-            {
-                MissionComplete(20, 100);
-                missionIndex++;
-            }
-            IfMissionFailed();
-            if(missionIsOver) money.SetActive(false);
-            MissionOver();
         }
         if (missionIndex == 1)
         {
-            missionIsOver = false;
-            QuestTimer(200);
+            maximumTime = 200;
+            completionCritera = parkingSpot.GetComponent<ParkingSpot>().parked && player.activeInHierarchy;
             if (timerUI.activeInHierarchy)
             {
                 parkingSpot.GetComponent<ParkingSpot>().enabled = true;
                 parkingSpot.transform.GetChild(0).gameObject.SetActive(true);
             }
-            if(parkingSpot.GetComponent<ParkingSpot>().parked && !missionIsOver)
-            {
-                if (player.activeInHierarchy)
-                {
-                    MissionComplete(20,100);
-                    missionIndex++;
-                }
-            }
-            if(missionIsOver) parkingSpot.transform.GetChild(0).gameObject.SetActive(false);
-            IfMissionFailed();
-            MissionOver();
         }
-        if (missionIndex > 1)
+        if (!Player.questIsActive) originalMoney = gameManager.Money;
+        missionIsOver = false;
+        QuestTimer(maximumTime);
+        if (completionCritera && missionIndex!=quests.Length-1 && timerUI.activeInHierarchy)
+        {
+            MissionComplete(20,100);
+            missionIndex++;
+        }
+        IfMissionFailed();
+        if (missionIsOver)
+        {
+            money.SetActive(false);
+            parkingSpot.transform.GetChild(0).gameObject.SetActive(false);
+        }
+        MissionOver();
+        Debug.Log(quests.Length);
+        if (missionIndex > quests.Length-2)
         {
             missionIsOver = false;
             if (Input.GetKeyDown(KeyCode.Q))
@@ -76,7 +117,6 @@ public class Quest : MonoBehaviour
                 questUI.SetActive(false);
                 MissionOver();
             }
-            
         }
     }
 
@@ -105,7 +145,7 @@ public class Quest : MonoBehaviour
     private void MissionOver()
     {
         if (missionIsOver)
-        {
+        { 
             Invoke("SetMissionFalse", 3f);
             Player.questIsActive = false;
             timerUI.SetActive(false);
