@@ -13,7 +13,7 @@ public class Quest : MonoBehaviour
     private int originalMoney;
     public GameManager gameManager;
     public Respawn respawn;
-    public static string[] quests = {"Collect 200 dollars", "Park a car in the left parking spot and get off the car", "No more quest"};
+    public static string[] quests = {"Collect 200 dollars", "Park a car in parking spot No.2 and get off the car", "Good job! No more quest!"};
     public GameObject parkingSpot;
     private bool moneyReset;
     void Start()
