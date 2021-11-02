@@ -20,8 +20,12 @@ public class Driver : MonoBehaviour {
 
         if (distancesToVehicles[indexOfClosestCar] < 3) {
             closestCar = foundVehicles[indexOfClosestCar].GetComponent<Vehicle>();
-            gameObject.transform.parent = closestCar.transform;
-            closestCar.EnterCar(gameObject);
+            if (closestCar.enabled)
+            {
+                gameObject.transform.parent = closestCar.transform;
+                closestCar.EnterCar(gameObject);
+            }
+            
         }
     }
 }
