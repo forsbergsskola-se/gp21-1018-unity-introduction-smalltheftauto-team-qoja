@@ -14,7 +14,7 @@ public class Quest : MonoBehaviour
     public GameManager gameManager;
     public Respawn respawn;
     public static string[] quests = {"Collect 200 dollars", "Park a car in the left parking spot and get off the car", "No more quest"};
-    public GameObject ParkingSpot;
+    public GameObject parkingSpot;
     private bool moneyReset;
     void Start()
     {
@@ -40,14 +40,14 @@ public class Quest : MonoBehaviour
                 MissionComplete(20, 100);
                 missionIndex++;
             }
-            MissionFailed();
+            IfMissionFailed();
             MissionOver();
         }
         if (missionIndex == 1)
         {
             missionIsOver = false;
             QuestTimer(200);
-            if(ParkingSpot.GetComponent<ParkingSpot>().parked && !missionIsOver)
+            if(parkingSpot.GetComponent<ParkingSpot>().parked && !missionIsOver)
             {
                 if (player.activeInHierarchy)
                 {
@@ -55,7 +55,7 @@ public class Quest : MonoBehaviour
                     missionIndex++;
                 }
             }
-            MissionFailed();
+            IfMissionFailed();
             MissionOver();
         }
         if (missionIndex > 1)
@@ -80,7 +80,7 @@ public class Quest : MonoBehaviour
         respawn.SaveData();
     }
 
-    private void MissionFailed()
+    private void IfMissionFailed()
     {
         if (timerUI.activeInHierarchy)
         {

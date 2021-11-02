@@ -16,7 +16,6 @@ public class QuestUI : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKey(KeyCode.P)) Debug.Log(Player.questIsActive);
         if(Player.questIsActive && Quest.missionIndex==0)
         {
             QuestText(0);
@@ -39,5 +38,6 @@ public class QuestUI : MonoBehaviour
         questText = Quest.quests[i];
         quest.text = questText;
         questKeyInfo.SetActive(true);
+        questKeyInfo1.SetActive(false);
     }
 }
