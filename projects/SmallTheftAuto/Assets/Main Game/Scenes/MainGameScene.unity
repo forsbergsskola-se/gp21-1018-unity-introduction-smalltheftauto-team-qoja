@@ -1748,7 +1748,7 @@ MonoBehaviour:
   money: {fileID: 389932668}
   gameManager: {fileID: 0}
   respawn: {fileID: 0}
-  ParkingSpot: {fileID: 1881194555}
+  ParkingSpot: {fileID: 2143679041}
 --- !u!70 &330282397
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -4201,7 +4201,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5163634516234916676, guid: 7cbf71610d489f0488b5401e4999c114, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cbf71610d489f0488b5401e4999c114, type: 3}
@@ -10050,11 +10050,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e53f9514e887d84b843f7c47f5c7f5f, type: 3}
---- !u!1 &1881194555 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5163634516234916676, guid: 7cbf71610d489f0488b5401e4999c114, type: 3}
-  m_PrefabInstance: {fileID: 5163634517910708917}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1888439260
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11667,6 +11662,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 5f3a39f041457b748b736e2b641f1a84, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c260732853d21d24894963a5a6a26c80, type: 3}
+--- !u!1 &2143679041 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5163634516234916676, guid: 7cbf71610d489f0488b5401e4999c114, type: 3}
+  m_PrefabInstance: {fileID: 653806721}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5163634517910708917
 PrefabInstance:
   m_ObjectHideFlags: 0
