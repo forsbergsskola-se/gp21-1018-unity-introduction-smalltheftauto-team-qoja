@@ -15,9 +15,12 @@ public class Quest : MonoBehaviour
     private int originalMoney;
     public GameManager gameManager;
     public Respawn respawn;
-    public static string[] quests = {"Collect 200 dollars", "Collect 100 dollars"};
+    public static string[] quests = {"Collect 200 dollars", "Park a car in the left parking spot and get off the car"};
+    public GameObject ParkingSpot;
+    
     void Start()
     {
+        //player = GetComponent<Player>();
         gameManager = FindObjectOfType<GameManager>();
         respawn = FindObjectOfType<Respawn>();
     }
@@ -26,30 +29,34 @@ public class Quest : MonoBehaviour
     {
         if(!Player.questIsActive) originalMoney = gameManager.Money;
         
-        if (missionIndex == 0)
+        if (missionIndex == 0 && Player.questIsActive)
         {
             QuestTimer(100);
             if (timerUI.activeInHierarchy) MoneyFinder();
             if (gameManager.Money - originalMoney >= 200 && !missionIsOver)
             {
                 MissionComplete(20, 100);
+                missionIndex++;
             }
             MissionFailed();
             MissionOver();
-            if(missionIsOver) originalMoney = gameManager.Money;
         }
         
-        if (missionIndex == 1)
+        if (missionIndex == 1 && Player.questIsActive)
         {
             missionIsOver = false;
-            QuestTimer(5);
-            if(timerUI.activeInHierarchy) MoneyFinder();
-            if (gameManager.Money - originalMoney >= 100 && !missionIsOver)
+            QuestTimer(200);
+            if(ParkingSpot.GetComponent<ParkingSpot>().parked && !missionIsOver)
             {
-                MissionComplete(20,100);
+                if (player.activeInHierarchy)
+                {
+                    MissionComplete(20,100);
+                    missionIndex++;
+                }
             }
             MissionFailed();
             MissionOver();
+            
         }
     }
 
@@ -66,7 +73,7 @@ public class Quest : MonoBehaviour
     {
         if (timerUI.activeInHierarchy)
         {
-            if (Timer.timeIsOut)
+            if (Timer.timeIsOut || player.GetComponent<Player>().IsDead)
             {
                 missionFailed.SetActive(true);
                 missionIsOver = true;
@@ -79,7 +86,6 @@ public class Quest : MonoBehaviour
         if (missionIsOver)
         {
             Invoke("SetMissionFalse", 3f);
-            missionIndex++;
             Player.questIsActive = false;
             timerUI.SetActive(false);
             Timer.timeIsOut = false;
