@@ -6,7 +6,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour, IHurtOnCrash
 {
 
-    public float bulletSpeed = 100000f;
+    public float bulletSpeed = 30000000f;
     public Rigidbody2D bulletRb;
 
     public int bulletDamage = 10;
