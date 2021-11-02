@@ -16,18 +16,11 @@ public class QuestUI : MonoBehaviour
 
     void Update()
     {
-        if(Player.questIsActive && Quest.missionIndex==0)
-        {
-            QuestText(0);
-        }
-        if(Player.questIsActive && Quest.missionIndex==1)
-        {
-            QuestText(1);
-        }
-        if(Quest.missionIndex==2)
+        QuestText(Quest.missionIndex);
+        if(Quest.missionIndex==Quest.quests.Length-1)
         {
             questKeyInfo.SetActive(false);
-            questText = Quest.quests[2];
+            questText = Quest.quests[Quest.quests.Length-1];
             quest.text = questText;
             questKeyInfo1.SetActive(true);
         }
@@ -35,9 +28,12 @@ public class QuestUI : MonoBehaviour
 
     void QuestText(int i)
     {
-        questText = Quest.quests[i];
-        quest.text = questText;
-        questKeyInfo.SetActive(true);
-        questKeyInfo1.SetActive(false);
+        if (Player.questIsActive)
+        {
+            questText = Quest.quests[i];
+            quest.text = questText;
+            questKeyInfo.SetActive(true);
+            questKeyInfo1.SetActive(false); 
+        }
     }
 }
