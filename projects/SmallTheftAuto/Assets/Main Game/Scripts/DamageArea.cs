@@ -36,7 +36,7 @@ public class DamageArea : MonoBehaviour
        // _destructible = other.gameObject.GetComponent<Destructible>();
         _destructible = other.gameObject.GetComponentInParent<Destructible>();
         _vehicleMovement = other.gameObject.GetComponentInParent<VehicleMovement>();
-        vehicleMaxSpeed = _vehicleMovement.MAXSpeed;
+        //vehicleMaxSpeed = _vehicleMovement.MAXSpeed;
         if (_destructible != null)
         {
             damageCoroutine = _destructible.TakeDamageOverTime(damage, interval);
