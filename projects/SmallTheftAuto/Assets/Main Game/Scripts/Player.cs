@@ -4,29 +4,22 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour, IHaveHealth
 {
-
     [SerializeField] public int maxHealth = 100;
     private int health;
     private static int money;
     private const int FireDamage = 5;
     private int score;
-    private int nextHealth = 100;
-    private bool inFire = false;
     private GameObject quest;
     public GameObject questUI;
     public static bool questIsActive;
     private GameObject firstAidKit;
     public GameManager gameManager;
 
-    private void Awake() {
+    private void Awake()
+    {
         health = maxHealth;
     }
-
-   /* public Player(int MaxHealth) //Player's constructor
-    {
-        health = MaxHealth;
-    }*/
-
+    
     public int Health
     {
         get => health;
