@@ -7,7 +7,6 @@ public class Vehicle : MonoBehaviour, IHurtOnCrash, IHaveHealth {
     private int health;
     private GameObject driver;
     public Vector3 playerOffset = new Vector3(3, 0, 0);
-    private int buildingDamage = 10;
     private Explosion explosion;
     private VehicleMovement _vehicleMovement;
     private Radio radio;
