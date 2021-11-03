@@ -118,7 +118,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame() //This is called after button press on first menu, and when unpausing
     {
-        // here we want to remove the first menu
+        SceneManager.LoadScene("MainGameScene");// here we want to remove the first menu
     }
     
     public void RestartGame()
@@ -130,6 +130,7 @@ public class GameManager : MonoBehaviour
 
     public void Pause() //This is called when we press a pause button
     {
+        // System.Threading.Thread.Sleep(3)
         Time.timeScale = 0; //This pauses time, but sound does not stop.
         //We want everything to stop moving, dealing damage, animating
         //We possibly want a pause menu to appear
