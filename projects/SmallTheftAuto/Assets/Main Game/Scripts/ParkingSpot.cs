@@ -27,7 +27,7 @@ public class ParkingSpot : MonoBehaviour
         if (distances[indexOfClosest] < 1 && !parking)
         {
             
-            Debug.Log("parked");
+            //Debug.Log("parked");
             parked = true;
         }
         else parked = false;
