@@ -5830,6 +5830,7 @@ MonoBehaviour:
   rotationSpeed: 100
   runSpeed: 5
   walkSpeed: 1.6
+  staminaBar: {fileID: 1265199142}
 --- !u!61 &1191147849
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6510,6 +6511,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52e008ced3b7bce4c9e3bdf81ac57f66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _StaminaBar: {fileID: 1265199142}
+  player: {fileID: 0}
 --- !u!114 &1265199142
 MonoBehaviour:
   m_ObjectHideFlags: 0
