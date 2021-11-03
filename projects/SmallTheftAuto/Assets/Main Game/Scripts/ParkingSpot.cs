@@ -10,6 +10,8 @@ public class ParkingSpot : MonoBehaviour
        IsCarParked();
     }
 
+    //Perfomance checked, this takes a long time to do. Maybe we can cache the array so we don't make a new one every update
+    //Could also start this only after quest is started and then create the array
     private void IsCarParked()
     {
         Vehicle[] vehicles = FindObjectsOfType<Vehicle>();
