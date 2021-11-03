@@ -26,8 +26,6 @@ public class ParkingSpot : MonoBehaviour
         int indexOfClosest = FindObject.FindIndexOfClosestObject(distances);
         if (distances[indexOfClosest] < 1 && !parking)
         {
-            
-            Debug.Log("parked");
             parked = true;
         }
         else parked = false;

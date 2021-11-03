@@ -107,7 +107,6 @@ public class Quest : MonoBehaviour
             parkingSpot.transform.GetChild(0).gameObject.SetActive(false);
         }
         MissionOver();
-        Debug.Log(quests.Length);
         if (missionIndex > quests.Length-2)
         {
             missionIsOver = false;
