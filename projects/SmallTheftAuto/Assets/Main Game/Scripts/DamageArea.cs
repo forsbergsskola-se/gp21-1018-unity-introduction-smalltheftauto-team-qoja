@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections;
 using Unity.VisualScripting;
@@ -7,6 +8,7 @@ public class DamageArea : MonoBehaviour
 {
     private Destructible _destructible;
     private VehicleMovement _vehicleMovement;
+    private Vehicle _vehicle;
     public DamageAreaType areaType = new DamageAreaType();
     public int damage;
     public float interval;
@@ -14,14 +16,19 @@ public class DamageArea : MonoBehaviour
     private bool coroutineDamageStarted;
     private bool coroutineDisableCarStarted;
     private float vehicleMaxSpeed;
-    
-    public enum DamageAreaType {
+    private bool stillInWater;
+    private bool waitingForSeconds;
+
+    public enum DamageAreaType
+    {
         Fire,
         Water
     }
 
-    bool InWater(DamageAreaType dArea) {
-        switch (dArea) {
+    bool InWater(DamageAreaType dArea)
+    {
+        switch (dArea)
+        {
             case DamageAreaType.Fire:
                 return false;
             case DamageAreaType.Water:
@@ -33,9 +40,17 @@ public class DamageArea : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-       // _destructible = other.gameObject.GetComponent<Destructible>();
+        // _destructible = other.gameObject.GetComponent<Destructible>();
+        stillInWater = true;
         _destructible = other.gameObject.GetComponentInParent<Destructible>();
         _vehicleMovement = other.gameObject.GetComponentInParent<VehicleMovement>();
+        if (_vehicleMovement != null)
+        {
+            waitingForSeconds = true;
+            Debug.Log("Starting WaitForSeconds");
+            StartCoroutine(WaitForSecondsDisableCar(5, _vehicleMovement, _destructible));
+        }
+        _vehicle = other.gameObject.GetComponentInParent<Vehicle>();
         //vehicleMaxSpeed = _vehicleMovement.MAXSpeed;
         if (_destructible != null)
         {
@@ -43,41 +58,61 @@ public class DamageArea : MonoBehaviour
             StartCoroutine(damageCoroutine);
             coroutineDamageStarted = true;
         }
+    }
 
-        if (InWater(areaType)) {
-            Debug.Log("Recognised water as true");
-             
-             //_destructible = other.gameObject.GetComponentInParent<Destructible>();
-            // _vehicle = other.gameObject.GetComponentInParent<Vehicle>();
-            if (_vehicleMovement != null) {
-                coroutineDisableCarStarted = true;
-                StartCoroutine(DisableCar(_vehicleMovement));
-                
-            } else {
-                Debug.Log("Vehiclemov is null");
+    // private void OnTriggerStay2D(Collider2D other)
+    // {
+    //     if (InWater(areaType))
+    //     {
+    //         if (_vehicle != null)
+    //         {
+    //             if (waitingForSeconds == false)
+    //             {
+    //                 waitingForSeconds = true;
+    //                 Debug.Log("Starting WaitForSeconds");
+    //                 StartCoroutine(WaitForSecondsDisableCar(5, _vehicleMovement, _destructible));
+    //                 
+    //             }
+    //         }
+    //         else
+    //         {
+    //             Debug.Log("Vehiclemov is null");
+    //         }
+    //     }
+    //
+    // }
+
+    private void OnTriggerExit2D(Collider2D other)
+        {
+            if (other.GetComponentInParent<Vehicle>() == _vehicle)
+            {
+                stillInWater = false;
+            }
+             //Problem might lay here
+            
+            waitingForSeconds = false;
+            if (coroutineDamageStarted)
+            {
+                StopCoroutine(damageCoroutine);
             }
         }
-    }
     
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (coroutineDamageStarted)
+        private IEnumerator WaitForSecondsDisableCar(int seconds, VehicleMovement vehicleMovement, Destructible destructible)
         {
-            StopCoroutine(damageCoroutine);
+            Debug.Log("In Disable car");
+            waitingForSeconds = true;
+            yield return new WaitForSeconds(seconds);
+            //waitingForSeconds = false;
+            if (stillInWater)
+            {
+                DisableCar(vehicleMovement, destructible);
+            }
         }
 
-        if (coroutineDisableCarStarted) {
-            StopCoroutine(DisableCar(_vehicleMovement));
-            _vehicleMovement.MAXSpeed = vehicleMaxSpeed;
+        public void DisableCar(VehicleMovement vehicleMovement, Destructible destructible)
+        {
+            vehicleMovement.MAXSpeed = 0;
+            destructible.enabled = false;
         }
-    }
     
-    private IEnumerator DisableCar(VehicleMovement vehicleMovement) {
-        Debug.Log("In Disable car");
-             yield return new WaitForSeconds(5);
-             vehicleMovement.MAXSpeed = 0;
-             _destructible.enabled = false;
-             // _vehicle.enabled = false;
-
-    }
 }
