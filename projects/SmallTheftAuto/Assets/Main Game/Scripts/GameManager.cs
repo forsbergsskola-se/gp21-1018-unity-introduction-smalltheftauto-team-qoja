@@ -105,16 +105,16 @@ public class GameManager : MonoBehaviour
 
     public void Respawn() //This calls the respawndata function after 3 seconds
     {
-        wasted.SetActive(true);
-        Invoke("DisableWasted", 3);
+        //wasted.SetActive(true);
+        //Invoke("DisableWasted", 3);
         playerMovement.enabled = false;
         Invoke("RespawnData", 3);
     }
     
-    void DisableWasted()
-    {
-        wasted.SetActive(false);
-    }
+    //void DisableWasted()
+    //{
+    //    wasted.SetActive(false);
+    //}
 
     public void StartGame() //This is called after button press on first menu, and when unpausing
     {
