@@ -16,7 +16,7 @@ TagManager:
   - Water
   - UI
   - Minimap
-  - 
+  - Sand
   - 
   - 
   - 
@@ -47,4 +47,10 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Water
+    uniqueID: 765693581
+    locked: 0
+  - name: Sand
+    uniqueID: 3319559577
     locked: 0

@@ -10,7 +10,7 @@ public class VehicleMovement : MonoBehaviour
 {
     Rigidbody2D rb;
     
-    private float accelerationPower = 30000f;
+    [SerializeField] private float accelerationPower = 30000f;
     [SerializeField]
     float steeringPower = 0.15f; //Has to be between 0-1
     float steeringAmount, speed, direction;

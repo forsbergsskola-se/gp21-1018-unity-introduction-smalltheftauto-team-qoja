@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
         else //If there's no copy, set the instance to this
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(instance);
         }
     }
 
