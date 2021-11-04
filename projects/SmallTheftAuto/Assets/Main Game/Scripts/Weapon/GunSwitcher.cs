@@ -5,19 +5,18 @@ using UnityEngine;
 
 public class GunSwitcher : MonoBehaviour
 {
-    int totalWeapons = 1;
+    int _totalWeapons = 1;
     public int currentWeaponIndex;
-    
     public GameObject[] guns;
     public GameObject GunHolder;
     public GameObject currentGun;
     
     void Start()
     {
-        totalWeapons = GunHolder.transform.childCount;
-        guns = new GameObject[totalWeapons];
+        _totalWeapons = GunHolder.transform.childCount;
+        guns = new GameObject[_totalWeapons];
 
-        for (int i = 0; i < totalWeapons; i++)
+        for (int i = 0; i < _totalWeapons; i++)
         {
             guns[i] = GunHolder.transform.GetChild(i).gameObject;
             guns[i].SetActive(false);
@@ -33,7 +32,7 @@ public class GunSwitcher : MonoBehaviour
         // Next Weapon
         if (Input.GetAxis("Mouse ScrollWheel") > 0)
         {
-            if (currentWeaponIndex < totalWeapons-1)
+            if (currentWeaponIndex < _totalWeapons-1)
             {
                 guns[currentWeaponIndex].SetActive(false);
                 currentWeaponIndex += 1;
@@ -41,7 +40,7 @@ public class GunSwitcher : MonoBehaviour
             }
             
         }
-        
+        // Previous weapon
         if (Input.GetAxis("Mouse ScrollWheel") < 0)
         {
             if (currentWeaponIndex > 0)
@@ -52,19 +51,6 @@ public class GunSwitcher : MonoBehaviour
             }
             
         }
-        
-        
-        //if (Input.GetKeyDown(KeyCode.Tab))
-        //{
-            //SwitchGuns();
-        //}
-    }
-
-    void SwitchGuns()
-    {
-        foreach (Transform GunHolder in transform)
-        {
-            GunHolder.gameObject.SetActive(!GunHolder.gameObject.activeSelf);
-        }
+      
     }
 }

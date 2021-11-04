@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public Respawn respawn;
     public GameObject wasted;
     public PlayerMovement playerMovement;
+
+    private bool _isRespawning;
     
 
     public bool playerDied;
@@ -64,12 +66,11 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (player.IsDead)
+        if (player.IsDead && !_isRespawning)
         {
             Respawn();
         }
     }
-
 
     public void LoadScene() //This is called on player death
     {
@@ -77,44 +78,35 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         //DontDestroyOnLoad(instance);
     }
-
     public void Save() //This is called on save points
     {
         //Here we want to be able to save progress such as quest completion
         //We also want to save how much ammo we have left
         //We also want to save our score
-        
-        
     }
 
     public void RespawnData() //This manages all the respawn variables
     {
         playerMovement.enabled = true;
-        player.Health = respawn.health;
-        //player.Money = respawn.money / 2;
-        player.Money = respawn.money / 2;
-        player.Score = respawn.score;
+        player.Health = respawn.Health;
+        player.Money = respawn.Money/2;
+        player.Score = respawn.Score;
         respawn.RespawnPoint();
         respawn.SaveData();
-        //respawn.LoadData();
-        
-        
-        
-        
+        _isRespawning = false;
     }
 
     public void Respawn() //This calls the respawndata function after 3 seconds
     {
+        
         //wasted.SetActive(true);
         //Invoke("DisableWasted", 3);
         playerMovement.enabled = false;
+        _isRespawning = true;
         Invoke("RespawnData", 3);
+        
+        //player.Money = player.Money / 2;
     }
-    
-    //void DisableWasted()
-    //{
-    //    wasted.SetActive(false);
-    //}
 
     public void StartGame() //This is called after button press on first menu, and when unpausing
     {
@@ -133,19 +125,15 @@ public class GameManager : MonoBehaviour
 
     public void Pause() //This is called when we press a pause button
     {
-        // System.Threading.Thread.Sleep(3)
-        Time.timeScale = 0; //This pauses time, but sound does not stop.
-        //We want everything to stop moving, dealing damage, animating
-        //We possibly want a pause menu to appear
-
-        //Something time.stop related
+        
+        Time.timeScale = 0; //This Pauses time
+        AudioListener.pause = true; // This pauses the Audio Listener
     }
 
     public void Unpause() // Called when pressing Unpause button
     {
-        Time.timeScale = 1;
-        //We want time to resume.
-        //If we have a pause menu, remove it
+        Time.timeScale = 1; //This Unpauses time
+        AudioListener.pause = false; // This unpauses the Audio Listener
     }
 }
 

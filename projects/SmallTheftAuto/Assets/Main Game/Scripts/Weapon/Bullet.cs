@@ -8,33 +8,31 @@ public class Bullet : MonoBehaviour, IHurtOnCrash
 
     public float bulletSpeed = 30000000f;
     public Rigidbody2D bulletRb;
-
     public int bulletDamage = 10;
-    public int DamageOnCrash => bulletDamage; //Added this, but currently not doing damage anyhows.
-    // Start is called before the first frame update
+    public int DamageOnCrash => bulletDamage;
+    [SerializeField] private float timeActiveBullet = 2f;
+    
+    
     void Start()
     {
         bulletRb.velocity = transform.right * bulletSpeed;
-        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(other);
         Destructible destructible = other.gameObject.GetComponentInParent<Destructible>();
         if (destructible != null)
         {
            destructible.TakeDamage(DamageOnCrash); 
         }
-        
-        
-        
+
         Destroy(gameObject);
     }
 
     void Update()
     {
-        Invoke("DestroyBullet", 2f);
+        // Destroying the game object prefab bullet after x seconds
+        Invoke(nameof(DestroyBullet), timeActiveBullet);
     }
     
     void DestroyBullet()

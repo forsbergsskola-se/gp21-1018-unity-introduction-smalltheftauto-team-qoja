@@ -7,24 +7,24 @@ using UnityEngine;
 public class Respawn : MonoBehaviour
 {
     public Player player;
-    public int health;
-    public int score;
-    public int money;
+    private int health;
+    private int score;
+    private int money;
 
-    private int Health
+    public int Health
     {
         get => health;
         set => health = value;
 
     }
-    private int Money
+    public int Money
     {
         get => money;
 
         set => money = value;
     }
 
-    private int Score
+    public int Score
     {
         get => score;
 

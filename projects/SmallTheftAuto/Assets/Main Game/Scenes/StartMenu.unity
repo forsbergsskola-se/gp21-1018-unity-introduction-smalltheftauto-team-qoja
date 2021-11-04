@@ -1296,8 +1296,10 @@ MonoBehaviour:
 
     Shift - Sprint
 
-    Mouse wheel - Switch
-    weapon
+    ESC - Open/close menu
+
+    Mouse
+    wheel - Switch weapon
 
     Left mouse button - Shoot
 
