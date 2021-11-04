@@ -515,7 +515,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.2, y: 0.2}
+  m_Size: {x: 10.24, y: 10.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1738,9 +1738,9 @@ MonoBehaviour:
   missionComplete: {fileID: 145459401}
   missionFailed: {fileID: 207530513}
   gameManager: {fileID: 0}
-  respawn: {fileID: 0}
   money: {fileID: 389932668}
   parkingSpot: {fileID: 919212283}
+  respawn: {fileID: 0}
 --- !u!70 &330282397
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -4057,6 +4057,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 389932669}
     m_Modifications:
+    - target: {fileID: -6865745888596722623, guid: 859e5325d9bbeb247bed718bf6035084, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5815119030989645651, guid: 859e5325d9bbeb247bed718bf6035084, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -7301,6 +7305,9 @@ MonoBehaviour:
   runSpeed: 5
   walkSpeed: 1.6
   staminaBar: {fileID: 1265199142}
+  staminaLosingRate: 0.4
+  staminaReloadTime: 2
+  staminaReloadRate: 30
 --- !u!61 &1191147849
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7763,7 +7770,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.2, y: 0.2}
+  m_Size: {x: 5.12, y: 5.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -9769,7 +9776,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 4.5, y: 17}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -10589,7 +10596,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.2, y: 0.2}
+  m_Size: {x: 5.12, y: 5.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -10748,6 +10755,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 389932669}
     m_Modifications:
+    - target: {fileID: -6865745888596722623, guid: 859e5325d9bbeb247bed718bf6035084, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5815119030989645651, guid: 859e5325d9bbeb247bed718bf6035084, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -10986,6 +10997,8 @@ MonoBehaviour:
   bulletPrefab: {fileID: 8241137594960322160, guid: 5f5ec7c307faf7d49b3013cb4b56aee9, type: 3}
   bulletNumber: 30
   maxBullet: 30
+  fireRate: 10
+  reloadTime: 1.5
 --- !u!114 &1728449944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11669,6 +11682,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 389932669}
     m_Modifications:
+    - target: {fileID: -6865745888596722623, guid: 859e5325d9bbeb247bed718bf6035084, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5815119030989645651, guid: 859e5325d9bbeb247bed718bf6035084, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -12108,7 +12125,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.2, y: 0.2}
+  m_Size: {x: 5.12, y: 5.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -12864,7 +12881,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.2, y: 0.2}
+  m_Size: {x: 5.41, y: 5.41}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -13332,6 +13349,8 @@ MonoBehaviour:
   bulletPrefab: {fileID: 8241137594960322160, guid: f23a556892149fb48bed6dc5daf2ecb5, type: 3}
   bulletNumber: 7
   maxBullet: 7
+  fireRate: 10
+  reloadTime: 1.5
 --- !u!61 &2070199509
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13696,6 +13715,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 389932669}
     m_Modifications:
+    - target: {fileID: -2076013433412610492, guid: 859e5325d9bbeb247bed718bf6035084, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5815119030989645651, guid: 859e5325d9bbeb247bed718bf6035084, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -13832,7 +13855,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.2, y: 0.2}
+  m_Size: {x: 6.39, y: 4.73}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
