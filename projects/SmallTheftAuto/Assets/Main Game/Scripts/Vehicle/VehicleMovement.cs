@@ -8,33 +8,32 @@ using UnityEngine;
 
 public class VehicleMovement : MonoBehaviour
 {
-    Rigidbody2D rb;
-    
+    Rigidbody2D _rb;
     [SerializeField] private float accelerationPower = 30000f;
-    [SerializeField]
-    float steeringPower = 0.15f; //Has to be between 0-1
-    float steeringAmount, speed, direction;
+    [SerializeField] float steeringPower = 0.15f; //Has to be between 0-1
     [SerializeField] private float maxSpeed = 30000;
-
+    float _steeringAmount, _speed, _direction;
     public float MAXSpeed
     {
         get => maxSpeed;
         set => maxSpeed = (value* 10);
     }
 
-    // Use this for initialization
+    // Initialization of RigidBody
     void Start () {
-        rb = GetComponentInChildren<Rigidbody2D> ();
+        _rb = GetComponentInChildren<Rigidbody2D> ();
     }
-	
-    // Update is called once per frame
+    
     void FixedUpdate () {
 
-        steeringAmount = - Input.GetAxis ("Horizontal");
-       // speed = Input.GetAxis ("Vertical") * accelerationPower;
-      
-        speed = Mathf.Clamp((Input.GetAxis ("Vertical") * accelerationPower), -MAXSpeed/2, MAXSpeed);
-        direction = Mathf.Sign(Vector2.Dot (rb.velocity, rb.GetRelativeVector(Vector2.up)));
+        // Control for the steering wheel
+        _steeringAmount = - Input.GetAxis ("Horizontal");
+        // Control for acceleration and break
+        _speed = Mathf.Clamp((Input.GetAxis ("Vertical") * accelerationPower), -MAXSpeed/2, MAXSpeed);
+        // Rotation
+        _direction = Mathf.Sign(Vector2.Dot (_rb.velocity, _rb.GetRelativeVector(Vector2.up)));
+        
+        
         if (Input.GetKey(KeyCode.LeftShift)) // Drifting
         {
             steeringPower = 0.35f;
@@ -50,13 +49,13 @@ public class VehicleMovement : MonoBehaviour
             steeringPower = 0.15f;
             accelerationPower = 30000f;
         }
-        rb.rotation += steeringAmount * steeringPower * rb.velocity.magnitude * direction; 
         
         
+        _rb.rotation += _steeringAmount * steeringPower * _rb.velocity.magnitude * _direction; 
+        
+        _rb.AddRelativeForce (Vector2.up * _speed); 
 
-        rb.AddRelativeForce (Vector2.up * speed); //Ask teacher how this works
-
-        rb.AddRelativeForce ( - Vector2.right * rb.velocity.magnitude * steeringAmount / 5);
+        _rb.AddRelativeForce ( - Vector2.right * _rb.velocity.magnitude * _steeringAmount / 5);
 			
     }
 }
