@@ -5,16 +5,15 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    // This is the point that we instantiate the prefab bullet from
     public Transform firePoint;
     public GameObject bulletPrefab;
     public int bulletNumber = 7;
     public int maxBullet;
     [SerializeField] private float fireRate = 10f;
-    private float lastFired;
+    private float _lastFired;
     [SerializeField] private float reloadTime = 1.5f;
     
-
-    // Update is called once per frame
     void Update()
     {
         if (this.name == "pistol1")
@@ -30,19 +29,20 @@ public class Weapon : MonoBehaviour
             maxBullet = 30;
             if (Input.GetButton("Fire1") && bulletNumber > 0)
             {
-                if (Time.time - lastFired > 1/fireRate)
+                // Creating interval between instantiated bullets
+                if (Time.time - _lastFired > 1/fireRate) 
                 {
-                    lastFired = Time.time;
+                    _lastFired = Time.time;
                     Shoot();
                 }
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
+        //Reload function with delay - Reload time is adjustable on the scene
+        if (Input.GetKeyDown(KeyCode.R)) 
         {
             Invoke("ReloadGun",reloadTime);
         }
-        
     }
 
     private void ReloadGun()
@@ -52,7 +52,7 @@ public class Weapon : MonoBehaviour
 
     void Shoot()
     {
-        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation); 
         bulletNumber--;
     }
 }
