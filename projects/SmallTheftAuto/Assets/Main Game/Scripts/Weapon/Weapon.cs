@@ -9,13 +9,10 @@ public class Weapon : MonoBehaviour
     public GameObject bulletPrefab;
     public int bulletNumber = 7;
     public int maxBullet;
-    private float fireRate = 10f;
+    [SerializeField] private float fireRate = 10f;
     private float lastFired;
-
-    private void Start()
-    {
-        
-    }
+    [SerializeField] private float reloadTime = 1.5f;
+    
 
     // Update is called once per frame
     void Update()
@@ -43,7 +40,7 @@ public class Weapon : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            Invoke("ReloadGun",1.5f);
+            Invoke("ReloadGun",reloadTime);
         }
         
     }

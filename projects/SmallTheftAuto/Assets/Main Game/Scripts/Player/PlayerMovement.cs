@@ -13,6 +13,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float walkSpeed = 10.0f;
     [SerializeField] 
     private Slider staminaBar;
+    [SerializeField] private float staminaLosingRate = 0.4f;
+    [SerializeField] private float staminaReloadTime = 2f;
+    [SerializeField] private float staminaReloadRate = 30f;
     private float maxStamina = 100;
     private float currentStamina;
     private Coroutine regen;
@@ -44,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
         {
 
             speed = runSpeed;
-            UseStamina(0.4f);
+            UseStamina(staminaLosingRate);
         }
         else speed = walkSpeed;
         
@@ -78,10 +81,10 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator RegenStamina()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(staminaReloadTime);
         while (currentStamina < maxStamina)
         {
-            currentStamina += maxStamina / 30;
+            currentStamina += maxStamina / staminaReloadRate;
             canRun = true;
             staminaBar.value = currentStamina;
             yield return regenTick;

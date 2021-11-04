@@ -26,6 +26,7 @@ public class Quest : MonoBehaviour
     {
         gameManager = FindObjectOfType<GameManager>();
         respawn = FindObjectOfType<Respawn>();
+        parkingSpot.GetComponent<ParkingSpot>().enabled = false;
     }
 
     void Update()
@@ -84,6 +85,7 @@ public class Quest : MonoBehaviour
         }
         if (missionIndex == 1)
         {
+            parkingSpot.GetComponent<ParkingSpot>().enabled = true;
             maximumTime = 200;
             completionCritera = parkingSpot.GetComponent<ParkingSpot>().parked && player.activeInHierarchy;
             if (timerUI.activeInHierarchy)
@@ -105,6 +107,7 @@ public class Quest : MonoBehaviour
         {
             money.SetActive(false);
             parkingSpot.transform.GetChild(0).gameObject.SetActive(false);
+            parkingSpot.GetComponent<ParkingSpot>().enabled = false;
         }
         MissionOver();
         if (missionIndex > quests.Length-2)
