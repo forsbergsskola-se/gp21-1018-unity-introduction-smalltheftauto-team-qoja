@@ -14139,6 +14139,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3496925137811032568, guid: 6e539d54024e1de4abc681fda4e7f635, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 34.3486
+      objectReference: {fileID: 0}
+    - target: {fileID: 3496925137811032568, guid: 6e539d54024e1de4abc681fda4e7f635, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 128.016
+      objectReference: {fileID: 0}
+    - target: {fileID: 3496925137811032568, guid: 6e539d54024e1de4abc681fda4e7f635, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -8.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3496925137811032568, guid: 6e539d54024e1de4abc681fda4e7f635, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -54.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3496925137811032575, guid: 6e539d54024e1de4abc681fda4e7f635, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0019d93c9f3149a46a50102a7b723063, type: 3}
     - target: {fileID: 3496925137839595689, guid: 6e539d54024e1de4abc681fda4e7f635, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -14155,6 +14175,22 @@ PrefabInstance:
       propertyPath: weapons.Array.data[2]
       value: 
       objectReference: {fileID: 1728449940}
+    - target: {fileID: 3496925138424701478, guid: 6e539d54024e1de4abc681fda4e7f635, type: 3}
+      propertyPath: m_margin.w
+      value: -62.652817
+      objectReference: {fileID: 0}
+    - target: {fileID: 3496925138424701478, guid: 6e539d54024e1de4abc681fda4e7f635, type: 3}
+      propertyPath: m_margin.x
+      value: 160.14124
+      objectReference: {fileID: 0}
+    - target: {fileID: 3496925138424701478, guid: 6e539d54024e1de4abc681fda4e7f635, type: 3}
+      propertyPath: m_margin.y
+      value: -148.20665
+      objectReference: {fileID: 0}
+    - target: {fileID: 3496925138424701478, guid: 6e539d54024e1de4abc681fda4e7f635, type: 3}
+      propertyPath: m_margin.z
+      value: -94.295166
+      objectReference: {fileID: 0}
     - target: {fileID: 3496925138648017183, guid: 6e539d54024e1de4abc681fda4e7f635, type: 3}
       propertyPath: m_IsActive
       value: 0
