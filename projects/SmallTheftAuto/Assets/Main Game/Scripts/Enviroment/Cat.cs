@@ -32,7 +32,7 @@ public class Cat : MonoBehaviour
         else StopPurr();
     }
 
-    public void OnCollisionEnter2D()
+    public void OnCollisionEnter2D(Collision2D other)
     {
         if (_hasMeowed == false)
         {
