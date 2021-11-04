@@ -34,7 +34,7 @@ public class Vehicle : MonoBehaviour, IHurtOnCrash, IHaveHealth {
         {
             if (_driver != null)
             {
-                ExitCar();
+                ExitCar(playerOffset);
             }
         }
     }
