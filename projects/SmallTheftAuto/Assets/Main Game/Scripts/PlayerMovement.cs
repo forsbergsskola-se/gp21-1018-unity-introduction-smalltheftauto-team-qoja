@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
 
-        if (Input.GetAxis("Run-Button") != 0 && canRun)
+        if (Input.GetAxis("Run-Button") != 0 && canRun && Input.GetAxis("Vertical") != 0)
         {
 
             speed = runSpeed;
