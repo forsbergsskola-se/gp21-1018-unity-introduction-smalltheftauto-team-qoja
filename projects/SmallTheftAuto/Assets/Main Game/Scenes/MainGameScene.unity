@@ -6846,7 +6846,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   purringDistance: 10
-  audioClips: []
+  audioClips:
+  - {fileID: 8300000, guid: f6f9c79ef33f1514b800fc06178b5d02, type: 3}
+  - {fileID: 8300000, guid: 5daf0e8c9e9c10846bf0319a45898637, type: 3}
 --- !u!50 &1052198396
 Rigidbody2D:
   serializedVersion: 4
@@ -11682,18 +11684,6 @@ MonoBehaviour:
   maxBullet: 30
   fireRate: 10
   reloadTime: 1.5
---- !u!114 &1728449944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1728449940}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e97f80eb478b544fb343a416f4c1eb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1732520588
 PrefabInstance:
   m_ObjectHideFlags: 0
