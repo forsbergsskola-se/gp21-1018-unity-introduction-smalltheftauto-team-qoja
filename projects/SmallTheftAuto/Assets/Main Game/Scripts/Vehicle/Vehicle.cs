@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Vehicle : MonoBehaviour, IHurtOnCrash, IHaveHealth {
     public int DamageOnCrash => 5;
+    public Vector3 playerOffset = new Vector3(3, 0, 0);
     public int maxHealth = 200;
     private int _health;
     private GameObject _driver;
@@ -47,8 +48,7 @@ public class Vehicle : MonoBehaviour, IHurtOnCrash, IHaveHealth {
         OnOffRadio(_radio, true);
     }
 
-    public void ExitCar() {
-        Vector3 playerOffset = new Vector3(3, 0, 0);
+    public void ExitCar(Vector3 vehiclePlayerOffset) {
 
         _driver.transform.parent = null;
         _driver.transform.position = transform.position + playerOffset;
