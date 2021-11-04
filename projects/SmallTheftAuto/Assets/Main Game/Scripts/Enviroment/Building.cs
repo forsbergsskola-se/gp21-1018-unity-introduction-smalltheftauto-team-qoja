@@ -1,21 +1,19 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Building : MonoBehaviour, IHurtOnCrash, IHaveHealth {
-    [SerializeField] private int maxHealth = 400;
-    private int health;
-
-    private void Awake() {
-        health = maxHealth;
-    }
-
+public class Building : MonoBehaviour, IHurtOnCrash, IHaveHealth
+{
+    public int maxHealth = 400;
+    private int _health;
     public int DamageOnCrash => 10;
 
+    private void Awake()
+    {
+        _health = maxHealth;
+    }
+    
     public int Health
     {
-        get => health;
-        set => health = Mathf.Clamp(value, 0, maxHealth);
+        get => _health;
+        set => _health = Mathf.Clamp(value, 0, maxHealth);
     }
 }

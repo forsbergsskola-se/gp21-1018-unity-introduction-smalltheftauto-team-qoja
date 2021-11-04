@@ -6,53 +6,39 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
-    //[SerializeField] private GameObject player;
     public Player player;
     public Respawn respawn;
-    public GameObject wasted;
     public PlayerMovement playerMovement;
-
+    private static GameManager _instance;
     private bool _isRespawning;
-    
 
-    public bool playerDied;
-    
-    // private int money = 10;
-    // private int score = 10;
-    // private int health = 100;
+    public int Health => player.Health;
 
-    public int Health
-    {
-        get => player.Health;
-        set => player.Health = value;
-
-    }
     public int Money
     {
         get => player.Money;
-
         set => player.Money = value;
     }
 
     public int Score
     {
         get => player.Score;
-
         set => player.Score = value;
     }
 
     private void MakeSingleton()
     {
-        if (instance != null) //This checks if we have a copy of the GameManager and if so, it destroys it
+        //This checks if we have a copy of the GameManager and if so, it destroys it
+        if (_instance != null)
         {
             Destroy(gameObject);
             
         }
-        else //If there's no copy, set the instance to this
+        //If there's no copy, set the instance to this
+        else
         {
-            instance = this;
-            DontDestroyOnLoad(instance);
+            _instance = this;
+            DontDestroyOnLoad(_instance);
         }
     }
 
@@ -72,20 +58,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void LoadScene() //This is called on player death
-    {
-        SceneManager.LoadScene("MainGameScene");
-        Time.timeScale = 1;
-        //DontDestroyOnLoad(instance);
-    }
-    public void Save() //This is called on save points
-    {
-        //Here we want to be able to save progress such as quest completion
-        //We also want to save how much ammo we have left
-        //We also want to save our score
-    }
-
-    public void RespawnData() //This manages all the respawn variables
+    public void RespawnData()
     {
         playerMovement.enabled = true;
         player.Health = respawn.Health;
@@ -96,16 +69,12 @@ public class GameManager : MonoBehaviour
         _isRespawning = false;
     }
 
-    public void Respawn() //This calls the respawndata function after 3 seconds
+    
+    private void Respawn()
     {
-        
-        //wasted.SetActive(true);
-        //Invoke("DisableWasted", 3);
         playerMovement.enabled = false;
         _isRespawning = true;
-        Invoke("RespawnData", 3);
-        
-        //player.Money = player.Money / 2;
+        Invoke(nameof(RespawnData), 3);
     }
 
     public void StartGame() //This is called after button press on first menu, and when unpausing
@@ -115,9 +84,8 @@ public class GameManager : MonoBehaviour
     
     public void RestartGame()
     {
-       
         SceneManager.LoadScene("MainGameScene");
-        Awake(); //**IMPORTANT** This fixed the problem
+        Awake();
         
         player.Health = player.maxHealth;
     }

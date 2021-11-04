@@ -1,21 +1,15 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Cat : MonoBehaviour
 {
-
     public float purringDistance;
-    public AudioClip[] _audioClips;
-    
+    public AudioClip[] audioClips;
     private AudioSource[] _audioSources;
-    
     private Player _player;
-    private float _distance;
+    private float _distanceToPlayer;
 
-    private bool _hasMeowed ;
-    // Start is called before the first frame update
+    private bool _hasMeowed;
+
     void Start()
     {
         _player = FindObjectOfType<Player>();
@@ -23,12 +17,22 @@ public class Cat : MonoBehaviour
 
        for (var i = 0; i < _audioSources.Length; i++)
        {
-          _audioSources[i].clip = _audioClips[i]; 
+          _audioSources[i].clip = audioClips[i]; 
        }
-       
+    }
+    
+    private void Update()
+    {
+        _distanceToPlayer = Vector2.Distance(this.transform.position, _player.transform.position);
+        
+        if (_distanceToPlayer <= purringDistance)
+        {
+            Purr();
+        }
+        else StopPurr();
     }
 
-    public void OnCollisionEnter2D(Collision2D other)
+    public void OnCollisionEnter2D()
     {
         if (_hasMeowed == false)
         {
@@ -43,29 +47,19 @@ public class Cat : MonoBehaviour
         _audioSources[0].enabled = true;
         _hasMeowed = false;
     }
-    
-    public void MeowWithCooldown()
+
+    private void MeowWithCooldown()
     {
-        Invoke("Meow", 1f);
+        Invoke(nameof(Meow), 1f);
     }
-    
-    public void Purr()
+
+    private void Purr()
     {
         _audioSources[1].enabled = true;
     }
 
-    public void StopPurr()
+    private void StopPurr()
     {
         _audioSources[1].enabled = false;
-    }
-    
-    void Update()
-    {
-        _distance = Vector2.Distance(this.transform.position, _player.transform.position);
-        if (_distance <= purringDistance)
-        {
-            Purr();
-        }
-        else StopPurr();
     }
 }

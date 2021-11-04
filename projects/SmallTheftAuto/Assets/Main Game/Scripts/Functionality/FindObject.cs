@@ -1,11 +1,10 @@
-using UnityEngine;
-
-public class FindObject : MonoBehaviour
+public class FindObject
 {
    public static int FindIndexOfClosestObject(float[] distances)
     {
         int indexOfClosestObject = 0;
         float closestPosition = 1000f;
+        
         for(int i = 0; i < distances.Length; i++)
         {
             if (distances[i] < closestPosition)
@@ -17,5 +16,4 @@ public class FindObject : MonoBehaviour
         
         return indexOfClosestObject;
     }
-    
 }

@@ -15,6 +15,5 @@ public class Wait : MonoBehaviour
             //condition = false;
             waitingForSeconds = false; 
         }
-        
     }
 }
