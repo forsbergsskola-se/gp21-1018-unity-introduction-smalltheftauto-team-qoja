@@ -1,10 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-
-
 
 public class Radio : MonoBehaviour
 {
@@ -12,12 +6,11 @@ public class Radio : MonoBehaviour
     [SerializeField] public AudioClip audioClip2;
     [SerializeField] public AudioClip audioClip3;
     [SerializeField] private AudioClip audioClip4;
-    
-    private AudioSource audioSource;
+    private AudioSource _audioSource;
 
     private void Start()
     {
-        audioSource = gameObject.GetComponent<AudioSource>();
+        _audioSource = gameObject.GetComponent<AudioSource>();
         ToggleRadio(false);
     }
 
@@ -33,15 +26,16 @@ public class Radio : MonoBehaviour
         ToggleRadio(false);
     }
 
-    void RadioManager(AudioClip audioClip, float pitch)
+    private void RadioManager(AudioClip audioClip, float pitch)
     {
-        audioSource.enabled = false;
-        audioSource.clip = audioClip;
-        audioSource.pitch = pitch;
-        audioSource.enabled = true;
+        _audioSource.enabled = false;
+        _audioSource.clip = audioClip;
+        _audioSource.pitch = pitch;
+        _audioSource.enabled = true;
     }
 
-    void MusicPicker()
+    //Changes song based on key input
+    private void MusicPicker()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -63,22 +57,22 @@ public class Radio : MonoBehaviour
         {
             RadioManager(audioClip4,1f);
         }
-        
     }
-    void VolumeControl()
+    
+    private void VolumeControl()
     {
         if (Input.GetKeyDown(KeyCode.KeypadPlus) || Input.GetKeyDown(KeyCode.Plus))
         {
-            audioSource.volume += 0.05f;
+            _audioSource.volume += 0.05f;
         }
         else if (Input.GetKeyDown(KeyCode.KeypadMinus) || Input.GetKeyDown(KeyCode.Minus))
         {
-            audioSource.volume -= 0.05f;
+            _audioSource.volume -= 0.05f;
         }
     }
 
     public void ToggleRadio(bool toggle)
     {
-        this.enabled = toggle;
+        enabled = toggle;
     }
 }

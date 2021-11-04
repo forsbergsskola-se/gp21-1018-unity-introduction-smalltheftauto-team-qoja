@@ -1,18 +1,13 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour, IHurtOnCrash
 {
-
-    public float bulletSpeed = 30000000f;
     public Rigidbody2D bulletRb;
+    public float bulletSpeed = 30000000f;
     public int bulletDamage = 10;
+    [SerializeField] private float rangeOfWeapon = 2f;
     public int DamageOnCrash => bulletDamage;
-    [SerializeField] private float timeActiveBullet = 2f;
-    
-    
+
     void Start()
     {
         bulletRb.velocity = transform.right * bulletSpeed;
@@ -21,6 +16,7 @@ public class Bullet : MonoBehaviour, IHurtOnCrash
     private void OnTriggerEnter2D(Collider2D other)
     {
         Destructible destructible = other.gameObject.GetComponentInParent<Destructible>();
+        
         if (destructible != null)
         {
            destructible.TakeDamage(DamageOnCrash); 
@@ -31,8 +27,8 @@ public class Bullet : MonoBehaviour, IHurtOnCrash
 
     void Update()
     {
-        // Destroying the game object prefab bullet after x seconds
-        Invoke(nameof(DestroyBullet), timeActiveBullet);
+        // Destroying the bullet after rangeOfWeapon in seconds
+        Invoke(nameof(DestroyBullet), rangeOfWeapon);
     }
     
     void DestroyBullet()

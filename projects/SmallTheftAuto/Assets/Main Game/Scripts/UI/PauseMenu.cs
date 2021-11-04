@@ -5,12 +5,15 @@ public class PauseMenu : MonoBehaviour
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
     public GameObject instructionUI;
-    public GameObject gameManager;
+    
     void Update()
     {
-        // Press Esc to open the pause menu and the game is paused
-        if(!instructionUI.activeInHierarchy && !pauseMenuUI.activeInHierarchy && Time.timeScale == 0)
+        if (!instructionUI.activeInHierarchy && !pauseMenuUI.activeInHierarchy && Time.timeScale == 0)
+        {
             Resume();
+        }
+        
+        // Press Esc to open the pause menu and the game is paused
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (GameIsPaused)

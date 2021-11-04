@@ -3,29 +3,24 @@ using UnityEngine;
 
 public class PlayerInfo : MonoBehaviour
 {
-    private TextMeshProUGUI playerInfo;
-    private int health;
-    private int money;
-    private int score;
-   //public GameObject player;
-   //public GameManager gameManager;
     public GameManager gameManager;
+    private TextMeshProUGUI _playerInfo;
+    private int _health;
+    private int _money;
+    private int _score;
 
     void Awake()
     {
-        playerInfo = GetComponent<TextMeshProUGUI>();
-        playerInfo.enableAutoSizing = true;
+        _playerInfo = GetComponent<TextMeshProUGUI>();
+        _playerInfo.enableAutoSizing = true;
         gameManager = FindObjectOfType<GameManager>();
     }
 
     void Update()
     {
-       // health = player.GetComponent<Player>().Health;
-        health = gameManager.Health;
-        money = gameManager.Money;
-        score = gameManager.Score;
-        // money = Player.Money;
-        // score = player.GetComponent<Player>().Score;
-        playerInfo.text = health +"<br><br>"+money+"<br><br>"+score;
+        _health = gameManager.Health;
+        _money = gameManager.Money;
+        _score = gameManager.Score;
+        _playerInfo.text = _health +"<br><br>"+_money+"<br><br>"+_score;
     }
 }

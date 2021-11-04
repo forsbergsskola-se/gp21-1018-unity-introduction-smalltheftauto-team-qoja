@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class UICEO : MonoBehaviour
 {
-
     public Player player;
     public GameObject wasted;
     
@@ -12,17 +11,17 @@ public class UICEO : MonoBehaviour
     {
         player = FindObjectOfType<Player>();
     }
-
     
     void Update()
     {
         if (player.IsDead)
         {
             wasted.SetActive(true);
-            Invoke("DisableWasted", 3);
+            Invoke(nameof(DisableWasted), 3);
         }
 
     }
+    
     void DisableWasted()
     {
         wasted.SetActive(false);

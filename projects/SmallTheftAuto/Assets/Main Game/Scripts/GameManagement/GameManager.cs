@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,8 +13,8 @@ public class GameManager : MonoBehaviour
 
     public int Money
     {
-        get => player.Money;
-        set => player.Money = value;
+        get => Player.Money;
+        set => Player.Money = value;
     }
 
     public int Score
@@ -62,7 +59,7 @@ public class GameManager : MonoBehaviour
     {
         playerMovement.enabled = true;
         player.Health = respawn.Health;
-        player.Money = respawn.Money/2;
+        Player.Money = respawn.Money/2;
         player.Score = respawn.Score;
         respawn.RespawnPoint();
         respawn.SaveData();
@@ -86,7 +83,6 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("MainGameScene");
         Awake();
-        
         player.Health = player.maxHealth;
     }
     
@@ -103,12 +99,6 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1; //This Unpauses time
         AudioListener.pause = false; // This unpauses the Audio Listener
     }
-}
-
-public enum GameState
-{
-    //Here we want to have all the different gamestates, like Control screen
-    
 }
 
 

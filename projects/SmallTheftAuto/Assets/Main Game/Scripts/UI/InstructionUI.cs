@@ -10,5 +10,4 @@ public class InstructionUI : MonoBehaviour
             pauseMenuUI.GetComponent<PauseMenu>().Pause();
         }
     }
-       
 }
