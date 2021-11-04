@@ -9,7 +9,7 @@ public class PlayerInfo : MonoBehaviour
     private int score;
    //public GameObject player;
    //public GameManager gameManager;
-    private GameManager gameManager;
+    public GameManager gameManager;
 
     void Awake()
     {
