@@ -11834,7 +11834,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ab330cc5563acf4faf3ee5251eb53c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instructionUI: {fileID: 1869875426}
   pauseMenuUI: {fileID: 1696359110}
 --- !u!1001 &1872334595
 PrefabInstance:
@@ -12518,6 +12517,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 396654438, guid: 7cbf71610d489f0488b5401e4999c114, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5163634516234916672, guid: 7cbf71610d489f0488b5401e4999c114, type: 3}
       propertyPath: m_RootOrder
       value: 19
@@ -14303,6 +14306,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 396654438, guid: 7cbf71610d489f0488b5401e4999c114, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5163634516234916672, guid: 7cbf71610d489f0488b5401e4999c114, type: 3}
       propertyPath: m_RootOrder
       value: 18
