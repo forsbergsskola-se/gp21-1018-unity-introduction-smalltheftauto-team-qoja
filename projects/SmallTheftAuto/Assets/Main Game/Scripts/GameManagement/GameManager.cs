@@ -72,21 +72,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
-
     public void LoadScene() //This is called on player death
     {
         SceneManager.LoadScene("MainGameScene");
         Time.timeScale = 1;
         //DontDestroyOnLoad(instance);
     }
-
     public void Save() //This is called on save points
     {
         //Here we want to be able to save progress such as quest completion
         //We also want to save how much ammo we have left
         //We also want to save our score
-        
-        
     }
 
     public void RespawnData() //This manages all the respawn variables
