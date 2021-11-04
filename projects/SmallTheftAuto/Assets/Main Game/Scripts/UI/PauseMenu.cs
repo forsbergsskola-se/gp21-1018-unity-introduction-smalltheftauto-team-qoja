@@ -1,11 +1,7 @@
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour 
 {
-    //public KeyCode key;
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
     public GameObject instructionUI;
@@ -14,7 +10,6 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            //GetComponent<Button>().onClick.Invoke();
             if (GameIsPaused)
             {
                 if(instructionUI.activeInHierarchy)
@@ -47,7 +42,7 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = true;
     }
 
-    void Pause()
+    private void Pause()
     {
         pauseMenuUI.SetActive(true);
         instructionUI.SetActive(false);

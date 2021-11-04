@@ -1,32 +1,31 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Quest : MonoBehaviour
 {
+    public static string[] quests = {"Collect 200 dollars", "Park a car in parking spot No.2 and get off the car", "Good job! No more quest!"};
+    public static int missionIndex;
     public GameObject questUI;
     public GameObject timerUI;
     public GameObject player;
     public GameObject missionComplete;
     public GameObject missionFailed;
     public GameManager gameManager;
-    public Respawn respawn;
-    public static string[] quests = {"Collect 200 dollars", "Park a car in parking spot No.2 and get off the car", "Good job! No more quest!"};
     public GameObject money;
     public GameObject parkingSpot;
-    public static int missionIndex;
+    public Respawn respawn;
     
     private int originalMoney;
     private bool missionIsOver;
     private bool moneyReset;
-
     private int maximumTime;
     private bool completionCritera;
+    private ParkingSpot codeOfParkingSpot;
     
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
         respawn = FindObjectOfType<Respawn>();
-        parkingSpot.GetComponent<ParkingSpot>().enabled = false;
+        codeOfParkingSpot = parkingSpot.GetComponent<ParkingSpot>();
     }
 
     void Update()
@@ -85,12 +84,11 @@ public class Quest : MonoBehaviour
         }
         if (missionIndex == 1)
         {
-            parkingSpot.GetComponent<ParkingSpot>().enabled = true;
             maximumTime = 200;
             completionCritera = parkingSpot.GetComponent<ParkingSpot>().parked && player.activeInHierarchy;
             if (timerUI.activeInHierarchy)
             {
-                parkingSpot.GetComponent<ParkingSpot>().enabled = true;
+                codeOfParkingSpot.enabled = true;
                 parkingSpot.transform.GetChild(0).gameObject.SetActive(true);
             }
         }
@@ -107,7 +105,7 @@ public class Quest : MonoBehaviour
         {
             money.SetActive(false);
             parkingSpot.transform.GetChild(0).gameObject.SetActive(false);
-            parkingSpot.GetComponent<ParkingSpot>().enabled = false;
+            codeOfParkingSpot.enabled = false;
         }
         MissionOver();
         if (missionIndex > quests.Length-2)
@@ -166,7 +164,7 @@ public class Quest : MonoBehaviour
         }
     }
 
-    void MoneyFinder()
+    private void MoneyFinder()
     {
         if (!moneyReset)
         {
@@ -198,7 +196,7 @@ public class Quest : MonoBehaviour
         }
     }
 
-    void SetMissionFalse()
+   private void SetMissionFalse()
     {
         missionComplete.SetActive(false);
         missionFailed.SetActive(false);
