@@ -8445,7 +8445,7 @@ RectTransform:
   - {fileID: 1243140511}
   - {fileID: 1744302197}
   m_Father: {fileID: 3496925138103699628}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -11432,6 +11432,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1696359110}
   instructionUI: {fileID: 1869875426}
+  gameManager: {fileID: 0}
 --- !u!1001 &1699326986
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12516,7 +12517,7 @@ RectTransform:
   m_Children:
   - {fileID: 1992037418}
   m_Father: {fileID: 3496925138103699628}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -13305,7 +13306,7 @@ RectTransform:
   m_GameObject: {fileID: 1992037417}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.7, y: 1.7, z: 1.7}
   m_Children:
   - {fileID: 163762094}
   - {fileID: 1307678385}
@@ -15031,6 +15032,10 @@ PrefabInstance:
       propertyPath: pauseMenuUI
       value: 
       objectReference: {fileID: 1696359110}
+    - target: {fileID: 3496925139097254266, guid: 6e539d54024e1de4abc681fda4e7f635, type: 3}
+      propertyPath: instructionUI
+      value: 
+      objectReference: {fileID: 1869875426}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e539d54024e1de4abc681fda4e7f635, type: 3}
 --- !u!224 &3496925138103699628 stripped

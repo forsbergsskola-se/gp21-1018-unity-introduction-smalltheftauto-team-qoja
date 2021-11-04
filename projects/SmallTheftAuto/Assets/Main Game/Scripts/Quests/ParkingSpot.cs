@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class ParkingSpot : MonoBehaviour
 {
-    public bool parked;
-    private bool parking;
+    public bool isParked;
+    private bool _parkingCollision; // Used to check whether there is collision between the parking spot and the car
     
     void Update()
     {
@@ -12,6 +12,8 @@ public class ParkingSpot : MonoBehaviour
 
     //Performance checked, this takes a long time to do. Maybe we can cache the array so we don't make a new one every update
     //Could also start this only after quest is started and then create the array
+    
+    // Check the distance between the parking spot and the car. The car is parked if the distance is smaller than 1 and no collision exists.
     private void IsCarParked()
     {
         Vehicle[] vehicles = FindObjectsOfType<Vehicle>();
@@ -22,23 +24,23 @@ public class ParkingSpot : MonoBehaviour
         }
 
         int indexOfClosest = FindObject.FindIndexOfClosestObject(distances);
-        if (distances[indexOfClosest] < 1 && !parking)
+        if (distances[indexOfClosest] < 1 && !_parkingCollision)
         {
-            parked = true;
+            isParked = true;
         }
-        else parked = false;
+        else isParked = false;
     }
-
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
-        parking = true;
+        _parkingCollision = true;
     }
     private void OnTriggerStay2D(Collider2D other)
     {
-        parking = true;
+        _parkingCollision = true;
     }
     private void OnTriggerExit2D(Collider2D other)
     {
-        parking = false;
+        _parkingCollision = false;
     }
 }

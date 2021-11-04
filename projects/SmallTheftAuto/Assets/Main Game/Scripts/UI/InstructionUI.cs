@@ -7,7 +7,7 @@ public class InstructionUI : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            pauseMenuUI.GetComponent<PauseMenu>().Resume();
+            pauseMenuUI.GetComponent<PauseMenu>().Pause();
         }
     }
        

@@ -14,68 +14,26 @@ public class Quest : MonoBehaviour
     public GameObject parkingSpot;
     public Respawn respawn;
     
-    private int originalMoney;
-    private bool missionIsOver;
-    private bool moneyReset;
-    private int maximumTime;
-    private bool completionCritera;
-    private ParkingSpot codeOfParkingSpot;
+    private int _originalMoney; // Used to save the player's money when starting the first quest
+    private bool _missionIsOver;
+    private bool _moneyReset; // Used to reset the money when player dies during the quest
+    private int _maximumTime; // Maximum time to finish the quest.
+    private bool _completionCriteria; // The criteria to finish the corresponding quest
+    private ParkingSpot _codeOfParkingSpot;
     
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
         respawn = FindObjectOfType<Respawn>();
-        codeOfParkingSpot = parkingSpot.GetComponent<ParkingSpot>();
+        _codeOfParkingSpot = parkingSpot.GetComponent<ParkingSpot>();
     }
 
     void Update()
     {
-        // if(!Player.questIsActive) originalMoney = gameManager.Money;
-        // if (missionIndex == 0)
-        // {
-        //     missionIsOver = false;
-        //     QuestTimer(100);
-        //     
-        //     if (timerUI.activeInHierarchy)
-        //     {
-        //         money.SetActive(true);
-        //         MoneyFinder();
-        //     }
-        //     if (gameManager.Money - originalMoney >= 200 && !missionIsOver && timerUI.activeInHierarchy)
-        //     {
-        //         MissionComplete(20, 100);
-        //         missionIndex++;
-        //     }
-        //     IfMissionFailed();
-        //     if(missionIsOver) money.SetActive(false);
-        //     MissionOver();
-        // }
-        // if (missionIndex == 1)
-        // {
-        //     missionIsOver = false;
-        //     QuestTimer(200);
-        //     if (timerUI.activeInHierarchy)
-        //     {
-        //         parkingSpot.GetComponent<ParkingSpot>().enabled = true;
-        //         parkingSpot.transform.GetChild(0).gameObject.SetActive(true);
-        //     }
-        //     if(parkingSpot.GetComponent<ParkingSpot>().parked && !missionIsOver && timerUI.activeInHierarchy)
-        //     {
-        //         if (player.activeInHierarchy)
-        //         {
-        //             MissionComplete(20,100);
-        //             missionIndex++;
-        //         }
-        //     }
-        //     if(missionIsOver) parkingSpot.transform.GetChild(0).gameObject.SetActive(false);
-        //     IfMissionFailed();
-        //     MissionOver();
-        // }
-        
         if (missionIndex == 0)
         {
-            maximumTime = 100;
-            completionCritera = gameManager.Money - originalMoney >= 200;
+            _maximumTime = 100;
+            _completionCriteria = gameManager.Money - _originalMoney >= 200;
             if (timerUI.activeInHierarchy)
             {
                 money.SetActive(true);
@@ -84,36 +42,38 @@ public class Quest : MonoBehaviour
         }
         if (missionIndex == 1)
         {
-            maximumTime = 200;
-            completionCritera = parkingSpot.GetComponent<ParkingSpot>().parked && player.activeInHierarchy;
+            _maximumTime = 200;
+            _completionCriteria = parkingSpot.GetComponent<ParkingSpot>().isParked && player.activeInHierarchy;
             if (timerUI.activeInHierarchy)
             {
-                codeOfParkingSpot.enabled = true;
+                _codeOfParkingSpot.enabled = true;
                 parkingSpot.transform.GetChild(0).gameObject.SetActive(true);
             }
         }
-        if (!Player.questIsActive) originalMoney = gameManager.Money;
-        missionIsOver = false;
-        QuestTimer(maximumTime);
-        if (completionCritera && missionIndex!=quests.Length-1 && timerUI.activeInHierarchy)
+        if (!Player.questIsActive) _originalMoney = gameManager.Money;
+        _missionIsOver = false;
+        QuestTimer(_maximumTime);
+        if ( _completionCriteria && missionIndex!=quests.Length-1 && timerUI.activeInHierarchy)
         {
             MissionComplete(20,100);
             missionIndex++;
         }
         IfMissionFailed();
-        if (missionIsOver)
+        if (_missionIsOver)
         {
             money.SetActive(false);
             parkingSpot.transform.GetChild(0).gameObject.SetActive(false);
-            codeOfParkingSpot.enabled = false;
+            _codeOfParkingSpot.enabled = false;
         }
         MissionOver();
+        
+        // When there is no more quest
         if (missionIndex > quests.Length-2)
         {
-            missionIsOver = false;
+            _missionIsOver = false;
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                missionIsOver = true;
+                _missionIsOver = true;
                 questUI.SetActive(false);
                 MissionOver();
             }
@@ -123,7 +83,7 @@ public class Quest : MonoBehaviour
     private void MissionComplete(int addScore, int addMoney)
     {
         missionComplete.SetActive(true);
-        missionIsOver = true;
+        _missionIsOver = true;
         gameManager.Score += addScore;
         gameManager.Money += addMoney;
         respawn.SaveData();
@@ -136,15 +96,16 @@ public class Quest : MonoBehaviour
             if (Timer.timeIsOut || player.GetComponent<Player>().IsDead)
             {
                 missionFailed.SetActive(true);
-                missionIsOver = true;
-                moneyReset = false;
+                _missionIsOver = true;
+                _moneyReset = false;
             }
         }
     }
 
+    // Deactivate the animations when mission is over
     private void MissionOver()
     {
-        if (missionIsOver)
+        if (_missionIsOver)
         { 
             Invoke("SetMissionFalse", 3f);
             Player.questIsActive = false;
@@ -153,6 +114,7 @@ public class Quest : MonoBehaviour
         }
     }
 
+    // Activate the timer for the quest
     private void QuestTimer(float maximumTime)
     {
         if (Input.GetKeyDown(KeyCode.Q) && Player.questIsActive)
@@ -163,16 +125,17 @@ public class Quest : MonoBehaviour
             Timer.timePassed = 0;
         }
     }
-
+    
+    // Find the closest money and collect it if the distance is smaller than 3
     private void MoneyFinder()
     {
-        if (!moneyReset)
+        if (!_moneyReset)
         {
             for (int i = 0; i < money.transform.childCount; i++)
             {
                 money.transform.GetChild(i).gameObject.SetActive(true);
             }
-            moneyReset = true;
+            _moneyReset = true;
         }
         if (Input.GetKeyDown(KeyCode.E) && Player.questIsActive)
         {
