@@ -278,6 +278,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8413436139187139603, guid: 3e53f9514e887d84b843f7c47f5c7f5f, type: 3}
   m_PrefabInstance: {fileID: 2063420253}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &70568755 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3496925137766694814, guid: 6e539d54024e1de4abc681fda4e7f635, type: 3}
+  m_PrefabInstance: {fileID: 3496925138103699627}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &74155753
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -395,8 +400,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 377b20cb61a61a54b92926c6e3daa7de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 200
   playerOffset: {x: 3, y: 0, z: 0}
+  maxHealth: 200
 --- !u!114 &82000693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4053,7 +4058,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eeac1f486d8645548aee449f37e2c4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  areaType: 1
   damage: 4
   interval: 0.3
 --- !u!4 &593745879 stripped
@@ -6842,9 +6846,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   purringDistance: 10
-  _audioClips:
-  - {fileID: 8300000, guid: f6f9c79ef33f1514b800fc06178b5d02, type: 3}
-  - {fileID: 8300000, guid: 5daf0e8c9e9c10846bf0319a45898637, type: 3}
+  audioClips: []
 --- !u!50 &1052198396
 Rigidbody2D:
   serializedVersion: 4
@@ -6993,9 +6995,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   respawn: {fileID: 0}
-  wasted: {fileID: 527449973}
   playerMovement: {fileID: 0}
-  playerDied: 0
 --- !u!4 &1053587468
 Transform:
   m_ObjectHideFlags: 0
@@ -7504,7 +7504,7 @@ MonoBehaviour:
   runSpeed: 5
   walkSpeed: 1.6
   staminaBar: {fileID: 1265199142}
-  staminaLosingRate: 0.4
+  staminaDrain: 0.4
   staminaReloadTime: 2
   staminaReloadRate: 30
 --- !u!61 &1191147849
@@ -7547,7 +7547,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   questUI: {fileID: 393652552}
-  gameManager: {fileID: 0}
 --- !u!114 &1191147851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11432,7 +11431,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1696359110}
   instructionUI: {fileID: 1869875426}
-  gameManager: {fileID: 0}
 --- !u!1001 &1699326986
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12168,6 +12166,11 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.22206171, y: 0.946411}
   m_EdgeRadius: 0
+--- !u!1 &1814551347 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3496925137391070434, guid: 6e539d54024e1de4abc681fda4e7f635, type: 3}
+  m_PrefabInstance: {fileID: 3496925138103699627}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1817490680 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 106764380139182376, guid: c260732853d21d24894963a5a6a26c80, type: 3}
@@ -13884,7 +13887,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentWeaponIndex: 0
   guns: []
-  GunHolder: {fileID: 2057940123}
+  gunHolder: {fileID: 2057940123}
   currentGun: {fileID: 0}
 --- !u!1001 &2063420253
 PrefabInstance:
@@ -14820,6 +14823,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3496925137391070434, guid: 6e539d54024e1de4abc681fda4e7f635, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3496925137766694814, guid: 6e539d54024e1de4abc681fda4e7f635, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3496925137811032568, guid: 6e539d54024e1de4abc681fda4e7f635, type: 3}
       propertyPath: m_SizeDelta.x
       value: 34.3486
@@ -14844,6 +14855,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1053587467}
+    - target: {fileID: 3496925138067194178, guid: 6e539d54024e1de4abc681fda4e7f635, type: 3}
+      propertyPath: smgImage
+      value: 
+      objectReference: {fileID: 70568755}
+    - target: {fileID: 3496925138067194178, guid: 6e539d54024e1de4abc681fda4e7f635, type: 3}
+      propertyPath: pistolImage
+      value: 
+      objectReference: {fileID: 1814551347}
     - target: {fileID: 3496925138067194178, guid: 6e539d54024e1de4abc681fda4e7f635, type: 3}
       propertyPath: weapons.Array.data[0]
       value: 

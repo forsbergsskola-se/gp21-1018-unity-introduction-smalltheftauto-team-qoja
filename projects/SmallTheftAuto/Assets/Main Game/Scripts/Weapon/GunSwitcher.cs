@@ -1,24 +1,21 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GunSwitcher : MonoBehaviour
 {
-    int _totalWeapons = 1;
     public int currentWeaponIndex;
     public GameObject[] guns;
-    public GameObject GunHolder;
+    [FormerlySerializedAs("GunHolder")] public GameObject gunHolder;
     public GameObject currentGun;
-    
+    private int _totalWeapons = 1;
     void Start()
     {
-        _totalWeapons = GunHolder.transform.childCount;
+        _totalWeapons = gunHolder.transform.childCount;
         guns = new GameObject[_totalWeapons];
 
         for (int i = 0; i < _totalWeapons; i++)
         {
-            guns[i] = GunHolder.transform.GetChild(i).gameObject;
+            guns[i] = gunHolder.transform.GetChild(i).gameObject;
             guns[i].SetActive(false);
         }
         guns[0].SetActive(true);
