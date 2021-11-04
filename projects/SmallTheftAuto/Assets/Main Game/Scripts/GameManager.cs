@@ -123,7 +123,10 @@ public class GameManager : MonoBehaviour
     
     public void RestartGame()
     {
+       
         SceneManager.LoadScene("MainGameScene");
+        Awake(); //**IMPORTANT** This fixed the problem
+        
         player.Health = player.maxHealth;
     }
     
