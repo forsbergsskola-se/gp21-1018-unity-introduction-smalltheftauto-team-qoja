@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float walkSpeed = 10.0f;
     [SerializeField] 
     private Slider staminaBar;
+    [SerializeField] private float staminaLosingRate = 0.4f;
     private float maxStamina = 100;
     private float currentStamina;
     private Coroutine regen;
@@ -44,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
         {
 
             speed = runSpeed;
-            UseStamina(0.4f);
+            UseStamina(staminaLosingRate);
         }
         else speed = walkSpeed;
         
