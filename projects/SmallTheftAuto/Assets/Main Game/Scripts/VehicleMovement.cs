@@ -35,10 +35,15 @@ public class VehicleMovement : MonoBehaviour
       
         speed = Mathf.Clamp((Input.GetAxis ("Vertical") * accelerationPower), -MAXSpeed/2, MAXSpeed);
         direction = Mathf.Sign(Vector2.Dot (rb.velocity, rb.GetRelativeVector(Vector2.up)));
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift)) // Drifting
         {
             steeringPower = 0.35f;
             accelerationPower = 15000f;
+        }
+        else if (Input.GetKey(KeyCode.Space)) // Break
+        {
+            steeringPower = 0.35f;
+            accelerationPower = 0f;
         }
         else
         {
