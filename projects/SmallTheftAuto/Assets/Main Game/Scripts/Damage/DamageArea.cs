@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class DamageArea : MonoBehaviour
 {
-    public DamageAreaType areaType = new DamageAreaType();
     public int damage;
     public float interval;
     
@@ -26,7 +25,7 @@ public class DamageArea : MonoBehaviour
         Water
     }
 
-    bool InWater(DamageAreaType dArea)
+    public bool InWater(DamageAreaType dArea)
     {
         switch (dArea)
         {
@@ -53,12 +52,16 @@ public class DamageArea : MonoBehaviour
         }
         _vehicle = other.gameObject.GetComponentInParent<Vehicle>();
         //vehicleMaxSpeed = _vehicleMovement.MAXSpeed;
+        
+        
+        //KEEP
         if (_destructible != null)
         {
             _damageCoroutine = _destructible.TakeDamageOverTime(damage, interval);
             StartCoroutine(_damageCoroutine);
             _coroutineDamageStarted = true;
         }
+        ///
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -70,10 +73,13 @@ public class DamageArea : MonoBehaviour
          //Problem might lay here
         
         _waitingForSeconds = false;
+        
+        //KEEP
         if (_coroutineDamageStarted)
         {
             StopCoroutine(_damageCoroutine);
         }
+        ///
     }
     
     private IEnumerator WaitForSecondsDisableCar(int seconds, VehicleMovement vehicleMovement, Destructible destructible)

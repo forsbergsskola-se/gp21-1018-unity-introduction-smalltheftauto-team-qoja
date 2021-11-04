@@ -3,83 +3,92 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 public class Vehicle : MonoBehaviour, IHurtOnCrash, IHaveHealth {
-    [SerializeField] private int maxHealth = 200;
-    private int health;
-    private GameObject driver;
-    public Vector3 playerOffset = new Vector3(3, 0, 0);
-    private Explosion explosion;
-    private VehicleMovement _vehicleMovement;
-    private Radio radio;
-    private Driver _driver;
     public int DamageOnCrash => 5;
-    
+    public int maxHealth = 200;
+    private int _health;
+    private GameObject _driver;
+    private Explosion _explosion;
+    private VehicleMovement _vehicleMovement;
+    private Radio _radio;
+
     public int Health
     {
-        get => health;
-        set => health = Mathf.Clamp(value, 0, maxHealth);
+        get => _health;
+        set => _health = Mathf.Clamp(value, 0, maxHealth);
     }
     
     private void Awake() {
-        health = maxHealth;
+        _health = maxHealth;
         _vehicleMovement = GetComponent<VehicleMovement>();
+        _radio = gameObject.GetComponentInChildren<Radio>();
+        _explosion = GetComponent<Explosion>();
         
-        if (_vehicleMovement != null) {
-            _vehicleMovement.enabled = false;
-        }
-        
-        GetComponent<VehicleMovement>().enabled = false;
-        //GetComponentInChildren<Radio>().enabled = false;
-        
-        radio = gameObject.GetComponentInChildren<Radio>();
-        explosion = GetComponent<Explosion>();
-        explosion.enabled = false;
+        DisableExplosion(_explosion);
+        ToggleVehicleMovement(_vehicleMovement, false);
     }
 
     void Update()
     {
         if (Input.GetButtonDown("Interact-Vehicle"))
         {
-            if (driver != null)
+            if (_driver != null)
             {
-                ExitCar(playerOffset);
+                ExitCar();
             }
         }
     }
 
     public void EnterCar(GameObject player)
     {
-        driver = player;
-        driver.SetActive(false);
-        if (_vehicleMovement != null)
-        {
-            _vehicleMovement.enabled = true;
-        }
+        _driver = player;
+        _driver.SetActive(false);
         
-        if (radio != null)
-        {
-            radio.ToggleRadio(true);
+        ToggleVehicleMovement(_vehicleMovement, true);
+        OnOffRadio(_radio, true);
+    }
+
+    public void ExitCar() {
+        Vector3 playerOffset = new Vector3(3, 0, 0);
+
+        _driver.transform.parent = null;
+        _driver.transform.position = transform.position + playerOffset;
+        _driver.SetActive(true);
+        _driver = null;
+
+        ToggleVehicleMovement(_vehicleMovement, false);
+        OnOffRadio(_radio, false);
+    }
+
+
+    private void DisableExplosion(Explosion explosion) {
+        if (explosion != null) {
+            explosion.enabled = false;
+        }
+    }
+    
+    private void ToggleVehicleMovement(VehicleMovement vehicleMovement, bool value) {
+        if (vehicleMovement != null) {
+            vehicleMovement.enabled = value;
+        }
+    }
+    
+    private void OnOffRadio(Radio radio, bool value) {
+        if (_radio != null) {
+            _radio.ToggleRadio(value);
         }
     }
 
-    public void ExitCar(Vector3 playerOffset) {
-        driver.transform.parent = null;
-        driver.transform.position = transform.position + playerOffset;
-        driver.SetActive(true);
-       // Rigidbody2D driverBody = driver.GetComponent<Rigidbody2D>();
-        //driverBody.velocity = Vector2.zero;
-        //driverBody.angularVelocity = 0.0f;
-        driver = null;
-        if (_vehicleMovement != null)
-        {
-            _vehicleMovement.enabled = false;
+    private void OnTriggerEnter2D(Collider2D other) {
+        DamageArea damageArea = other.GetComponent<DamageArea>();
+        if (damageArea != null) {
+            if (damageArea.InWater(DamageArea.DamageAreaType.Water)) {
+                
+            }
         }
+    }
+
+    private void DisableInWater() {
         
-        if (radio != null)
-        {
-            radio.ToggleRadio(false);
-        }
-       
-       // GetComponentInChildren<Radio>().enabled = false;
     }
 } 
 
