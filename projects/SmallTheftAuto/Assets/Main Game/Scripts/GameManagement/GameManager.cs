@@ -90,10 +90,10 @@ public class GameManager : MonoBehaviour
     public void RespawnData() //This manages all the respawn variables
     {
         playerMovement.enabled = true;
-        player.Health = respawn.health;
+        player.Health = respawn.Health;
         //player.Money = respawn.money / 2;
-        player.Money = respawn.money / 2;
-        player.Score = respawn.score;
+        player.Money = (respawn.Money - respawn.Money/2);
+        player.Score = respawn.Score;
         respawn.RespawnPoint();
         respawn.SaveData();
         //respawn.LoadData();
