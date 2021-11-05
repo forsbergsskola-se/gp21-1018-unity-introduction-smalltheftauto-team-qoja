@@ -18,7 +18,14 @@ public class PauseMenu : MonoBehaviour
         {
             if (GameIsPaused)
             {
-                Resume();
+                if (instructionUI.activeInHierarchy)
+                {
+                    Pause();
+                }
+                else
+                {
+                    Resume();
+                }
             }
             else
             {
