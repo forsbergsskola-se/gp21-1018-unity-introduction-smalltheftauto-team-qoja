@@ -6,18 +6,24 @@ public class Weapon : MonoBehaviour
     public GameObject bulletPrefab;
     public int bulletNumber = 7;
     public int maxBullet;
+    public AudioSource audioSource;
     [SerializeField] private float fireRate = 10f;
     [SerializeField] private float reloadTime = 1.5f;
     private float _lastFired;
-    
-    
+
+    private void Awake()
+    {
+        audioSource = gameObject.GetComponent<AudioSource>();
+    }
     private void Update()
     {
         GunType();
         
         //Reload function with delay - Reload time is adjustable on the scene
-        if (Input.GetKeyDown(KeyCode.R)) 
+        if (Input.GetKeyDown(KeyCode.R))
         {
+
+            audioSource.enabled = true;
             Invoke(nameof(ReloadGun),reloadTime);
         }
     }
@@ -25,6 +31,7 @@ public class Weapon : MonoBehaviour
     private void ReloadGun()
     {
         bulletNumber = maxBullet;
+        audioSource.enabled = false;
     }
 
     void Shoot()
