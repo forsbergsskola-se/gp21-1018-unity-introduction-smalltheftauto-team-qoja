@@ -5809,6 +5809,7 @@ MonoBehaviour:
   parkingSpot: {fileID: 919212283}
   respawn: {fileID: 0}
   shootingTarget: {fileID: 1017195921}
+  phoneboxExclamation: {fileID: 2051916966}
   maximumTimeMissionOne: 90
   maximumTimeMissionTwo: 120
   maximumTimeMissionThree: 100

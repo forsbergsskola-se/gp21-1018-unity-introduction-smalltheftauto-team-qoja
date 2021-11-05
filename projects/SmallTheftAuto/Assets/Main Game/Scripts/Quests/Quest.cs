@@ -15,6 +15,7 @@ public class Quest : MonoBehaviour
     public GameObject parkingSpot;
     public Respawn respawn;
     public GameObject shootingTarget;
+    public GameObject phoneboxExclamation;
     
     private ParkingSpot _codeOfParkingSpot;
     private int _originalMoney;
@@ -54,6 +55,8 @@ public class Quest : MonoBehaviour
             MissionThree();
         }
 
+        SetPhoneboxExclamation();
+
         if (!Player.QuestIsActive)
         {
             _originalMoney = gameManager.Money;
@@ -82,6 +85,18 @@ public class Quest : MonoBehaviour
         if (MissionIndex > Quests.Length - 2)
         {
             NoMoreQuests();
+        }
+    }
+
+    private void SetPhoneboxExclamation()
+    {
+        if (!Player.QuestIsActive && (MissionIndex < Quests.Length - 1))
+        {
+            phoneboxExclamation.SetActive(true);
+        }
+        else
+        {
+            phoneboxExclamation.SetActive(false);
         }
     }
 
