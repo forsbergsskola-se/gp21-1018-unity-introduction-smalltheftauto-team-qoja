@@ -8,8 +8,7 @@ public class DriverAA : MonoBehaviour
 {
     public GameObject player;
     public PlayerMovementAA movement;
-    private bool contactCar;
-    private bool insideCar;
+    private bool _insideCar;
 
     
     // Start is called before the first frame update
@@ -34,7 +33,7 @@ public class DriverAA : MonoBehaviour
         {
             player.SetActive(true);
             movement.enabled = false;
-            insideCar = false;
+            _insideCar = false;
             
         }
     }
@@ -42,7 +41,7 @@ public class DriverAA : MonoBehaviour
     {
         player.SetActive(false);
         movement.enabled = true;
-        insideCar = true;
+        _insideCar = true;
     }
    
 }
