@@ -32,8 +32,7 @@ public class Player : MonoBehaviour, IHaveHealth
         QuestFinder();
         
     }
-
-    //Following method should be moved out of playerscript
+    
     private void QuestFinder()
     {
         if (Input.GetKeyDown(KeyCode.E) && !QuestIsActive)
