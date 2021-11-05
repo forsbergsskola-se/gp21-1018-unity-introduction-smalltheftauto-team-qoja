@@ -67,7 +67,6 @@ public class Vehicle : MonoBehaviour, IHurtOnCrash, IHaveHealth {
         {
             _inWater = false;
         }
-        
     }
 
     public void EnterCar(GameObject player)
