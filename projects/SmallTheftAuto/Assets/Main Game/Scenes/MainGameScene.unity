@@ -20179,8 +20179,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 100
-  runSpeed: 5
-  walkSpeed: 1.6
+  runSpeed: 6
+  walkSpeed: 3
   staminaBar: {fileID: 0}
   staminaDrain: 0.15
   staminaReloadTime: 1
