@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Destructible : MonoBehaviour, IBurnable, IDamageable //Should remove those two interfaces because they are of no use
+public class Destructible : MonoBehaviour
 {
     [SerializeField] private int fireThreshold = 30;
     [SerializeField] private GameObject firePrefab;
