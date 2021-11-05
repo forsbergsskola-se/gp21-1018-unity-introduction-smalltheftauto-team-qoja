@@ -14370,6 +14370,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3496925138648017183, guid: 6e539d54024e1de4abc681fda4e7f635, type: 3}
   m_PrefabInstance: {fileID: 3496925138103699627}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1696359111 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1696359114, guid: 6e539d54024e1de4abc681fda4e7f635, type: 3}
+  m_PrefabInstance: {fileID: 3496925138103699627}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1696359110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac9972bd824afca46a8e260b02a6ab13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1699326986
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18456,7 +18467,7 @@ PrefabInstance:
     - target: {fileID: 3496925138830242120, guid: 6e539d54024e1de4abc681fda4e7f635, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1696359111}
     - target: {fileID: 3496925138830242120, guid: 6e539d54024e1de4abc681fda4e7f635, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -18572,7 +18583,7 @@ PrefabInstance:
     - target: {fileID: 3496925139097254245, guid: 6e539d54024e1de4abc681fda4e7f635, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1696359111}
     - target: {fileID: 3496925139097254245, guid: 6e539d54024e1de4abc681fda4e7f635, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Resume
@@ -18592,7 +18603,7 @@ PrefabInstance:
     - target: {fileID: 3496925139097254266, guid: 6e539d54024e1de4abc681fda4e7f635, type: 3}
       propertyPath: instructionUI
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1352186713}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e539d54024e1de4abc681fda4e7f635, type: 3}
 --- !u!1001 &4120176254243564929
