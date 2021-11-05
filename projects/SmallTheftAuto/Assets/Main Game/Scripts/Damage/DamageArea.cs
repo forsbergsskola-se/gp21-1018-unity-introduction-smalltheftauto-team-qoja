@@ -4,17 +4,12 @@ using UnityEngine;
 
 public class DamageArea : MonoBehaviour
 {
+    public DamageAreaType dArea;
     public int damage;
     public float interval;
-    public DamageAreaType dArea;
     private Destructible _destructible;
-    private VehicleMovement _vehicleMovement;
-    private Vehicle _vehicle;
     private IEnumerator _damageCoroutine;
-    private float _vehicleMaxSpeed;
     private bool _coroutineDamageStarted;
-    private bool _coroutineDisableCarStarted;
-    private bool _stillInWater;
 
     public enum DamageAreaType
     {
@@ -39,7 +34,8 @@ public class DamageArea : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
+    private void OnTriggerEnter2D(Collider2D other)
+    {
         _destructible = other.gameObject.GetComponentInParent<Destructible>();
         
         if (_destructible != null)
