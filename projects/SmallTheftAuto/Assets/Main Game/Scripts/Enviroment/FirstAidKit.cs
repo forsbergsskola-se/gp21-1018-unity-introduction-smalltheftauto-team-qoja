@@ -29,7 +29,7 @@ public class FirstAidKit : MonoBehaviour
                 
                 for (int i = 0; i < firstAidKits.Length; i++)
                 {
-                    distances[i] = Vector2.Distance(this.transform.position, firstAidKits[i].transform.position);
+                    distances[i] = Vector2.Distance(player.transform.position, firstAidKits[i].transform.position);
                 }
                 
                 int index = FindObject.FindIndexOfClosestObject(distances);
