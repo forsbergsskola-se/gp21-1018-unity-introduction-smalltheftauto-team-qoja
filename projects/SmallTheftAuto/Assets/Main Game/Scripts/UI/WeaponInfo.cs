@@ -20,27 +20,43 @@ public class WeaponInfo : MonoBehaviour
     {
         if (weapons[0].activeSelf)
         {
-            _weaponInfo.text = "Use mouse wheel to equip weapon";
-            pistolImage.SetActive(false);
-            smgImage.SetActive(false);
+            NoWeapon();
         }
 
         if (weapons[1].activeSelf)
         {
-            _leftShots = weapons[1].GetComponent<Weapon>().bulletNumber;
-            _maxShots = weapons[1].GetComponent<Weapon>().maxBullet;
-            _weaponInfo.text = _leftShots + "/" + _maxShots;
-            pistolImage.SetActive(true);
-            smgImage.SetActive(false);
+            Pistol();
         } 
         
         if (weapons[2].activeSelf)
         {
-            _leftShots = weapons[2].GetComponent<Weapon>().bulletNumber;
-            _maxShots = weapons[2].GetComponent<Weapon>().maxBullet;
-            _weaponInfo.text = _leftShots + "/" + _maxShots;
-            smgImage.SetActive(true);
-            pistolImage.SetActive(false);
+            Smg();
         }
     }
+
+    private void NoWeapon()
+    {
+        _weaponInfo.text = "Use mouse wheel to equip weapon";
+        pistolImage.SetActive(false);
+        smgImage.SetActive(false);
+    }
+
+    private void Pistol()
+    {
+        _leftShots = weapons[1].GetComponent<Weapon>().bulletNumber;
+        _maxShots = weapons[1].GetComponent<Weapon>().maxBullet;
+        _weaponInfo.text = _leftShots + "/" + _maxShots;
+        pistolImage.SetActive(true);
+        smgImage.SetActive(false);
+    }
+
+    private void Smg()
+    {
+        _leftShots = weapons[2].GetComponent<Weapon>().bulletNumber;
+        _maxShots = weapons[2].GetComponent<Weapon>().maxBullet;
+        _weaponInfo.text = _leftShots + "/" + _maxShots;
+        smgImage.SetActive(true);
+        pistolImage.SetActive(false);
+    }
 }
+
