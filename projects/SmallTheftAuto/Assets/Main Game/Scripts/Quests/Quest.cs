@@ -56,16 +56,17 @@ public class Quest : MonoBehaviour
             MissionComplete(20,100);
             MissionIndex++;
         }
-        
-        IfMissionFailed();
-        
+
+        if (timerUI.activeInHierarchy && (Timer.TimeIsOut || player.GetComponent<Player>().IsDead))
+        {
+            MissionFailed();
+        }
+
         if (_missionIsOver)
         {
-            DeactivateMissionObjects();
+            MissionOver();
         }
-        
-        MissionOver();
-        
+
         //When there is no more quest
         if (MissionIndex > Quests.Length - 2)
         {
@@ -75,7 +76,7 @@ public class Quest : MonoBehaviour
 
     private void MissionOne()
     {
-        _maximumTime = 100;
+        _maximumTime = 20;
             
         //When the player has collected  200 dollars criteria is met
         _completionCriteria = gameManager.Money - _originalMoney >= 200;
@@ -112,29 +113,21 @@ public class Quest : MonoBehaviour
         respawn.SaveData();
     }
 
-    private void IfMissionFailed()
+    private void MissionFailed()
     {
-        if (timerUI.activeInHierarchy)
-        {
-            if (Timer.TimeIsOut || player.GetComponent<Player>().IsDead)
-            {
-                missionFailed.SetActive(true);
-                _missionIsOver = true;
-                _moneyReset = false;
-            }
-        }
+        missionFailed.SetActive(true);
+        _missionIsOver = true;
+        _moneyReset = false;
     }
 
     // Deactivate the animations when mission is over
     private void MissionOver()
     {
-        if (_missionIsOver)
-        { 
-            Invoke("SetMissionFalse", 3f);
-            Player.QuestIsActive = false;
-            timerUI.SetActive(false);
-            Timer.TimeIsOut = false;
-        }
+        DeactivateMissionObjects();
+        Invoke(nameof(SetMissionFalse), 3f);
+        Player.QuestIsActive = false;
+        timerUI.SetActive(false);
+        Timer.TimeIsOut = false;
     }
     private void DeactivateMissionObjects()
     {

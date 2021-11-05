@@ -55,6 +55,4 @@ public class Player : MonoBehaviour, IHaveHealth
             }
         }
     }
-    
-    
 }

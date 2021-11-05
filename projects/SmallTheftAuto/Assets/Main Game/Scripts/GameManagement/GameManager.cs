@@ -71,7 +71,6 @@ public class GameManager : MonoBehaviour
         _isRespawning = false;
     }
 
-    
     private void Respawn()
     {
         playerMovement.enabled = false;
@@ -86,7 +85,4 @@ public class GameManager : MonoBehaviour
         player.Health = player.maxHealth;
     }
     
-    
 }
-
-

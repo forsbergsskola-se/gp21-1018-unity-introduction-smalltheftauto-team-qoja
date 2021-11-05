@@ -124,4 +124,3 @@ public class Vehicle : MonoBehaviour, IHurtOnCrash, IHaveHealth {
         _destructible.enabled = false;
     }
 } 
-
