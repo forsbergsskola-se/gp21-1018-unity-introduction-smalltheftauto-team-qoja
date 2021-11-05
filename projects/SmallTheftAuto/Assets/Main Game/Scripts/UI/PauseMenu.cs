@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour 
 {
-    public static bool GameIsPaused = false;
+    private static bool _gameIsPaused = false;
     public GameObject pauseMenuUI;
     public GameObject instructionUI;
     
@@ -16,7 +16,7 @@ public class PauseMenu : MonoBehaviour
         // Press Esc to open the pause menu and the game is paused
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (GameIsPaused)
+            if (_gameIsPaused)
             {
                 if (instructionUI.activeInHierarchy)
                 {
@@ -39,7 +39,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         instructionUI.SetActive(false);
         Time.timeScale = 1f;
-        GameIsPaused = false;
+        _gameIsPaused = false;
         AudioListener.pause = false;
     }
 
@@ -48,15 +48,15 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         instructionUI.SetActive(true);
         Time.timeScale = 0f;
-        GameIsPaused = true;
+        _gameIsPaused = true;
         AudioListener.pause = true;
     }
 
-    public void Pause()
+    private void Pause()
     {
         pauseMenuUI.SetActive(true);
         instructionUI.SetActive(false);
-        GameIsPaused = true;
+        _gameIsPaused = true;
         Time.timeScale = 0f;
         AudioListener.pause = true;
     }

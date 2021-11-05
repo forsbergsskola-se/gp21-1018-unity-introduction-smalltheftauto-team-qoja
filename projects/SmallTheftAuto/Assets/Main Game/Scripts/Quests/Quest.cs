@@ -3,7 +3,7 @@ using UnityEngine.Serialization;
 
 public class Quest : MonoBehaviour
 {
-    public static string[] Quests = {"Collect 200 dollars", "Park a car in parking spot No.2 and get off the car", "Good job! No more quest!"};
+    public static string[] Quests = {"Collect 200 dollars", "Kill the bad guy with your weapon", "Park a car in parking spot No.2 and get off the car", "Good job! No more quest!"};
     public static int MissionIndex;
     public GameObject questUI;
     public GameObject timerUI;
@@ -14,6 +14,7 @@ public class Quest : MonoBehaviour
     [FormerlySerializedAs("money")] public GameObject moneyDiscovered;
     public GameObject parkingSpot;
     public Respawn respawn;
+    public GameObject shootingTarget;
     
     private ParkingSpot _codeOfParkingSpot;
     private int _originalMoney;
@@ -41,6 +42,12 @@ public class Quest : MonoBehaviour
         if (MissionIndex == 1)
         {
             MissionTwo();
+        }
+        
+        //Mission 3
+        if (MissionIndex == 2)
+        {
+            MissionThree();
         }
 
         if (!Player.QuestIsActive)
@@ -87,8 +94,22 @@ public class Quest : MonoBehaviour
             MoneyFinder();
         }
     }
-
+    
     private void MissionTwo()
+    {
+        _maximumTime = 20;
+            
+        //When the player has killed the target criteria is met
+        _completionCriteria = shootingTarget.activeInHierarchy && shootingTarget.GetComponent<ShootingTarget>().IsDead;
+        
+        if (timerUI.activeInHierarchy)
+        {
+            shootingTarget.SetActive(true);
+        }
+    }
+    
+
+    private void MissionThree()
     {
         _maximumTime = 200;
             
@@ -132,6 +153,7 @@ public class Quest : MonoBehaviour
     private void DeactivateMissionObjects()
     {
         moneyDiscovered.SetActive(false);
+        shootingTarget.SetActive(false);
         parkingSpot.transform.GetChild(0).gameObject.SetActive(false);
         _codeOfParkingSpot.enabled = false;
     }
