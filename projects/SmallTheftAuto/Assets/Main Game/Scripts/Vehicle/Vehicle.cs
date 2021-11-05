@@ -5,6 +5,9 @@ public class Vehicle : MonoBehaviour, IHurtOnCrash, IHaveHealth {
     public Vector3 playerOffset = new Vector3(3, 0, 0);
     public int DamageOnCrash => 5;
     public int maxHealth = 200;
+    public Animator camera;
+    public RuntimeAnimatorController zoomIn;
+    public RuntimeAnimatorController zoomOut;
     private GameObject _driver;
     private Explosion _explosion;
     private VehicleMovement _vehicleMovement;
@@ -28,6 +31,9 @@ public class Vehicle : MonoBehaviour, IHurtOnCrash, IHaveHealth {
         _explosion = GetComponent<Explosion>();
         _destructible = GetComponent<Destructible>();
         
+        camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Animator>();
+
+
         DisableExplosion(_explosion);
         ToggleVehicleMovement(_vehicleMovement, false);
     }
@@ -76,6 +82,8 @@ public class Vehicle : MonoBehaviour, IHurtOnCrash, IHaveHealth {
         
         ToggleVehicleMovement(_vehicleMovement, true);
         OnOffRadio(true);
+        camera.runtimeAnimatorController = zoomOut;
+
     }
 
     public void ExitCar(Vector3 vehiclePlayerOffset)
@@ -87,6 +95,7 @@ public class Vehicle : MonoBehaviour, IHurtOnCrash, IHaveHealth {
 
         ToggleVehicleMovement(_vehicleMovement, false);
         OnOffRadio(false);
+        camera.runtimeAnimatorController = zoomIn;
     }
 
 

@@ -3,7 +3,10 @@ guid: 377b20cb61a61a54b92926c6e3daa7de
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - camera: {instanceID: 0}
+  - zoomIn: {fileID: 9100000, guid: 10a24d674abb41746bb3acb1cb9be33f, type: 2}
+  - zoomOut: {fileID: 9100000, guid: f71c91edf4639884a89272fd522f98cd, type: 2}
   executionOrder: -1100
   icon: {instanceID: 0}
   userData: 
