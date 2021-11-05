@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Quest : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class Quest : MonoBehaviour
     public GameObject missionComplete;
     public GameObject missionFailed;
     public GameManager gameManager;
-    public GameObject money;
+    [FormerlySerializedAs("money")] public GameObject moneyDiscovered;
     public GameObject parkingSpot;
     public Respawn respawn;
     
@@ -60,7 +61,7 @@ public class Quest : MonoBehaviour
         
         if (_missionIsOver)
         {
-            money.SetActive(false);
+            moneyDiscovered.SetActive(false);
             parkingSpot.transform.GetChild(0).gameObject.SetActive(false);
             _codeOfParkingSpot.enabled = false;
         }
@@ -90,7 +91,7 @@ public class Quest : MonoBehaviour
             
         if (timerUI.activeInHierarchy)
         {
-            money.SetActive(true);
+            moneyDiscovered.SetActive(true);
             MoneyFinder();
         }
     }
@@ -162,9 +163,9 @@ public class Quest : MonoBehaviour
     {
         if (!_moneyReset)
         {
-            for (int i = 0; i < money.transform.childCount; i++)
+            for (int i = 0; i < moneyDiscovered.transform.childCount; i++)
             {
-                money.transform.GetChild(i).gameObject.SetActive(true);
+                moneyDiscovered.transform.GetChild(i).gameObject.SetActive(true);
             }
             
             _moneyReset = true;
@@ -172,15 +173,15 @@ public class Quest : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.E) && Player.QuestIsActive)
         {
-            Money[] moneys = FindObjectsOfType<Money>();     
-            
-            if (moneys.Length != 0)
+            var allMoney = GameObject.FindGameObjectsWithTag("Money");
+
+            if (allMoney.Length != 0)
             {
-                float[] distances = new float[moneys.Length];
+                float[] distances = new float[allMoney.Length];
                 
-                for (int i = 0; i < moneys.Length; i++)
+                for (int i = 0; i < allMoney.Length; i++)
                 {
-                    distances[i] = Vector2.Distance(player.transform.position, moneys[i].transform.position);
+                    distances[i] = Vector2.Distance(player.transform.position, allMoney[i].transform.position);
             
                 }
                 
@@ -188,7 +189,7 @@ public class Quest : MonoBehaviour
                 
                 if (distances[index] < 3)
                 {
-                    GameObject money = moneys[index].gameObject;
+                    GameObject money = allMoney[index].gameObject;
                     money.SetActive(false);
                     gameManager.Money += 100;
                 }
