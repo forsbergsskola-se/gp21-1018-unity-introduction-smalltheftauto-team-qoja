@@ -54,6 +54,10 @@ public class GameManager : MonoBehaviour
             Respawn();
         }
     }
+    
+    public void PlayGame() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
 
     public void RespawnData()
     {
@@ -74,11 +78,6 @@ public class GameManager : MonoBehaviour
         Invoke(nameof(RespawnData), 3);
     }
 
-    public void StartGame() //This is called after button press on first menu, and when unpausing
-    {
-        SceneManager.LoadScene("MainGameScene");// here we want to remove the first menu
-    }
-    
     public void RestartGame()
     {
         SceneManager.LoadScene("MainGameScene");

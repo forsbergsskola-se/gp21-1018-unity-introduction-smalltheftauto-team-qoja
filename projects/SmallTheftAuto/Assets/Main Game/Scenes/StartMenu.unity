@@ -415,7 +415,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 248568582}
-        m_TargetAssemblyTypeName: StartScreen, Assembly-CSharp
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: PlayGame
         m_Mode: 1
         m_Arguments:
@@ -473,9 +473,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 248568577}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f45f69da8f12e4be79914f95263c2dab, type: 3}
+  m_Script: {fileID: 11500000, guid: 53eacc56eb0b53749b365ef2e7a054a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  respawn: {fileID: 0}
+  playerMovement: {fileID: 0}
 --- !u!1 &277309927
 GameObject:
   m_ObjectHideFlags: 0
