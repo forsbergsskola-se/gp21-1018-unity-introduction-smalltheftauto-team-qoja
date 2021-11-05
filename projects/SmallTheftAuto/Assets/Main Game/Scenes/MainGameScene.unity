@@ -5810,7 +5810,7 @@ MonoBehaviour:
   respawn: {fileID: 0}
   shootingTarget: {fileID: 1017195921}
   phoneboxExclamation: {fileID: 2051916966}
-  maximumTimeMissionOne: 90
+  maximumTimeMissionOne: 60
   maximumTimeMissionTwo: 120
   maximumTimeMissionThree: 100
 --- !u!70 &330282397
