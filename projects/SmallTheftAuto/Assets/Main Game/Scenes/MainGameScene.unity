@@ -16542,6 +16542,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScifiCar_Prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 8378838160970735307, guid: 257a2d584dbadce4884c7d8df6c17d77, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 257a2d584dbadce4884c7d8df6c17d77, type: 3}
 --- !u!4 &961115565 stripped
@@ -21637,7 +21641,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1251730511}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.07}
+  m_LocalPosition: {x: 0, y: 0, z: -0.503}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_Children: []
   m_Father: {fileID: 1973985217}
@@ -38482,6 +38486,14 @@ PrefabInstance:
     - target: {fileID: 231799040, guid: 6e539d54024e1de4abc681fda4e7f635, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 166.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 980955273, guid: 6e539d54024e1de4abc681fda4e7f635, type: 3}
+      propertyPath: m_text
+      value: "Find quests by interaction with the phone box. Complete quests to get
+        money. \n\nWatch out for fire and explosions will burn you. Water will drown
+        you and disable your car. Very scary stuff. Be careful with your cars, they
+        can burn too.\n\nIf you die, the game will automatically restart - but you
+        will loose half of your money."
       objectReference: {fileID: 0}
     - target: {fileID: 1265199140, guid: 6e539d54024e1de4abc681fda4e7f635, type: 3}
       propertyPath: m_RootOrder

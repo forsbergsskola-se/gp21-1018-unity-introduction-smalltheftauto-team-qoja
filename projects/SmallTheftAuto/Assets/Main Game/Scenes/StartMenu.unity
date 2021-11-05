@@ -922,7 +922,7 @@ MonoBehaviour:
   m_text: "Find quests by interaction with the phone box. Complete quests to get
     money. \n\nWatch out for fire and explosions will burn you. Water will drown
     you and disable your car. Very scary stuff. Be careful with your cars, they can
-    burn to.\n\nIf you die, the game will automatically restart - but you will loose
+    burn too.\n\nIf you die, the game will automatically restart - but you will loose
     half of your money."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 045240e553fdb46338b11a365607a617, type: 2}
