@@ -7,7 +7,6 @@ public class Player : MonoBehaviour, IHaveHealth
     public static bool QuestIsActive;
     private int _health;
     private GameObject _quest;
-    private GameObject _firstAidKit;
 
     private void Awake()
     {
