@@ -5809,9 +5809,9 @@ MonoBehaviour:
   parkingSpot: {fileID: 919212283}
   respawn: {fileID: 0}
   shootingTarget: {fileID: 1017195921}
-  maximumTimeMissionOne: 20
-  maximumTimeMissionTwo: 25
-  maximumTimeMissionThree: 40
+  maximumTimeMissionOne: 90
+  maximumTimeMissionTwo: 120
+  maximumTimeMissionThree: 100
 --- !u!70 &330282397
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
