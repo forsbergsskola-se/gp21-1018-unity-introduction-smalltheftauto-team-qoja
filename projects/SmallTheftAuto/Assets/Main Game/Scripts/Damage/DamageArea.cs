@@ -39,8 +39,9 @@ public class DamageArea : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
+    private void OnTriggerEnter2D(Collider2D other) {
+        _destructible = other.gameObject.GetComponentInParent<Destructible>();
+        
         if (_destructible != null)
         {
             _damageCoroutine = _destructible.TakeDamageOverTime(damage, interval);
