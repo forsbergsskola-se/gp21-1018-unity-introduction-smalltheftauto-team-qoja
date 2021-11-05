@@ -2817,6 +2817,8 @@ MonoBehaviour:
   moneyDiscovered: {fileID: 389932668}
   parkingSpot: {fileID: 919212283}
   respawn: {fileID: 0}
+  maximumTimeMissionOne: 20
+  maximumTimeMissionTwo: 25
 --- !u!70 &330282397
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -18357,12 +18359,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3496925137749975522, guid: 6e539d54024e1de4abc681fda4e7f635, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3496925137749975522, guid: 6e539d54024e1de4abc681fda4e7f635, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3496925137749975522, guid: 6e539d54024e1de4abc681fda4e7f635, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3496925137749975522, guid: 6e539d54024e1de4abc681fda4e7f635, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3496925137749975522, guid: 6e539d54024e1de4abc681fda4e7f635, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 888
+      value: -124
       objectReference: {fileID: 0}
     - target: {fileID: 3496925137749975522, guid: 6e539d54024e1de4abc681fda4e7f635, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -517
+      value: 179
       objectReference: {fileID: 0}
     - target: {fileID: 3496925137749975523, guid: 6e539d54024e1de4abc681fda4e7f635, type: 3}
       propertyPath: m_IsActive

@@ -18,9 +18,12 @@ public class Quest : MonoBehaviour
     private ParkingSpot _codeOfParkingSpot;
     private int _originalMoney;
     private bool _missionIsOver;
+    private bool _completionCriteria;
     private bool _moneyReset;
     private int _maximumTime;
-    private bool _completionCriteria;
+    [SerializeField] private int maximumTimeMissionOne = 20;
+    [SerializeField] private int maximumTimeMissionTwo = 40;
+    
     
     void Start()
     {
@@ -76,7 +79,7 @@ public class Quest : MonoBehaviour
 
     private void MissionOne()
     {
-        _maximumTime = 20;
+        _maximumTime = maximumTimeMissionOne;
             
         //When the player has collected  200 dollars criteria is met
         _completionCriteria = gameManager.Money - _originalMoney >= 200;
@@ -90,7 +93,7 @@ public class Quest : MonoBehaviour
 
     private void MissionTwo()
     {
-        _maximumTime = 200;
+        _maximumTime = maximumTimeMissionTwo;
             
         //When the player has parked in the correct spot and leaves car criteria is met
         _completionCriteria = parkingSpot.GetComponent<ParkingSpot>().isParked && player.activeInHierarchy;
