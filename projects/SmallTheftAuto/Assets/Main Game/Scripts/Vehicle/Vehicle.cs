@@ -47,22 +47,27 @@ public class Vehicle : MonoBehaviour, IHurtOnCrash, IHaveHealth {
     {
         _damageArea = other.GetComponent<DamageArea>();
 
-        if (_damageArea != null) {
-            if (_damageArea.InWater()) {
+        if (_damageArea != null)
+        {
+            if (_damageArea.InWater())
+            {
                 _inWater = true;
-                if (_vehicleMovement != null) {
-                    StartCoroutine(WaitForSecondsDisableCar(5, _vehicleMovement, _destructible));
+                
+                if (_vehicleMovement != null)
+                {
+                    StartCoroutine(WaitForSecondsDisableCar(5));
                 }
             }
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other) {
-        if (_damageArea != null) {
-            if (_damageArea.InWater()) {
-                _inWater = false;
-            }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (_inWater)
+        {
+            _inWater = false;
         }
+        
     }
 
     public void EnterCar(GameObject player)
@@ -77,7 +82,7 @@ public class Vehicle : MonoBehaviour, IHurtOnCrash, IHaveHealth {
     public void ExitCar(Vector3 vehiclePlayerOffset)
     {
         _driver.transform.parent = null;
-        _driver.transform.position = transform.position + playerOffset;
+        _driver.transform.position = transform.position + vehiclePlayerOffset;
         _driver.SetActive(true);
         _driver = null;
 
@@ -110,7 +115,7 @@ public class Vehicle : MonoBehaviour, IHurtOnCrash, IHaveHealth {
         }
     }
     
-    private IEnumerator WaitForSecondsDisableCar(int seconds, VehicleMovement vehicleMovement, Destructible destructible)
+    private IEnumerator WaitForSecondsDisableCar(int seconds)
     {
         yield return new WaitForSeconds(seconds);
         if (_inWater)
@@ -119,7 +124,8 @@ public class Vehicle : MonoBehaviour, IHurtOnCrash, IHaveHealth {
         }
     }
 
-    private void DisableCar() {
+    private void DisableCar()
+    {
         _vehicleMovement.MAXSpeed = 0;
         _destructible.enabled = false;
     }
