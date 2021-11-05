@@ -83,6 +83,8 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("MainGameScene");
         Awake();
         player.Health = player.maxHealth;
+        Money = 0;
+        Score = 0;
     }
     
 }
