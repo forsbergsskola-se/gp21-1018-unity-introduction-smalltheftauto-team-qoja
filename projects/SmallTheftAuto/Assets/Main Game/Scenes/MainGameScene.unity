@@ -20798,7 +20798,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 100
-  runSpeed: 6
+  runSpeed: 5.4
   walkSpeed: 3
   staminaBar: {fileID: 0}
   staminaDrain: 0.15
@@ -37521,7 +37521,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2120045342}
   m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0.03, y: 0.5, z: 0.89}
+  m_LocalPosition: {x: 0.035, y: 0.5, z: 1.023}
   m_LocalScale: {x: 0.8725102, y: 1.0379919, z: 0.63252616}
   m_Children: []
   m_Father: {fileID: 1728449941}
