@@ -1,14 +1,18 @@
+using System.Collections;
 using UnityEngine;
 
 public class Vehicle : MonoBehaviour, IHurtOnCrash, IHaveHealth {
     public Vector3 playerOffset = new Vector3(3, 0, 0);
     public int DamageOnCrash => 5;
     public int maxHealth = 200;
-    private int _health;
     private GameObject _driver;
     private Explosion _explosion;
     private VehicleMovement _vehicleMovement;
     private Radio _radio;
+    private Destructible _destructible;
+    private DamageArea _damageArea;
+    private int _health;
+    private bool _inWater;
 
     public int Health
     {
@@ -22,6 +26,7 @@ public class Vehicle : MonoBehaviour, IHurtOnCrash, IHaveHealth {
         _vehicleMovement = GetComponent<VehicleMovement>();
         _radio = gameObject.GetComponentInChildren<Radio>();
         _explosion = GetComponent<Explosion>();
+        _destructible = GetComponent<Destructible>();
         
         DisableExplosion(_explosion);
         ToggleVehicleMovement(_vehicleMovement, false);
@@ -34,6 +39,28 @@ public class Vehicle : MonoBehaviour, IHurtOnCrash, IHaveHealth {
             if (_driver != null)
             {
                 ExitCar(playerOffset);
+            }
+        }
+    }
+    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        _damageArea = other.GetComponent<DamageArea>();
+
+        if (_damageArea != null) {
+            if (_damageArea.InWater()) {
+                _inWater = true;
+                if (_vehicleMovement != null) {
+                    StartCoroutine(WaitForSecondsDisableCar(5, _vehicleMovement, _destructible));
+                }
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other) {
+        if (_damageArea != null) {
+            if (_damageArea.InWater()) {
+                _inWater = false;
             }
         }
     }
@@ -82,22 +109,19 @@ public class Vehicle : MonoBehaviour, IHurtOnCrash, IHaveHealth {
             _radio.ToggleRadio(value);
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D other)
+    
+    private IEnumerator WaitForSecondsDisableCar(int seconds, VehicleMovement vehicleMovement, Destructible destructible)
     {
-        DamageArea damageArea = other.GetComponent<DamageArea>();
-        if (damageArea != null)
+        yield return new WaitForSeconds(seconds);
+        if (_inWater)
         {
-            if (damageArea.InWater(DamageArea.DamageAreaType.Water))
-            {
-                
-            }
+            DisableCar();
         }
     }
 
-    private void DisableInWater()
-    {
-        
+    private void DisableCar() {
+        _vehicleMovement.MAXSpeed = 0;
+        _destructible.enabled = false;
     }
 } 
 
