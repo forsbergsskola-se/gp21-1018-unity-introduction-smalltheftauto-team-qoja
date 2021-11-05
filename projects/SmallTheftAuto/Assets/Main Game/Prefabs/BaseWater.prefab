@@ -225,6 +225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 4
   interval: 0.3
+  dArea: 1
 --- !u!1 &4120176255177987315
 GameObject:
   m_ObjectHideFlags: 0
