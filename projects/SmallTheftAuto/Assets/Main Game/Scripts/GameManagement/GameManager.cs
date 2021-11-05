@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
         playerMovement = player.GetComponent<PlayerMovement>();
         respawn = FindObjectOfType<Respawn>();
         MakeSingleton();
+        
     }
 
     private void Update()
@@ -85,19 +86,7 @@ public class GameManager : MonoBehaviour
         player.Health = player.maxHealth;
     }
     
-
-    public void Pause() //This is called when we press a pause button
-    {
-        
-        Time.timeScale = 0; //This Pauses time
-        AudioListener.pause = true; // This pauses the Audio Listener
-    }
-
-    public void Unpause() // Called when pressing Unpause button
-    {
-        Time.timeScale = 1; //This Unpauses time
-        AudioListener.pause = false; // This unpauses the Audio Listener
-    }
+    
 }
 
 
