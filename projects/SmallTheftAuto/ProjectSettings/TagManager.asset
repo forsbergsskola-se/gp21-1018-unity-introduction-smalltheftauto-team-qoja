@@ -8,6 +8,7 @@ TagManager:
   - Wall
   - Fire
   - Weapon
+  - Money
   layers:
   - Default
   - TransparentFX
