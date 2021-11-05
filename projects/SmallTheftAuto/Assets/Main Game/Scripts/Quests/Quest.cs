@@ -61,9 +61,7 @@ public class Quest : MonoBehaviour
         
         if (_missionIsOver)
         {
-            moneyDiscovered.SetActive(false);
-            parkingSpot.transform.GetChild(0).gameObject.SetActive(false);
-            _codeOfParkingSpot.enabled = false;
+            DeactivateMissionObjects();
         }
         
         MissionOver();
@@ -71,14 +69,7 @@ public class Quest : MonoBehaviour
         //When there is no more quest
         if (MissionIndex > Quests.Length - 2)
         {
-            _missionIsOver = false;
-            
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                _missionIsOver = true;
-                questUI.SetActive(false);
-                MissionOver();
-            }
+            NoMoreQuests();
         }
     }
 
@@ -145,6 +136,23 @@ public class Quest : MonoBehaviour
             Timer.TimeIsOut = false;
         }
     }
+    private void DeactivateMissionObjects()
+    {
+        moneyDiscovered.SetActive(false);
+        parkingSpot.transform.GetChild(0).gameObject.SetActive(false);
+        _codeOfParkingSpot.enabled = false;
+    }
+    private void NoMoreQuests()
+    {
+        _missionIsOver = false;
+                    
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            _missionIsOver = true;
+            questUI.SetActive(false);
+            MissionOver();
+        }
+    }
 
     // Activate the timer for the quest
     private void QuestTimer(float maximumTime)
@@ -163,37 +171,42 @@ public class Quest : MonoBehaviour
     {
         if (!_moneyReset)
         {
-            for (int i = 0; i < moneyDiscovered.transform.childCount; i++)
-            {
-                moneyDiscovered.transform.GetChild(i).gameObject.SetActive(true);
-            }
-            
+            ActivateMoney();
             _moneyReset = true;
         }
         
         if (Input.GetKeyDown(KeyCode.E) && Player.QuestIsActive)
         {
             var allMoney = GameObject.FindGameObjectsWithTag("Money");
+            int collectionRange = 3;
 
             if (allMoney.Length != 0)
             {
+                //Stores distance between player and all money
                 float[] distances = new float[allMoney.Length];
                 
                 for (int i = 0; i < allMoney.Length; i++)
                 {
                     distances[i] = Vector2.Distance(player.transform.position, allMoney[i].transform.position);
-            
                 }
                 
+                //Finds closest Money and collects it
                 int index = FindObject.FindIndexOfClosestObject(distances);
                 
-                if (distances[index] < 3)
+                if (distances[index] < collectionRange)
                 {
                     GameObject money = allMoney[index].gameObject;
                     money.SetActive(false);
                     gameManager.Money += 100;
                 }
             }
+        }
+    }
+    private void ActivateMoney()
+    {
+        for (int i = 0; i < moneyDiscovered.transform.childCount; i++)
+        {
+            moneyDiscovered.transform.GetChild(i).gameObject.SetActive(true);
         }
     }
 
