@@ -21,10 +21,7 @@ public class QuestUI : MonoBehaviour
         //When there is no more quests
         if (Quest.MissionIndex==Quest.Quests.Length - 1)
         {
-            questKeyInfo.SetActive(false);
-            _questText = Quest.Quests[Quest.Quests.Length - 1];
-            _quest.text = _questText;
-            questKeyInfo1.SetActive(true);
+            NoMoreQuests();
         }
     }
 
@@ -33,10 +30,23 @@ public class QuestUI : MonoBehaviour
     {
         if (Player.QuestIsActive)
         {
-            _questText = Quest.Quests[i];
-            _quest.text = _questText;
-            questKeyInfo.SetActive(true);
-            questKeyInfo1.SetActive(false); 
+            DisplayQuest(i);
         }
+    }
+
+    private void NoMoreQuests()
+    {
+        questKeyInfo.SetActive(false);
+        _questText = Quest.Quests[Quest.Quests.Length - 1];
+        _quest.text = _questText;
+        questKeyInfo1.SetActive(true);
+    }
+
+    private void DisplayQuest(int i)
+    {
+        _questText = Quest.Quests[i];
+        _quest.text = _questText;
+        questKeyInfo.SetActive(true);
+        questKeyInfo1.SetActive(false); 
     }
 }
