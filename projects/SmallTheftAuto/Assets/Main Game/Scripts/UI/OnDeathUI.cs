@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class UICEO : MonoBehaviour
+public class OnDeathUI : MonoBehaviour
 {
     public Player player;
     public GameObject wasted;
