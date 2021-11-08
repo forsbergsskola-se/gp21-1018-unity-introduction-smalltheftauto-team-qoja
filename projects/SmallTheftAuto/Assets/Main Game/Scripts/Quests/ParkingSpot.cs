@@ -30,6 +30,8 @@ public class ParkingSpot : MonoBehaviour
         else isParked = false;
     }
     
+    
+    // Why have both OnEnter, and OnStay? If OnTriggerStay2D triggers, then a collider must have entered the collider, triggering it, unless some weird quantum event has occured.
     private void OnTriggerEnter2D(Collider2D other)
     {
         _parkingCollision = true;
@@ -39,6 +41,11 @@ public class ParkingSpot : MonoBehaviour
     {
         _parkingCollision = true;
     }
+    
+    
+    
+    
+    
     
     private void OnTriggerExit2D(Collider2D other)
     {

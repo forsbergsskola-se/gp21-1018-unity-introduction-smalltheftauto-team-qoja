@@ -18,6 +18,7 @@ public class PlayerInfo : MonoBehaviour
 
     void Update()
     {
+        // Why is this not done with properties in gameManager instead? That way you can update the text only if the players stats are changed instead of every frame. :)
         _health = gameManager.Health;
         _money = gameManager.Money;
         _score = gameManager.Score;

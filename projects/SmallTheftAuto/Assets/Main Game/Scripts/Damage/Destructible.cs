@@ -128,6 +128,9 @@ public class Destructible : MonoBehaviour
     //Check if a player is in the exploding object, if yes player is killed
     private void KillPlayerInExplosion()
     {
+        
+        // Why do you need a loop and array here? 
+        
         Player[] playerArray = transform.GetComponentsInChildren<Player>(true);
         for (int i = 0; i < playerArray.Length; i++)
         {
@@ -139,7 +142,7 @@ public class Destructible : MonoBehaviour
     }
 
     //If player dies inside car it still exists as a child of car and therefore do not respawn correctly.
-    //To fix this we exit the car right after death to no longer have it a child of the car.
+    //To fix this we exit the car right after death to no longer have it a child of the car. // Understandable. 
     private void KillPlayer(Player playerInCar)
     {
         Vehicle vehicle =  playerInCar.GetComponentInParent<Vehicle>();
