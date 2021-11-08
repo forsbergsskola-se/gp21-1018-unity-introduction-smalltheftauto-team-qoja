@@ -15,6 +15,7 @@ public class VehicleMovement : MonoBehaviour
     
     private void Start ()
     {
+        // This I would change into _rigidBody. While short words are nice, it makes it very confusing if someone where to read this code further down without context.
         _rb = GetComponentInChildren<Rigidbody2D> ();
     }
     

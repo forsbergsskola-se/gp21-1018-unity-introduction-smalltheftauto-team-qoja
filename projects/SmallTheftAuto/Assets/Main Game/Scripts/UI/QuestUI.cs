@@ -16,7 +16,12 @@ public class QuestUI : MonoBehaviour
 
     private void Update()
     {
+        
+        
+        // This should probably not be called every frame for performance reasons. Try setting it once when you activate the quest instead.
         QuestText(Quest.MissionIndex);
+        
+        
         
         //When there is no more quests
         if (Quest.MissionIndex==Quest.Quests.Length - 1)

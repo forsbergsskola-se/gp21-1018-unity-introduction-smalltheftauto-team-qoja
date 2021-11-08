@@ -18,6 +18,9 @@ public class WeaponInfo : MonoBehaviour
 
     void Update()
     {
+        
+        
+        // Again, try not to call things each frame unless very necessary. 
         if (weapons[0].activeSelf)
         {
             NoWeapon();
@@ -41,6 +44,8 @@ public class WeaponInfo : MonoBehaviour
         smgImage.SetActive(false);
     }
 
+    
+    // In the following two examples you call two GetComponents per frame. It is recommended to get the components once at start instead. 
     private void Pistol()
     {
         _leftShots = weapons[1].GetComponent<Weapon>().bulletNumber;
@@ -48,6 +53,8 @@ public class WeaponInfo : MonoBehaviour
         _weaponInfo.text = _leftShots + "/" + _maxShots;
         pistolImage.SetActive(true);
         smgImage.SetActive(false);
+
+        Debug.Log("I should only be displayed once for performance reasons.");
     }
 
     private void Smg()
@@ -57,6 +64,8 @@ public class WeaponInfo : MonoBehaviour
         _weaponInfo.text = _leftShots + "/" + _maxShots;
         smgImage.SetActive(true);
         pistolImage.SetActive(false);
+        
+        Debug.Log("I should only be displayed once for performance reasons.");
     }
 }
 

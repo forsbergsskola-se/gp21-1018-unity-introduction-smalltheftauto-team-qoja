@@ -12,7 +12,11 @@ public class Driver : MonoBehaviour {
     
     private void EnterClosestVehicle()
     {
+        // As you seem to have all your cars placed in the editor I would put this in Start() to avoid unnecessary performance loss.
         Vehicle[] foundVehicles = FindObjectsOfType<Vehicle>();
+        
+        
+        
         float[] distancesToVehicles = new float[foundVehicles.Length];
 
         //Creates an array of distances to all vehicles

@@ -10,6 +10,10 @@ public class Cat : MonoBehaviour
 
     private bool _hasMeowed;
 
+    
+    // I like this.
+    
+    
     void Start()
     {
         _player = FindObjectOfType<Player>();

@@ -21,6 +21,9 @@ public class FirstAidKit : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
+            
+            // Avoid to call FindObjectsOfType and similar stuff more than needed. 
+            // In this case I would make the following into a list instead, and put it inside start. Then when a healpack is picked up remove it from the list so it cant be picked up again.
             FirstAidKit[] firstAidKits = FindObjectsOfType<FirstAidKit>();
             
             if (firstAidKits.Length != 0)
