@@ -1,5 +1,6 @@
 public class FindObject
 {
+    // TODO: Nice helper function! :)
    public static int FindIndexOfClosestObject(float[] distances)
     {
         int indexOfClosestObject = 0;

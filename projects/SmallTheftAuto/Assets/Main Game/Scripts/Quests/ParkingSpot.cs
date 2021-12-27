@@ -23,7 +23,11 @@ public class ParkingSpot : MonoBehaviour
 
         int indexOfClosest = FindObject.FindIndexOfClosestObject(distances);
         
-        if (distances[indexOfClosest] < 1 && !_parkingCollision)
+        if (distances[indexOfClosest] < 1 && !_parkingCollision) // TODO: Not sure, what `parkingCollision` does.
+        // But I am sure, that the algorithm could be easier, if you just had a function that checks:
+        // bool IsAnyCarParked(){
+        // for(int i ....)
+        // if(Vector2.Distance(...) < 1) return true;
         {
             isParked = true;
         }

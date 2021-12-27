@@ -19,7 +19,7 @@ public class Player : MonoBehaviour, IHaveHealth
         set => _health = Mathf.Clamp(value, 0, maxHealth);
     }
     
-    public static int Money { get; set; }
+    public static int Money { get; set; } // TODO: Ooof, static?
 
     public int Score { get; set; }
 
@@ -29,6 +29,8 @@ public class Player : MonoBehaviour, IHaveHealth
 
     private void Update()
     {
+        // TODO: I don't think that this logic should be on the player, but rather on the Phone Booth.
+        // Consider looking at my comment in the FirstAidKit, as well :)
         QuestFinder();
         
     }

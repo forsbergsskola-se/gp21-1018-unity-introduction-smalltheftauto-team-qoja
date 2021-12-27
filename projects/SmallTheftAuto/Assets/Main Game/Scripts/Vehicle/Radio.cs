@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// TODO: Nice! It would not be any Theft Auto, if it had no radios :)
 public class Radio : MonoBehaviour
 {
     [SerializeField] public AudioClip audioClip1;

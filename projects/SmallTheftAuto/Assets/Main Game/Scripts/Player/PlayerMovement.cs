@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float rotationSpeed = 100.0f;
     [SerializeField] private float runSpeed = 20.0f;
     [SerializeField] float walkSpeed = 10.0f;
+    // TODO: By now, you know better ways of updating the staminaBar, but given your knowledge at the time, this is a great solution.
     [SerializeField] private Slider staminaBar;
     [SerializeField] private float staminaDrain = 0.4f;
     [SerializeField] private float staminaReloadTime = 2f;
@@ -31,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
         _canRun = true;
     }
 
+    // TODO: Cool!
     private void FixedUpdate()
     {
         if (Input.GetAxis("Run-Button") != 0 && _canRun && Input.GetAxis("Vertical") != 0)
