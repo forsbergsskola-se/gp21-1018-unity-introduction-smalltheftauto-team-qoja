@@ -26,6 +26,7 @@ public class GunSwitcher : MonoBehaviour
 
     void Update()
     {
+        // TODO: Cool! Smart and simple!
         // Next Weapon
         if (Input.GetAxis("Mouse ScrollWheel") > 0)
         {

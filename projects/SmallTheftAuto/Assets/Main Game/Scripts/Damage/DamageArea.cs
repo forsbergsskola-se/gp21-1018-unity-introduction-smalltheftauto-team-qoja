@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DamageArea : MonoBehaviour
 {
-    public DamageAreaType dArea;
+    public DamageAreaType dArea; // TODO: please do not use abbreviations like this one, it's not worth the saved space :)
     public int damage;
     public float interval;
     private Destructible _destructible;
@@ -21,6 +21,7 @@ public class DamageArea : MonoBehaviour
         dArea = DamageAreaType.Water;
     }
 
+    // TODO: This seems a bit over-engineered, maybe if this was named `DisableCar`, it would add more logical value
     public bool InWater()
     {
         switch (dArea)

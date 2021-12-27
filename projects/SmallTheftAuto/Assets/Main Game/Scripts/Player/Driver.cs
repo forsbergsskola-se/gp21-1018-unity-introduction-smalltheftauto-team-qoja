@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// TODO: Nice! :)
 public class Driver : MonoBehaviour {
     private int _maxDistanceToEnter = 3;
     void Update()

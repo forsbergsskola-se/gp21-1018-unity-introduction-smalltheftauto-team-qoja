@@ -8,6 +8,7 @@ public class Explosion : MonoBehaviour
     [SerializeField] private Material burnedMaterial;
     private readonly Vector3 _explosionAnimationOffset = new Vector3(0, 3, 0);
 
+    // TODO: This looks great! :)
     public void Explode()
     {
         SpawnExplosion(explosionEffect, _explosionAnimationOffset, Quaternion.identity);

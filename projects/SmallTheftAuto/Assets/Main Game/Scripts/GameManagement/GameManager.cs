@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// TODO: This class does barely anything. All it does, is forward a lot of properties to the player (can be replaced by FindObjectOfType) and it has some respawn functionality.
+// I think that you go better, if you remove the Money property etc., or you move the Money from the player to this GameManager.
 public class GameManager : MonoBehaviour
 {
     public Player player;

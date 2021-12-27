@@ -1,12 +1,14 @@
 using System.Collections;
 using UnityEngine;
 
+// TODO: This class seems too complicated. I think it would have been easier, if the logic of fire would have been moved to a separate class.
+// So, that this class is only responsible for spawning the fire. Not for despawning it or damaging the player.
 public class Destructible : MonoBehaviour
 {
     [SerializeField] private int fireThreshold = 30;
     [SerializeField] private GameObject firePrefab;
     
-    protected IHaveHealth HealthInterface;
+    protected IHaveHealth HealthInterface; // TODO: Don't name this field interface. It is of type interface, but whatever is assigned here will be a class that implements the interface. Just name it `health`
     protected bool HasDied;
     private Player _player;
     private Explosion _explosion;

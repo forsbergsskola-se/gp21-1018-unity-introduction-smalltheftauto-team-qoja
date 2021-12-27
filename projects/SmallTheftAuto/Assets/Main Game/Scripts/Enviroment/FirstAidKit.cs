@@ -21,6 +21,11 @@ public class FirstAidKit : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
+            // TODO: Oh no, this method is called for all health kits.
+            // And every health kit implements this logic for every other health kit
+            // I understand, why you implemented it this way, because you want to make sure that the closest HealthKit
+            // is always collected, but I think that it would be better, if all interactables had an Interactable component.
+            // And there was one script that checks for all interactables and interacts with the closest one.
             FirstAidKit[] firstAidKits = FindObjectsOfType<FirstAidKit>();
             
             if (firstAidKits.Length != 0)
